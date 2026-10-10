@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Fashion Looks | Daily Brain Money</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1120;--panel:#131d30;--line:#29364c;--text:#eef4ff;--muted:#9eacc3;--accent:#72e0b1;--gold:#f4c76a;--red:#ff8585}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#0b1120,#111d32);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}main{max-width:1180px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:22px}.brand{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:800}.subtitle{color:var(--muted);max-width:680px}.pill{border:1px solid var(--line);padding:7px 12px;border-radius:999px;color:var(--muted)}h1{font-size:clamp(27px,5vw,42px);line-height:1.1;margin:8px 0}h2{font-size:18px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.card{background:rgba(19,29,48,.94);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.metric{font-size:26px;font-weight:800;overflow-wrap:anywhere}.muted,small{color:var(--muted)}label{display:block;font-size:13px;color:var(--muted);margin:10px 0 5px}input,select,textarea{width:100%;background:#0b1425;border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--text);font:inherit}button{border:0;border-radius:9px;padding:10px 13px;background:var(--accent);color:#092018;font-weight:750;cursor:pointer;margin:8px 5px 0 0}button.secondary{background:#26364e;color:var(--text)}button.danger{background:#47272f;color:#ffd8dd}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.task,.lead{display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--line);padding:12px 0}.task:last-child,.lead:last-child{border-bottom:0}.task input{width:auto;margin-top:5px}.grow{flex:1;min-width:0}.tag{font-size:11px;color:var(--gold);border:1px solid #5c4a2b;border-radius:999px;padding:2px 7px}.bar{height:8px;background:#27344a;border-radius:20px;overflow:hidden;margin-top:9px}.bar span{display:block;height:100%;width:0;background:var(--accent)}.idea{padding:12px;border-radius:10px;background:#0c1727;border:1px solid var(--line);margin:8px 0}.idea strong{display:block}.empty{color:var(--muted);padding:12px 0}.actions{display:flex;gap:8px;flex-wrap:wrap}.note{font-size:12px;color:var(--muted);margin-top:18px}.hidden{display:none}@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}main{padding:14px}}@media(max-width:420px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<header><div><div class="brand">FASHION LOOKS™ · DAILY BRAIN</div><h1>Money Earning Command Center</h1><div class="subtitle">Roz ka focus: qualified leads, useful follow-ups, completed certification work, aur timely payment collection.</div></div><div class="pill" id="today"></div></header>
+<div class="grid">
+ <section class="card"><small>Today's collected</small><div class="metric" id="collected">₹0</div><small>Actual payments recorded</small></section>
+ <section class="card"><small>Open pipeline</small><div class="metric" id="pipeline">₹0</div><small>Potential deal value, not guaranteed</small></section>
+ <section class="card"><small>Follow-ups due</small><div class="metric" id="due">0</div><small>Leads needing attention</small></section>
+ <section class="card"><small>Tasks completed</small><div class="metric" id="done">0/0</div><small>Today's execution</small><div class="bar"><span id="progress"></span></div></section>
+</div>
+<div class="layout">
+<section class="card">
+<h2>🧠 Daily Brain — next best actions</h2>
+<p class="muted">Suggestions are based on the information you enter here. Review before taking action.</p>
+<div id="recommendations"></div>
+<h2 style="margin-top:20px">Add today's action</h2>
+<form id="taskForm"><label for="taskTitle">Action</label><input id="taskTitle" required maxlength="140" placeholder="e.g. Follow up on pending GRS transaction certificate"><div class="row"><div><label for="taskType">Work type</label><select id="taskType"><option>Sales lead</option><option>Follow-up</option><option>Certification / TC</option><option>Payment collection</option><option>Marketing</option><option>Operations</option></select></div><div><label for="taskPriority">Priority</label><select id="taskPriority"><option>High</option><option selected>Medium</option><option>Low</option></select></div></div><button type="submit">+ Add action</button></form>
+<div id="tasks"></div>
+</section>
+<section class="card">
+<h2>💼 Add lead / opportunity</h2>
+<form id="leadForm"><label for="company">Company / contact</label><input id="company" required maxlength="120" placeholder="Factory or buyer name"><div class="row"><div><label for="service">Service</label><select id="service"><option>TC / Transaction Certificate</option><option>GOTS / GRS / OCS / RCS</option><option>Scope Certificate</option><option>Traceability / Mass Balance</option><option>Audit / Compliance</option><option>Other textile service</option></select></div><div><label for="value">Estimated deal value (₹)</label><input id="value" type="number" min="0" step="1" required placeholder="15000"></div></div><div class="row"><div><label for="followup">Next follow-up date</label><input id="followup" type="date" required></div><div><label for="stage">Stage</label><select id="stage"><option>New lead</option><option>Contacted</option><option>Proposal sent</option><option>Negotiation</option><option>Won</option><option>Lost</option></select></div></div><button type="submit">Save opportunity</button></form>
+<h2 style="margin-top:22px">Lead pipeline</h2><div id="leads"></div>
+</section>
+<section class="card">
+<h2>💰 Record payment</h2>
+<form id="paymentForm"><label for="payer">Client / invoice reference</label><input id="payer" required maxlength="120" placeholder="Client name or invoice no."><div class="row"><div><label for="amount">Amount received (₹)</label><input id="amount" type="number" min="1" step="1" required placeholder="5000"></div><div><label for="paymentDate">Received date</label><input id="paymentDate" type="date" required></div></div><button type="submit">Record payment</button></form><div id="payments"></div>
+</section>
+<section class="card">
+<h2>📊 Daily money review</h2>
+<div class="row"><div><label for="target">Daily collection target (₹)</label><input id="target" type="number" min="0" step="100" value="5000"></div><div><label for="leadsTarget">Daily outreach target</label><input id="leadsTarget" type="number" min="0" step="1" value="10"></div></div>
+<label for="outreach">Outreach / follow-ups completed today</label><input id="outreach" type="number" min="0" step="1" value="0">
+<label for="reflection">What worked / next improvement</label><textarea id="reflection" rows="3" maxlength="500" placeholder="e.g. 3 replies; send 2 proposals tomorrow"></textarea>
+<button id="saveReview">Save daily review</button><button class="secondary" id="export">Export backup JSON</button><button class="secondary" id="importBtn">Import backup</button><input class="hidden" id="importFile" type="file" accept="application/json">
+<div id="reviewResult" class="idea"></div><p class="note">Use only truthful service claims. Never promise certificate issuance in a fixed number of days unless the certification body, documents and process genuinely support it.</p>
+</section>
+</div>
+<p class="note">Privacy: data is stored in this browser on this device. It is not automatically synced to GitHub or the cloud. Export a backup regularly; do not enter passwords, bank credentials, or sensitive client documents.</p>
+</main>
+<script>
+(function(){
+'use strict';
+const KEY='fashionLooksDailyBrainMoney.v1';
+const $=id=>document.getElementById(id);
+const todayISO=()=>new Date().toLocaleDateString('en-CA');
+const money=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(n)||0);
+let state={tasks:[],leads:[],payments:[],reviews:{}};
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&typeof saved==='object')state={...state,...saved};}catch(e){console.warn('Saved data could not be read.');}
+$('today').textContent=new Date().toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+$('followup').value=todayISO();$('paymentDate').value=todayISO();
+function save(){localStorage.setItem(KEY,JSON.stringify(state));render();}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function render(){
+ const today=todayISO(), todaysPayments=state.payments.filter(p=>p.date===today).reduce((s,p)=>s+Number(p.amount),0);
+ const open=state.leads.filter(l=>!['Won','Lost'].includes(l.stage));
+ const pipe=open.reduce((s,l)=>s+Number(l.value||0),0);
+ const due=state.leads.filter(l=>!['Won','Lost'].includes(l.stage)&&l.followup<=today).length;
+ const todaysTasks=state.tasks.filter(t=>t.date===today),done=todaysTasks.filter(t=>t.done).length;
+ $('collected').textContent=money(todaysPayments);$('pipeline').textContent=money(pipe);$('due').textContent=due;$('done').textContent=done+'/'+todaysTasks.length;
+ $('progress').style.width=(todaysTasks.length?done/todaysTasks.length*100:0)+'%';
+ const rec=[];
+ if(due)rec.push(['1 · Follow up today',due+' lead(s) have a follow-up due. Contact them with a clear next step.']);
+ const unpaid=state.leads.filter(l=>l.stage==='Won');
+ if(unpaid.length)rec.push(['2 · Confirm delivery and payment',unpaid.length+' won opportunity/ies. Verify invoice status and actual payment received.']);
+ if(!due)rec.push(['1 · Build qualified pipeline','Reach out to relevant factories/buyers about TC, Scope Certificate, traceability or compliance support. Personalize each message.']);
+ if(!todaysTasks.length||done<todaysTasks.length)rec.push(['2 · Finish planned work','Complete your highest-priority action before adding more work.']);
+ if(todaysPayments<Number($('target').value||5000))rec.push(['3 · Collection gap',money(Math.max(0,Number($('target').value||5000)-todaysPayments))+' remains against today’s collection target. Follow up on legitimate due invoices.']);
+ $('recommendations').innerHTML=rec.map(x=>'<div class="idea"><strong>'+esc(x[0])+'</strong><span class="muted">'+esc(x[1])+'</span></div>').join('');
+ const ts=state.tasks.filter(t=>t.date===today).sort((a,b)=>Number(a.done)-Number(b.done));
+ $('tasks').innerHTML=ts.length?ts.map(t=>'<div class="task"><input type="checkbox" data-task="'+esc(t.id)+'" '+(t.done?'checked':'')+' aria-label="Complete task"><div class="grow"><strong>'+esc(t.title)+'</strong><div class="muted">'+esc(t.type)+' · '+esc(t.priority)+'</div></div><button class="danger" data-delete-task="'+esc(t.id)+'">Delete</button></div>').join():'<div class="empty">Aaj ke liye action add karein.</div>';
+ $('leads').innerHTML=state.leads.length?state.leads.slice().reverse().map(l=>'<div class="lead"><div class="grow"><strong>'+esc(l.company)+'</strong><div class="muted">'+esc(l.service)+' · '+money(l.value)+'</div><div class="muted">Follow-up: '+esc(l.followup)+' · '+esc(l.stage)+'</div></div><select data-stage="'+esc(l.id)+'" aria-label="Lead stage">'+['New lead','Contacted','Proposal sent','Negotiation','Won','Lost'].map(s=>'<option '+(s===l.stage?'selected':'')+'>'+s+'</option>').join('')+'</select><button class="danger" data-delete-lead="'+esc(l.id)+'">×</button></div>').join():'<div class="empty">Abhi koi lead nahi. Pehla opportunity add karein.</div>';
+ $('payments').innerHTML=state.payments.length?state.payments.slice(-6).reverse().map(p=>'<div class="lead"><div class="grow"><strong>'+esc(p.client)+'</strong><div class="muted">'+esc(p.date)+'</div></div><strong>'+money(p.amount)+'</strong></div>').join():'<div class="empty">Actual received payments yahan show honge.</div>';
+ const r=state.reviews[today]||{outreach:0,reflection:''};$('outreach').value=r.outreach;$('reflection').value=r.reflection;
+ const goal=Number($('target').value||5000),outGoal=Number($('leadsTarget').value||10);
+ $('reviewResult').textContent='Collection target: '+money(todaysPayments)+' / '+money(goal)+' · Outreach: '+r.outreach+' / '+outGoal+'. Sirf received payment ko income collected ke roop mein record karein.';
+}
+$('taskForm').addEventListener('submit',e=>{e.preventDefault();state.tasks.push({id:crypto.randomUUID(),title:$('taskTitle').value.trim(),type:$('taskType').value,priority:$('taskPriority').value,done:false,date:todayISO()});$('taskTitle').value='';save();});
+$('leadForm').addEventListener('submit',e=>{e.preventDefault();state.leads.push({id:crypto.randomUUID(),company:$('company').value.trim(),service:$('service').value,value:Number($('value').value),followup:$('followup').value,stage:$('stage').value,created:todayISO()});e.target.reset();$('followup').value=todayISO();save();});
+$('paymentForm').addEventListener('submit',e=>{e.preventDefault();state.payments.push({id:crypto.randomUUID(),client:$('payer').value.trim(),amount:Number($('amount').value),date:$('paymentDate').value});e.target.reset();$('paymentDate').value=todayISO();save();});
+$('tasks').addEventListener('change',e=>{const id=e.target.dataset.task;if(id){const t=state.tasks.find(x=>x.id===id);if(t)t.done=e.target.checked;save();}});
+$('tasks').addEventListener('click',e=>{const id=e.target.dataset.deleteTask;if(id){state.tasks=state.tasks.filter(t=>t.id!==id);save();}});
+$('leads').addEventListener('change',e=>{const id=e.target.dataset.stage;if(id){const l=state.leads.find(x=>x.id===id);if(l)l.stage=e.target.value;save();}});
+$('leads').addEventListener('click',e=>{const id=e.target.dataset.deleteLead;if(id&&confirm('Delete this lead?')){state.leads=state.leads.filter(l=>l.id!==id);save();}});
+$('saveReview').addEventListener('click',()=>{state.reviews[todayISO()]={outreach:Math.max(0,Number($('outreach').value||0)),reflection:$('reflection').value.trim()};save();});
+$('target').addEventListener('input',render);$('leadsTarget').addEventListener('input',render);
+$('export').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fashion-looks-daily-brain-backup-'+todayISO()+'.json';a.click();URL.revokeObjectURL(url);});
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const incoming=JSON.parse(await f.text());if(!incoming||!Array.isArray(incoming.tasks)||!Array.isArray(incoming.leads)||!Array.isArray(incoming.payments))throw Error('Invalid backup format');if(confirm('Import will replace current browser data. Continue?')){state={tasks:incoming.tasks,leads:incoming.leads,payments:incoming.payments,reviews:incoming.reviews||{}};save();alert('Backup imported.');}}catch(err){alert('Backup file valid nahi hai.');}e.target.value='';});
+render();
+})();
+</script></body></html>

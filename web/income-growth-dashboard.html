@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Fashion Looks | Income Growth OS</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121e30;--panel2:#192840;--line:#2a3a52;--text:#edf4ff;--muted:#9babc2;--blue:#83adff;--mint:#66dfb2;--amber:#ffd18a;--red:#ff9c9c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#172b49 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--blue);color:#0b1526;font-weight:750}button.secondary{background:#263a56;color:var(--text);border:1px solid var(--line)}button.danger{background:#482b35;color:#ffdce2;border:1px solid #72414d}input,select{width:100%;background:#0b1423;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px}label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}.wrap{max-width:1200px;margin:auto;padding:22px}.header{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:20px}.brand{display:flex;gap:12px;align-items:center}.mark{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--mint));color:#071321;font-weight:950;font-size:18px}.brand h1{font-size:21px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap}.hero,.panel,.metric{border:1px solid var(--line);background:rgba(18,30,48,.94);border-radius:17px}.hero{padding:23px;margin-bottom:16px;background:linear-gradient(110deg,#172b47,#142033)}.eyebrow{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mint);font-weight:850}.hero h2{font-size:clamp(24px,4vw,34px);line-height:1.12;margin:9px 0}.hero p{color:var(--muted);max-width:760px;margin:0 0 16px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.metric{padding:16px}.metric span{font-size:12px;color:var(--muted)}.metric strong{display:block;font-size:27px;margin:5px 0}.metric small{font-size:12px;color:var(--mint)}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:16px}.panel{padding:18px;margin-bottom:16px}.panel h3{font-size:17px;margin:0}.sub{font-size:12px;color:var(--muted);margin:3px 0 14px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}.formrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.formrow button{flex:0 0 auto}.list{display:grid;gap:9px;margin-top:12px}.record{padding:12px;border:1px solid var(--line);border-radius:12px;background:#0d1728;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.record-main{min-width:0;flex:1;overflow-wrap:anywhere}.record-title{font-weight:750}.muted{font-size:12px;color:var(--muted);margin-top:4px}.pill{display:inline-block;padding:3px 8px;border-radius:30px;background:#243a59;color:#d5e5ff;font-size:11px;margin:6px 5px 0 0}.pill.good{background:#183b35;color:#a8f5d7}.pill.warn{background:#4b3822;color:#ffdda4}.mini-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-actions button{padding:6px 8px;font-size:11px}.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;margin-top:12px}.progress{height:9px;background:#26364d;border-radius:9px;overflow:hidden;margin:10px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--mint))}.note{font-size:12px;color:var(--muted)}.checkline{display:flex;align-items:center;gap:9px;margin:10px 0;color:var(--muted);font-size:13px}.checkline input{width:auto}.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px 0 25px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.wrap{padding:12px}.hero,.panel{padding:15px}.grid2{grid-template-columns:1fr}.full{grid-column:auto}.record{flex-wrap:wrap}.mini-actions{width:100%}.header{align-items:flex-start}.actions{width:100%}.actions button{flex:1}.metric strong{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="header">
+  <div class="brand"><div class="mark">FL</div><div><h1>Fashion Looks</h1><p>Income Growth OS · Sales, follow-ups & cash flow</p></div></div>
+  <div class="actions"><button class="secondary" id="exportBtn">Export CSV</button><button class="secondary" id="backupBtn">Backup JSON</button><button class="secondary" id="restoreBtn">Restore JSON</button><input type="file" id="restoreFile" accept=".json,application/json" hidden></div>
+</header>
+<section class="hero">
+  <div class="eyebrow">Build repeatable revenue</div>
+  <h2>Turn business activity into measurable growth.</h2>
+  <p>Track real income, business costs, potential clients and follow-ups in one place. Automation can improve consistency—but revenue still depends on customer demand, delivery, pricing and execution.</p>
+  <button id="newLeadFocus">Add a sales lead</button>
+</section>
+<section class="metrics">
+  <div class="metric"><span>Revenue received (this month)</span><strong id="revenue">₹0</strong><small>Recorded payments only</small></div>
+  <div class="metric"><span>Business expenses (this month)</span><strong id="expenses">₹0</strong><small>Recorded costs only</small></div>
+  <div class="metric"><span>Net cash flow (this month)</span><strong id="net">₹0</strong><small>Revenue minus expenses</small></div>
+  <div class="metric"><span>Open leads</span><strong id="leadCount">0</strong><small>Follow-up opportunities</small></div>
+</section>
+<div class="layout">
+<main>
+<section class="panel">
+<h3>Monthly income target</h3><p class="sub">Choose a target and compare it with recorded revenue.</p>
+<div class="grid2"><div><label for="goal">Monthly revenue target (₹)</label><input id="goal" type="number" min="0" step="1000" value="100000"></div><div><label for="goalMonth">Target month</label><input id="goalMonth" type="month"></div></div>
+<div class="progress"><span id="goalProgress"></span></div><div class="note" id="goalText">₹0 of ₹100,000 received</div>
+<div class="formrow"><button id="saveGoal">Save target</button></div>
+</section>
+<section class="panel">
+<h3>Cash-flow ledger</h3><p class="sub">Record payments actually received and business expenses. Do not treat proposals or unpaid invoices as received income.</p>
+<form id="moneyForm">
+<div class="grid2">
+<div><label for="moneyType">Entry type</label><select id="moneyType"><option value="income">Income received</option><option value="expense">Business expense</option></select></div>
+<div><label for="moneyDate">Date</label><input id="moneyDate" type="date" required></div>
+<div><label for="moneyAmount">Amount (₹)</label><input id="moneyAmount" type="number" min="0.01" step="0.01" required placeholder="e.g. 15000"></div>
+<div><label for="moneyCategory">Category</label><select id="moneyCategory"><option>Certification consultancy</option><option>CRM / automation service</option><option>Product sales</option><option>Travel</option><option>Software / tools</option><option>Office / operations</option><option>Other</option></select></div>
+<div class="full"><label for="moneyNote">Client / note</label><input id="moneyNote" maxlength="140" placeholder="e.g. TC consultancy payment - client name"></div>
+</div><div class="formrow"><button type="submit">Save ledger entry</button></div>
+</form><div id="moneyList" class="list"></div>
+</section>
+<section class="panel">
+<h3>Sales leads & follow-ups</h3><p class="sub">Track prospects for certification consultancy and automation services.</p>
+<form id="leadForm">
+<div class="grid2">
+<div><label for="leadName">Factory / client *</label><input id="leadName" required maxlength="100" placeholder="Client or factory name"></div>
+<div><label for="leadService">Potential service</label><select id="leadService"><option>TC support</option><option>Scope Certificate / renewal</option><option>Traceability / mass balance</option><option>Audit / compliance support</option><option>AI / CRM automation</option><option>Other</option></select></div>
+<div><label for="leadValue">Estimated deal value (₹)</label><input id="leadValue" type="number" min="0" step="100" value="0"></div>
+<div><label for="leadNext">Next follow-up date</label><input id="leadNext" type="date"></div>
+<div><label for="leadStatus">Pipeline status</label><select id="leadStatus"><option>New</option><option>Contacted</option><option>Qualified</option><option>Proposal sent</option><option>Won</option><option>Lost</option></select></div>
+<div><label for="leadContact">Contact / next action</label><input id="leadContact" maxlength="140" placeholder="e.g. Send service profile"></div>
+</div><div class="formrow"><button type="submit">Add lead</button></div>
+</form>
+<div class="grid2" style="margin-top:14px"><div><label for="leadSearch">Search leads</label><input id="leadSearch" placeholder="Search client or service"></div><div><label for="leadFilter">Filter</label><select id="leadFilter"><option value="open">Open leads</option><option value="all">All leads</option><option value="won">Won</option></select></div></div>
+<div id="leadList" class="list"></div>
+</section>
+</main>
+<aside>
+<section class="panel">
+<h3>Daily execution checklist</h3><p class="sub">Small repeatable actions compound over time.</p>
+<label class="checkline"><input type="checkbox" data-daily="leads"> Contact or qualify 5 potential customers</label>
+<label class="checkline"><input type="checkbox" data-daily="followups"> Complete priority follow-ups</label>
+<label class="checkline"><input type="checkbox" data-daily="delivery"> Move one client deliverable forward</label>
+<label class="checkline"><input type="checkbox" data-daily="ledger"> Update payments and expenses</label>
+<label class="checkline"><input type="checkbox" data-daily="review"> Review tomorrow's top 3 actions</label>
+<p class="note">Checklist resets by date; it does not send messages automatically.</p>
+</section>
+<section class="panel">
+<h3>Rule-based action coach</h3><p class="sub">Creates suggestions from your actual open leads and overdue follow-ups. This is not a live AI model.</p>
+<div id="coachOutput" class="note">Add leads and dates to get a plan.</div>
+<div class="formrow"><button id="refreshCoach">Refresh action plan</button></div>
+</section>
+<section class="panel">
+<h3>Safe automation roadmap</h3>
+<div class="record"><div class="record-main"><div class="record-title">1. Organize pipeline</div><div class="muted">Leads, next action, follow-up date and expected deal value.</div></div></div>
+<div class="record"><div class="record-main"><div class="record-title">2. Automate reminders</div><div class="muted">Add email/calendar integration with consent and secure credentials.</div></div></div>
+<div class="record"><div class="record-main"><div class="record-title">3. Reconcile cash flow</div><div class="muted">Use verified payment records; keep invoices and received funds separate.</div></div></div>
+<div class="record"><div class="record-main"><div class="record-title">4. Scale what works</div><div class="muted">Measure conversion rate, delivery capacity, margin and repeat customers.</div></div></div>
+</section>
+<section class="panel">
+<h3>Storage & security</h3><p class="note">This first version stores data in this browser only. It has no login, cloud sync or server-side backup. Avoid confidential customer details on shared devices. Export backups and store them securely.</p>
+<button class="danger" id="clearAll">Delete local data</button>
+</section>
+</aside>
+</div>
+<footer class="footer">Fashion Looks · Income Growth OS · No guaranteed earnings; track actual results and make informed business decisions.</footer>
+</div>
+<script>
+(() => {
+"use strict";
+const KEY="fashionLooksIncomeGrowth.v1";
+const $=id=>document.getElementById(id);
+const monthNow=()=>new Date().toISOString().slice(0,7);
+const dateNow=()=>new Date().toISOString().slice(0,10);
+const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+const money=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(Number(n)||0);
+let state={leads:[],ledger:[],goal:100000,goalMonth:monthNow()};
+try{const saved=JSON.parse(localStorage.getItem(KEY)||"null");if(saved&&Array.isArray(saved.leads)&&Array.isArray(saved.ledger))state={...state,...saved};}catch{}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{alert("Browser storage is unavailable or full. Export a backup if possible.");}render();}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function pill(t,cls=""){return '<span class="pill '+cls+'">'+esc(t)+'</span>';}
+function render(){
+ const m=state.goalMonth||monthNow(), entries=state.ledger.filter(x=>(x.date||"").slice(0,7)===m);
+ const rev=entries.filter(x=>x.type==="income").reduce((a,x)=>a+Number(x.amount),0);
+ const exp=entries.filter(x=>x.type==="expense").reduce((a,x)=>a+Number(x.amount),0);
+ $("revenue").textContent=money(rev);$("expenses").textContent=money(exp);$("net").textContent=money(rev-exp);
+ $("leadCount").textContent=state.leads.filter(l=>!["Won","Lost"].includes(l.status)).length;
+ $("goal").value=state.goal;$("goalMonth").value=m;
+ const goal=Number(state.goal)||0, pct=goal>0?Math.min(100,rev/goal*100):0;
+ $("goalProgress").style.width=pct+"%";$("goalText").textContent=money(rev)+" of "+money(goal)+" received ("+Math.round(pct)+"%)";
+ const sorted=[...state.ledger].sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+ $("moneyList").innerHTML=sorted.length?sorted.slice(0,25).map(x=>'<div class="record"><div class="record-main"><div class="record-title">'+esc(x.note||x.category)+'</div><div class="muted">'+esc(x.date)+' · '+esc(x.category)+'</div></div><div style="text-align:right"><strong style="color:'+(x.type==="income"?"var(--mint)":"var(--red)")+'">'+(x.type==="income"?"+":"−")+money(x.amount)+'</strong><div class="mini-actions"><button class="danger" data-money-delete="'+esc(x.id)+'">Delete</button></div></div></div>').join(""):'<div class="empty">No ledger entries yet. Record money actually received or spent.</div>';
+ const q=$("leadSearch").value.trim().toLowerCase(), filter=$("leadFilter").value;
+ const leads=[...state.leads].filter(l=>{const match=(l.name+" "+l.service+" "+l.status+" "+l.contact).toLowerCase().includes(q);return match&&(filter==="all"||(filter==="won"?l.status==="Won":!["Won","Lost"].includes(l.status)));}).sort((a,b)=>(a.next||"9999").localeCompare(b.next||"9999"));
+ $("leadList").innerHTML=leads.length?leads.map(l=>{const overdue=l.next&&l.next<dateNow()&&!["Won","Lost"].includes(l.status);return '<div class="record"><div class="record-main"><div class="record-title">'+esc(l.name)+'</div><div>'+pill(l.service)+pill(l.status,l.status==="Won"?"good":overdue?"warn":"")+'</div><div class="muted">Potential value: '+money(l.value)+' · Follow-up: '+esc(l.next||"Not set")+(overdue?" · OVERDUE":"")+'</div>'+(l.contact?'<div class="muted">'+esc(l.contact)+'</div>':"")+'</div><div class="mini-actions"><button class="secondary" data-lead-next="'+esc(l.id)+'">Next stage</button><button class="danger" data-lead-delete="'+esc(l.id)+'">Delete</button></div></div>';}).join(""):'<div class="empty">No leads found. Add your first prospect above.</div>';
+ document.querySelectorAll("[data-daily]").forEach(el=>{el.checked=false;});
+ try{const daily=JSON.parse(localStorage.getItem(KEY+".daily")||"{}");if(daily.date===dateNow())document.querySelectorAll("[data-daily]").forEach(el=>el.checked=!!daily[el.dataset.daily]);}catch{}
+ coach();
+}
+function coach(){
+ const open=state.leads.filter(l=>!["Won","Lost"].includes(l.status));
+ const overdue=open.filter(l=>l.next&&l.next<dateNow());
+ const noDate=open.filter(l=>!l.next);
+ const value=open.reduce((a,l)=>a+Number(l.value||0),0);
+ const lines=[];
+ lines.push("<p><strong>Open pipeline:</strong> "+open.length+" leads · "+money(value)+" estimated value (not guaranteed revenue).</p>");
+ if(overdue.length)lines.push("<p>⚠️ <strong>First priority:</strong> follow up with "+overdue.length+" overdue lead(s): "+overdue.slice(0,4).map(l=>esc(l.name)).join(", ")+".</p>");
+ if(noDate.length)lines.push("<p>Set a follow-up date for "+noDate.length+" lead(s) without a scheduled next action.</p>");
+ if(!open.length)lines.push("<p>Add qualified prospects and record a clear next step for each one.</p>");
+ lines.push("<p>Suggested daily target: contact 5 relevant prospects, finish the highest-value client blocker, and update the ledger.</p>");
+ $("coachOutput").innerHTML=lines.join("");
+}
+$("goalMonth").value=state.goalMonth;$("moneyDate").value=dateNow();
+$("saveGoal").addEventListener("click",()=>{state.goal=Math.max(0,Number($("goal").value)||0);state.goalMonth=$("goalMonth").value||monthNow();persist();});
+$("goalMonth").addEventListener("change",()=>{state.goalMonth=$("goalMonth").value||monthNow();persist();});
+$("moneyForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number($("moneyAmount").value);if(!(amount>0)){alert("Enter an amount greater than zero.");return;}state.ledger.unshift({id:uid(),type:$("moneyType").value,date:$("moneyDate").value,amount,category:$("moneyCategory").value,note:$("moneyNote").value.trim()});e.target.reset();$("moneyDate").value=dateNow();persist();});
+$("leadForm").addEventListener("submit",e=>{e.preventDefault();state.leads.unshift({id:uid(),name:$("leadName").value.trim(),service:$("leadService").value,value:Math.max(0,Number($("leadValue").value)||0),next:$("leadNext").value,status:$("leadStatus").value,contact:$("leadContact").value.trim(),created:dateNow()});e.target.reset();$("leadValue").value=0;persist();});
+$("leadSearch").addEventListener("input",render);$("leadFilter").addEventListener("change",render);
+document.addEventListener("click",e=>{const t=e.target;if(t.dataset.moneyDelete){if(confirm("Delete this ledger entry?")){state.ledger=state.ledger.filter(x=>x.id!==t.dataset.moneyDelete);persist();}}if(t.dataset.leadDelete){if(confirm("Delete this lead?")){state.leads=state.leads.filter(x=>x.id!==t.dataset.leadDelete);persist();}}if(t.dataset.leadNext){const l=state.leads.find(x=>x.id===t.dataset.leadNext);if(l){const stages=["New","Contacted","Qualified","Proposal sent","Won","Lost"];l.status=stages[(stages.indexOf(l.status)+1)%stages.length];persist();}}});
+$("newLeadFocus").addEventListener("click",()=>{$("leadName").focus();$("leadForm").scrollIntoView({behavior:"smooth",block:"center"});});
+$("refreshCoach").addEventListener("click",coach);
+document.querySelectorAll("[data-daily]").forEach(el=>el.addEventListener("change",()=>{let d={date:dateNow()};document.querySelectorAll("[data-daily]").forEach(c=>d[c.dataset.daily]=c.checked);localStorage.setItem(KEY+".daily",JSON.stringify(d));}));
+$("exportBtn").addEventListener("click",()=>{const rows=[["date","type","amount_inr","category","note"],...state.ledger.map(x=>[x.date,x.type,x.amount,x.category,x.note])];const csv=rows.map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");download(csv,"fashion-looks-ledger-"+dateNow()+".csv","text/csv;charset=utf-8");});
+$("backupBtn").addEventListener("click",()=>download(JSON.stringify(state,null,2),"fashion-looks-income-backup-"+dateNow()+".json","application/json"));
+$("restoreBtn").addEventListener("click",()=>$("restoreFile").click());
+$("restoreFile").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.leads)||!Array.isArray(d.ledger))throw Error();if(!confirm("Restore will replace the current dashboard data. Continue?"))return;state={...state,...d};persist();alert("Backup restored.");}catch{alert("Invalid backup file.");}finally{e.target.value="";}});
+function download(text,name,type){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement("a");a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+$("clearAll").addEventListener("click",()=>{if(confirm("Delete all leads, ledger entries and target from this browser? Export a backup first if needed.")){state={leads:[],ledger:[],goal:100000,goalMonth:monthNow()};localStorage.removeItem(KEY+".daily");persist();}});
+render();
+})();
+</script>
+</body>
+</html>

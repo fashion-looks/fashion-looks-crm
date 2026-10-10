@@ -28,7 +28,7 @@ export default {
     if (url.pathname === "/api/health" && request.method === "GET") {
       return json({ ok: true, configured: Boolean(env.OPENAI_API_KEY), model: env.OPENAI_MODEL || "gpt-4.1-mini" });
     }
-    if (url.pathname !== "/api/chat") return json({ error: "Not found" }, 404);
+    if (url.pathname !== "/api/chat") {\n      if (env.ASSETS) return env.ASSETS.fetch(request);\n      return json({ error: "Not found" }, 404);\n    }
     if (request.method !== "POST") return json({ error: "Method not allowed" }, 405);
     if (!env.OPENAI_API_KEY) return json({ error: "Server AI key is not configured. Add OPENAI_API_KEY as a Worker secret." }, 503);
     let body;
@@ -36,7 +36,7 @@ export default {
     const message = typeof body.message === "string" ? body.message.trim() : "";
     if (!message || message.length > 6000) return json({ error: "Message is required and must be 6000 characters or fewer." }, 400);
     const history = Array.isArray(body.history) ? body.history.slice(-10).filter(m => m && ["user","assistant"].includes(m.role) && typeof m.content === "string").map(m => ({ role: m.role, content: m.content.slice(0, 6000) })) : [];
-    const input = [...history, { role: "user", content: message }].map(m => ({ role: m.role, content: [{ type: m.role === "assistant" ? "output_text" : "input_text", text: m.content }] }));
+    const input = [...history, { role: "user", content: message }].map(m => ({ role: m.role, content: m.content }));
     try {
       const upstream = await fetch("https://api.openai.com/v1/responses", {
         method: "POST",

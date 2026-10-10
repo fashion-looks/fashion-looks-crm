@@ -1,0 +1,10 @@
+name = "fashion-looks-life-ai"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+OPENAI_MODEL = "gpt-4.1-mini"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"

@@ -1,0 +1,11 @@
+name = "fashion-looks-domain-security"
+main = "security-worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+SECURITY_LOCK = "disabled"
+ENABLE_HSTS = "false"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"

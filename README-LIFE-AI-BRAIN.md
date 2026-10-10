@@ -1,29 +1,30 @@
 # Amit Singh · My Life AI Brain
 
-A small personal LLM chat application with:
-- A browser UI for life planning, Fashion Looks business support, learning, and daily review.
-- A Cloudflare Worker backend that calls the OpenAI Responses API.
-- Server-side API-key storage (never put the key in HTML, GitHub, or a public config file).
-- Local browser context and chat history, exportable as JSON.
-- A health endpoint to verify whether the server secret is configured.
+Personal LLM chat for daily planning, Fashion Looks business support, learning, and review.
+
+## Deploy with GitHub Actions + Cloudflare
+
+1. Review and merge the pull request into `main`.
+2. In Cloudflare, create an API token with Workers Scripts edit permissions for the target account. Keep it private.
+3. In the GitHub repository, open **Settings → Secrets and variables → Actions → New repository secret** and add:
+   - `CLOUDFLARE_API_TOKEN`: the Cloudflare API token.
+   - `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID.
+   - `OPENAI_API_KEY`: your OpenAI API key.
+4. Open **Actions → Deploy My Life AI Brain → Run workflow**. Choose `main` after the pull request has been merged.
+5. When the workflow succeeds, open the Worker URL shown in Cloudflare. The homepage should load the Life AI interface.
+6. Visit `/api/health`; it should report `configured: true`.
+
+The workflow uses the OpenAI key as a Worker secret and does not write it to repository files. Never paste API keys into HTML, source code, issues, or chat messages.
 
 ## Files
-- `my-life-ai-brain.html` — frontend
-- `worker.js` — API proxy / LLM backend
-- `wrangler.toml` — Worker configuration
+- `index.html` and `my-life-ai-brain.html`: frontend
+- `worker.js`: server-side OpenAI Responses API proxy
+- `wrangler.toml`: Worker and static asset configuration
+- `.github/workflows/deploy-life-ai-brain.yml`: manual deployment workflow
 
-## Deploy
-1. Install Wrangler and log in to your Cloudflare account.
-2. From this folder, deploy the Worker with `npx wrangler deploy`.
-3. Add your provider key as a server-side secret: `npx wrangler secret put OPENAI_API_KEY`. Paste the key into the interactive prompt; do not put it in source code.
-4. Optionally set a model name using the `OPENAI_MODEL` Worker variable in Cloudflare settings. Default: `gpt-4.1-mini`.
-5. Serve `my-life-ai-brain.html` from the same Worker origin or your own website, and configure routing so `/api/health` and `/api/chat` reach this Worker. The static HTML must be hosted at the same origin for its relative API URLs to work.
-6. Open `/api/health`. It should return `configured: true` after the secret is set. Send a test prompt in the UI.
-
-## Important production hardening
-- Add authentication before sharing this app publicly. As written, anyone who can reach the Worker endpoint may use your API quota.
-- Add rate limiting and usage budgets; review provider pricing and data controls.
-- Restrict CORS to your actual frontend origin rather than `*` once the deployment domain is known.
-- Never enter passwords, financial credentials, government ID numbers, or confidential client records.
-- Chat context is saved in local browser storage. The latest submitted prompt and history are sent to the configured provider. Provider handling follows the account and API terms you choose.
-- This starter does not send emails, message clients, move money, or guarantee business or financial results.
+## Security notes
+- Add authentication and rate limiting before public use. This starter does not implement user sign-in; a public endpoint can incur API costs.
+- Restrict CORS to the production frontend origin once the deployment domain is known.
+- The browser saves conversation/context in local storage. Submitted prompts are sent to the configured AI provider.
+- Do not enter passwords, payment credentials, government ID numbers, or confidential client records.
+- This app drafts and advises only; it does not automatically message clients or move money.

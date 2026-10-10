@@ -4,4 +4,7 @@ compatibility_date = "2026-10-01"
 
 [vars]
 OPENAI_MODEL = "gpt-4.1-mini"
-\n[assets]\ndirectory = "."\nbinding = "ASSETS"\n
+
+[assets]
+directory = "."
+binding = "ASSETS"

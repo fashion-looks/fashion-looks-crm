@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Fashion Looks Life OS 2047 — personal and business execution dashboard.">
+<title>Fashion Looks™ | Life OS 2047</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#131c30;--panel2:#18243b;--line:#2b3a56;--text:#f4f6ff;--muted:#aab6cd;--lime:#b9f36b;--blue:#86b8ff;--orange:#ffc27b;--red:#ff9999}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 90% 0,#20385b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}main{max-width:1250px;margin:auto;padding:24px 16px 50px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}.brand{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);font-weight:850}.muted{color:var(--muted)}.tiny{font-size:12px;color:var(--muted)}.hero{display:grid;grid-template-columns:1.4fr .6fr;gap:16px}.panel{border:1px solid var(--line);background:linear-gradient(145deg,#17233aee,#11192aee);border-radius:18px;padding:20px;min-width:0}.hero h1{font-size:clamp(30px,5vw,52px);letter-spacing:-.045em;line-height:1.04;margin:10px 0}.hero p{color:var(--muted);max-width:720px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}.mission{background:linear-gradient(145deg,#263d2c,#14241e);border-color:#476849;display:flex;flex-direction:column;justify-content:center}.mission strong{font-size:34px;color:var(--lime);letter-spacing:-.04em}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.metric{background:#111a2b;border:1px solid var(--line);border-radius:14px;padding:16px}.metric span{display:block;color:var(--muted);font-size:12px}.metric strong{display:block;font-size:clamp(20px,2.4vw,28px);margin-top:7px;overflow-wrap:anywhere}.metric small{display:block;color:var(--lime);font-size:11px;margin-top:4px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.title-row h2{font-size:19px;margin:0;letter-spacing:-.02em}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0b1324;border:1px solid var(--line);border-radius:9px;padding:10px 11px;color:var(--text);font:inherit}input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);outline-offset:1px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:15px}.btn{cursor:pointer;border:1px solid var(--line);border-radius:9px;padding:10px 13px;background:var(--panel2);color:var(--text);font-weight:700}.btn.primary{background:var(--lime);color:#17210f;border-color:var(--lime)}.btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.tasks{display:flex;flex-direction:column;gap:8px;margin-top:13px}.task{display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid var(--line);border-radius:11px;background:#0e1728}.task input{width:auto;margin-top:5px;accent-color:var(--lime)}.task-main{flex:1;min-width:0}.task-title{overflow-wrap:anywhere}.task.done .task-title{text-decoration:line-through;color:var(--muted)}.tag{font-size:10px;border-radius:99px;padding:3px 7px;background:#263550;color:#d7e5ff;white-space:nowrap}.delete{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:18px}.progress{height:8px;background:#26344c;border-radius:99px;overflow:hidden;margin:12px 0}.progress>div{height:100%;background:var(--lime);width:0;transition:width .2s}.habits{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:13px}.habit{border:1px solid var(--line);background:#0e1728;border-radius:11px;padding:12px 8px;text-align:center}.habit input{width:auto;accent-color:var(--lime)}.habit label{display:block;font-size:12px;margin-top:6px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px}table{border-collapse:collapse;width:100%;min-width:440px;font-size:13px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right}th{color:var(--muted);background:#0c1424}th:first-child,td:first-child{text-align:left}tr:last-child td{border-bottom:0}.roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:13px}.phase{padding:14px;border:1px solid var(--line);border-radius:12px;background:#0e1728}.phase b{color:var(--lime);font-size:11px}.phase h3{font-size:14px;margin:7px 0}.phase p{font-size:12px;color:var(--muted);margin:0}.notice{background:#2a2117;border-left:3px solid var(--orange);padding:11px 13px;color:#f5dbb7;border-radius:0 9px 9px 0;font-size:12px;margin-top:14px}.status{min-height:18px;color:var(--lime);font-size:12px;margin-top:8px}.footer{font-size:12px;color:var(--muted);margin-top:20px}@media(max-width:850px){.hero,.columns{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){main{padding:14px 10px 35px}.panel{padding:14px}.form-grid{grid-template-columns:1fr 1fr}.habits{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body><main>
+<header class="top"><div><div class="brand">Fashion Looks™</div><div class="tiny">LIFE OS 2047 · PERSONAL + BUSINESS COMMAND CENTRE</div></div><div class="tiny" id="today"></div></header>
+<section class="hero">
+  <div class="panel"><div class="eyebrow">One system · One day at a time</div><h1>Think clearly.<br><span style="color:var(--lime)">Execute consistently.</span></h1><p>Turn goals into priorities, priorities into completed work, and completed work into measurable results. Use this dashboard as a decision-support system—not as a promise of wealth or a substitute for your judgment.</p><div class="actions"><button class="btn primary" id="focusBtn">Start focus session</button><button class="btn" id="exportBtn">Export my data</button><button class="btn" id="importBtn">Import backup</button><input type="file" id="importFile" accept="application/json" hidden></div><div class="status" id="focusStatus" role="status"></div></div>
+  <div class="panel mission"><div class="eyebrow">Long-term mission</div><strong>₹5 crore</strong><div>Target net worth by 2047</div><div class="progress"><div id="netProgress"></div></div><div class="tiny" id="netProgressLabel">Enter your actual current net worth below.</div></div>
+</section>
+<section class="metrics">
+ <div class="metric"><span>Monthly income</span><strong id="incomeMetric">₹1,30,000</strong><small>Enter actual figures below</small></div>
+ <div class="metric"><span>Monthly expenses</span><strong id="expenseMetric">₹70,000</strong><small>Keep personal and business costs distinct</small></div>
+ <div class="metric"><span>Monthly surplus</span><strong id="surplusMetric">₹60,000</strong><small>Before unlisted obligations</small></div>
+ <div class="metric"><span>Investing per month</span><strong id="investMetric">₹50,000</strong><small>Illustrative target; adjust as needed</small></div>
+</section>
+<div class="columns">
+ <section class="panel">
+  <div class="title-row"><h2>1. Daily execution</h2><span class="tag" id="taskCount">0 tasks</span></div><p class="tiny">Choose up to three high-impact outcomes. Tasks are stored in this browser only.</p>
+  <form id="taskForm"><div class="form-grid"><div class="field"><label for="taskText">Task / next action</label><input id="taskText" maxlength="180" required placeholder="Follow up with a certification client"></div><div class="field"><label for="taskArea">Work area</label><select id="taskArea"><option>Revenue</option><option>Client delivery</option><option>Finance</option><option>Systems</option><option>Health</option><option>Learning</option><option>Personal</option></select></div></div><div class="actions"><button class="btn primary" type="submit">Add task</button><button class="btn" type="button" id="clearDone">Clear completed</button></div></form>
+  <div class="progress"><div id="taskProgress"></div></div><div id="tasks" class="tasks"></div>
+ </section>
+ <section class="panel">
+  <div class="title-row"><h2>2. Money control</h2><span class="tag">INR / month</span></div><p class="tiny">Use actual collected income, actual spending and a sustainable investment amount.</p>
+  <div class="form-grid">
+   <div class="field"><label for="income">Income received (₹)</label><input id="income" type="number" min="0" step="1000" value="130000"></div>
+   <div class="field"><label for="expenses">Expenses (₹)</label><input id="expenses" type="number" min="0" step="1000" value="70000"></div>
+   <div class="field"><label for="investment">Monthly investment (₹)</label><input id="investment" type="number" min="0" step="1000" value="50000"></div>
+   <div class="field"><label for="currentNW">Current net worth (₹)</label><input id="currentNW" type="number" min="0" step="10000" value="100000"></div>
+  </div>
+  <div class="actions"><button class="btn primary" id="saveMoney">Update money dashboard</button></div><div class="status" id="moneyStatus" role="status"></div>
+  <div class="notice">Net worth = assets minus liabilities. Do not count unpaid invoices as cash, double-count business assets, or treat revenue as profit. Keep an emergency reserve before committing to an investment target.</div>
+ </section>
+</div>
+<div class="columns">
+ <section class="panel">
+  <div class="title-row"><h2>3. Control your 5 Ms</h2><span class="tag">Daily review</span></div><p class="tiny">A short reflection to keep your actions intentional.</p>
+  <div class="habits" id="habits">
+   <div class="habit"><input id="hMouth" type="checkbox"><label for="hMouth">Mouth<br><span class="tiny">Speak thoughtfully</span></label></div>
+   <div class="habit"><input id="hMoney" type="checkbox"><label for="hMoney">Money<br><span class="tiny">Track spending</span></label></div>
+   <div class="habit"><input id="hMood" type="checkbox"><label for="hMood">Mood<br><span class="tiny">Pause and reset</span></label></div>
+   <div class="habit"><input id="hMind" type="checkbox"><label for="hMind">Mind<br><span class="tiny">Focus on next step</span></label></div>
+   <div class="habit"><input id="hManners" type="checkbox"><label for="hManners">Manners<br><span class="tiny">Act with respect</span></label></div>
+  </div><div class="status" id="habitStatus" role="status"></div>
+ </section>
+ <section class="panel">
+  <div class="title-row"><h2>4. Weekly business scorecard</h2><span class="tag">Fashion Looks</span></div><p class="tiny">Enter weekly actuals. These are tracking fields, not automatic results.</p>
+  <div class="form-grid">
+   <div class="field"><label for="leads">Qualified leads</label><input id="leads" type="number" min="0" value="0"></div>
+   <div class="field"><label for="followups">Follow-ups completed</label><input id="followups" type="number" min="0" value="0"></div>
+   <div class="field"><label for="certs">Certificates / TCs delivered</label><input id="certs" type="number" min="0" value="0"></div>
+   <div class="field"><label for="collections">Payments collected (₹)</label><input id="collections" type="number" min="0" value="0"></div>
+  </div><div class="actions"><button class="btn primary" id="saveScorecard">Save weekly scorecard</button></div><div class="status" id="scoreStatus" role="status"></div>
+ </section>
+</div>
+<section class="panel">
+ <div class="title-row"><h2>5. 2047 roadmap</h2><span class="tag">Review annually</span></div>
+ <div class="roadmap">
+  <article class="phase"><b>2026–2028</b><h3>Build the base</h3><p>Track leads, client delivery, invoices, collections, expenses and reserves. Separate personal and business finances.</p></article>
+  <article class="phase"><b>2029–2032</b><h3>Systemize</h3><p>Document SOPs for certification, traceability, renewals and follow-ups. Develop repeat-client relationships.</p></article>
+  <article class="phase"><b>2033–2037</b><h3>Scale profitably</h3><p>Measure margins, receivables and client retention. Test e-commerce only with evidence of positive unit economics.</p></article>
+  <article class="phase"><b>2038–2042</b><h3>Build assets</h3><p>Review diversification, taxes, debt, insurance and property decisions based on actual finances.</p></article>
+  <article class="phase"><b>2043–2047</b><h3>Protect wealth</h3><p>Prioritize liquidity, sustainable spending, continuity plans and long-term asset protection.</p></article>
+ </div>
+ <div class="table-wrap"><table><thead><tr><th>Measure</th><th>Meaning</th><th>Review</th></tr></thead><tbody>
+ <tr><td>Revenue</td><td>Total service fees or sales before expenses</td><td>Weekly / monthly</td></tr>
+ <tr><td>Profit</td><td>Revenue minus relevant costs</td><td>Monthly</td></tr>
+ <tr><td>Net worth</td><td>Assets minus liabilities</td><td>Quarterly</td></tr>
+ <tr><td>Execution</td><td>Important actions completed, not just planned</td><td>Daily / weekly</td></tr>
+ </tbody></table></div>
+ <div class="notice">This dashboard saves data in browser localStorage on this device. Export backups regularly. It does not provide cloud sync, bank integration, automatic messaging or investment execution. Do not enter passwords, bank credentials, or sensitive identity data.</div>
+</section>
+<footer class="footer">Fashion Looks™ Life OS 2047 · A practical planning and execution tool. Financial projections and business outcomes are uncertain; no income or return is guaranteed.</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const KEY='fashionLooksLifeOS2047.v1';
+const defaults={money:{income:130000,expenses:70000,investment:50000,currentNW:100000},tasks:[],habits:{},scorecard:{leads:0,followups:0,certs:0,collections:0}};
+let state=load();
+function load(){try{const raw=localStorage.getItem(KEY);if(raw){const s=JSON.parse(raw);return {...defaults,...s,money:{...defaults.money,...(s.money||{})},habits:s.habits||{},scorecard:{...defaults.scorecard,...(s.scorecard||{})},tasks:Array.isArray(s.tasks)?s.tasks:[]}}}catch(e){}return JSON.parse(JSON.stringify(defaults))}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){alert('Browser storage unavailable. Export a backup and check browser storage settings.');return false}}
+const fmt=n=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(n)||0);
+function renderMoney(){
+ const m=state.money,surplus=Number(m.income)-Number(m.expenses),left=surplus-Number(m.investment);
+ $('incomeMetric').textContent=fmt(m.income);$('expenseMetric').textContent=fmt(m.expenses);$('surplusMetric').textContent=fmt(surplus);$('investMetric').textContent=fmt(m.investment);
+ $('netProgress').style.width=Math.max(0,Math.min(100,Number(m.currentNW)/50000000*100))+'%';
+ $('netProgressLabel').textContent=fmt(m.currentNW)+' current net worth · '+(Math.max(0,Number(m.currentNW)/50000000*100)).toFixed(2)+'% of ₹5 crore target';
+ $('moneyStatus').textContent='After listed expenses and investment, monthly buffer: '+fmt(left)+(left<0?' — investment target exceeds the listed surplus.':'');
+}
+function renderTasks(){
+ const root=$('tasks');root.innerHTML='';
+ state.tasks.forEach(t=>{
+  const row=document.createElement('div');row.className='task'+(t.done?' done':'');
+  const check=document.createElement('input');check.type='checkbox';check.checked=!!t.done;check.setAttribute('aria-label','Mark task complete');check.addEventListener('change',()=>{t.done=check.checked;persist();renderTasks()});
+  const main=document.createElement('div');main.className='task-main';const title=document.createElement('div');title.className='task-title';title.textContent=t.text;const tag=document.createElement('span');tag.className='tag';tag.textContent=t.area;main.append(title,tag);
+  const del=document.createElement('button');del.className='delete';del.type='button';del.textContent='×';del.setAttribute('aria-label','Delete task');del.addEventListener('click',()=>{state.tasks=state.tasks.filter(x=>x.id!==t.id);persist();renderTasks()});
+  row.append(check,main,del);root.append(row);
+ });
+ const done=state.tasks.filter(t=>t.done).length;const total=state.tasks.length;$('taskCount').textContent=done+' / '+total+' complete';$('taskProgress').style.width=(total?done/total*100:0)+'%';
+}
+function renderHabits(){Object.keys(state.habits).forEach(id=>{if($(id))$(id).checked=!!state.habits[id]});const checked=Object.values(state.habits).filter(Boolean).length;$('habitStatus').textContent=checked+' of 5 daily reviews completed.'}
+function renderScore(){Object.entries(state.scorecard).forEach(([id,val])=>{if($(id))$(id).value=val})}
+function renderAll(){renderMoney();renderTasks();renderHabits();renderScore()}
+$('taskForm').addEventListener('submit',e=>{e.preventDefault();const text=$('taskText').value.trim();if(!text)return;if(state.tasks.filter(t=>!t.done).length>=30){$('focusStatus').textContent='You have 30 open tasks. Complete or remove tasks before adding more.';return}state.tasks.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),text,area:$('taskArea').value,done:false,created:new Date().toISOString()});$('taskText').value='';persist();renderTasks();$('focusStatus').textContent='Task added. Choose the most important next action.'});
+$('clearDone').addEventListener('click',()=>{state.tasks=state.tasks.filter(t=>!t.done);persist();renderTasks()});
+$('saveMoney').addEventListener('click',()=>{['income','expenses','investment','currentNW'].forEach(id=>state.money[id]=Math.max(0,Number($(id).value)||0));persist();renderMoney()});
+['income','expenses','investment','currentNW'].forEach(id=>$(id).addEventListener('change',()=>{state.money[id]=Math.max(0,Number($(id).value)||0);persist();renderMoney()}));
+['hMouth','hMoney','hMood','hMind','hManners'].forEach(id=>$(id).addEventListener('change',()=>{state.habits[id]=$(id).checked;persist();renderHabits()}));
+$('saveScorecard').addEventListener('click',()=>{['leads','followups','certs','collections'].forEach(id=>state.scorecard[id]=Math.max(0,Number($(id).value)||0));persist();$('scoreStatus').textContent='Weekly scorecard saved in this browser.'});
+$('focusBtn').addEventListener('click',()=>{$('focusStatus').textContent='Focus mode: silence avoidable distractions, choose one task, work for 25 minutes, then review. This button does not run a background timer.';const first=state.tasks.find(t=>!t.done);if(first)$('taskText').placeholder='Next: '+first.text;});
+$('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'Fashion Looks Life OS 2047',version:1,exportedAt:new Date().toISOString(),data:state},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fashion-looks-life-os-backup.json';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);$('focusStatus').textContent='Backup export requested. Store the file somewhere private.'});
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',async e=>{const f=e.target.files&&e.target.files[0];if(!f)return;try{const parsed=JSON.parse(await f.text());const incoming=parsed.data||parsed;if(!incoming||!Array.isArray(incoming.tasks)||!incoming.money)throw new Error('Unexpected backup format');if(!confirm('Import will replace the current dashboard data in this browser. Continue?'))return;state={...defaults,...incoming,money:{...defaults.money,...incoming.money},habits:incoming.habits||{},scorecard:{...defaults.scorecard,...(incoming.scorecard||{})}};persist();renderAll();$('focusStatus').textContent='Backup imported.'}catch(err){alert('Could not import this backup. Choose a JSON file exported by this dashboard.')}finally{e.target.value=''}});
+$('today').textContent=new Intl.DateTimeFormat('en-IN',{weekday:'long',day:'numeric',month:'short',year:'numeric'}).format(new Date());
+renderAll();
+})();
+</script></body></html>

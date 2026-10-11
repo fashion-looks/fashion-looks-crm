@@ -1,0 +1,10 @@
+name = "amit-singh-my-life-ai-brain"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+OPENAI_MODEL = "gpt-4.1-mini"
+
+[assets]
+directory = "."
+binding = "ASSETS"

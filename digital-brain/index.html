@@ -12,6 +12,7 @@
 <section class="card half"><h2>🧠 Brain dump</h2><textarea id="notes" placeholder="Ideas, blockers, reminders..."></textarea><button class="btn" id="saveNotes" style="margin-top:9px">Save notes</button><span class="muted" id="noteStatus"></span></section>
 <section class="card half"><h2>🌌 Mindset reflection</h2><p id="prompt">बड़े लक्ष्य को आज के एक स्पष्ट, छोटे कदम में बदलें।</p><button class="btn" id="newPrompt">New reflection</button><div class="tip">Capture → Prioritize → Focus → Review → Improve</div></section>
 <section class="card full"><h2>🗓 Daily review</h2><textarea id="review" placeholder="आज क्या पूरा हुआ? क्या सीखा? कल का अगला कदम?"></textarea><div class="row" style="margin-top:9px"><button class="btn" id="saveReview">Save review</button><button class="btn" id="export">Export JSON backup</button></div><span class="muted" id="reviewStatus"></span></section></div>
+<section class="card full"><h2>🧭 Decision Journal</h2><p class="muted">महत्वपूर्ण फैसलों के विकल्प, प्रमाण, जोखिम और review date दर्ज करें।</p><a class="btn primary" href="decision-journal.html" style="display:inline-block;text-decoration:none">Open Decision Journal →</a></section>
 <footer>Fashion Looks™ Digital Brain v1.0 · Data is stored in this browser only.</footer></main>
 <script>
 (()=>{'use strict';const $=id=>document.getElementById(id),KEY='fashion-looks-brain-v1';let d;try{d=JSON.parse(localStorage.getItem(KEY))||{tasks:[],notes:'',review:''}}catch{d={tasks:[],notes:'',review:''}}const save=()=>localStorage.setItem(KEY,JSON.stringify(d));

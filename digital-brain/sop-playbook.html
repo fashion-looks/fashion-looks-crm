@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827">
+<title>Fashion Looks™ · SOP Playbook</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#15233a;--panel2:#20314b;--line:#30415d;--text:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#ffd18a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1040px;margin:auto;padding:20px 14px 52px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--accent)}.pill,.tag{border:1px solid var(--line);border-radius:99px;padding:5px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(29px,6vw,44px);line-height:1.1;margin:25px 0 6px}h1 em{font-style:normal}.muted{color:var(--muted)}.layout{display:grid;grid-template-columns: minmax(0,1.3fr) minmax(260px,.7fr);gap:14px;margin-top:22px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:17px;padding:17px;min-width:0}.full{grid-column:1/-1}h2{font-size:17px;margin:0 0 13px}
+label{display:block;font-size:13px;color:var(--muted);margin:0 0 6px}input,select,textarea{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--text);font:inherit}textarea{min-height:80px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{min-width:0}.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.97)}.primary{background:var(--accent);color:#092019}.danger{border-color:#ff8e8e;color:#ffaaaa}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.row>*{flex:1}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:var(--panel2);padding:10px;border-radius:11px}.stat b{font-size:22px;display:block}.stat small{color:var(--muted)}.progress{height:8px;border-radius:99px;background:#263752;overflow:hidden}.progress>div{height:100%;width:0;background:var(--accent);transition:width .2s}
+.step{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}.step:last-child{border:0}.step input[type=checkbox]{width:19px;height:19px;margin:3px 0 0;accent-color:var(--accent)}.stepText{overflow-wrap:anywhere}.stepText.done{text-decoration:line-through;color:var(--muted)}.evidence{margin-top:7px}.evidence input{font-size:13px;padding:8px}.step button{padding:5px 8px;font-size:12px}.historyItem{border-top:1px solid var(--line);padding:10px 0}.historyItem strong{display:block}.hint{border-left:3px solid var(--accent);background:#15302f;padding:10px 12px;border-radius:0 10px 10px 0;margin-top:13px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.card{padding:14px}main{padding:16px 12px 40px}}
+@media print{body{background:#fff;color:#111}.card{background:#fff;color:#111;border:1px solid #bbb}.muted,label{color:#444}.btn,.top .pill,.history,.controls{display:none!important}input,textarea{color:#111;background:#fff;border:0;padding:2px}.step{break-inside:avoid}}
+</style></head>
+<body><main>
+<header class="top"><div class="brand">FASHION <span>LOOKS™</span> · SOP PLAYBOOK</div><div class="pill">REPEATABLE WORK · LOCAL-FIRST</div></header>
+<h1>Make good work <em>repeatable.</em></h1>
+<p class="muted">बार-बार होने वाले काम के लिए एक standard checklist बनाएं। हर बार जरूरी verification, evidence और hand-off steps न छूटें।</p>
+<div class="layout">
+<section class="card">
+<h2>1. Choose a playbook</h2>
+<div class="field"><label for="template">Process template</label><select id="template">
+<option value="fabric">Fabric dispatch verification</option><option value="tc">Transaction Certificate (TC) preparation</option><option value="po">New PO hand-off</option><option value="supplier">Supplier follow-up closure</option><option value="custom">Blank custom checklist</option>
+</select></div>
+<div class="row controls"><button class="btn primary" id="load">Load checklist</button><button class="btn" id="print">Print / PDF</button></div>
+<div class="hint"><b>Use the checklist as a control, not as proof.</b><br><span class="muted">हर step पर वास्तविक दस्तावेज़ या portal record verify करें।</span></div>
+</section>
+<section class="card">
+<h2>2. Run details</h2>
+<div class="fields">
+<div class="field"><label for="runTitle">Run title</label><input id="runTitle" maxlength="100" placeholder="e.g. PO 634 dispatch"></div>
+<div class="field"><label for="owner">Owner / responsible role</label><input id="owner" maxlength="80" placeholder="e.g. Merchandising"></div>
+<div class="field"><label for="runDate">Start date</label><input id="runDate" type="date"></div>
+<div class="field"><label for="dueDate">Target date</label><input id="dueDate" type="date"></div>
+</div>
+<div class="field" style="margin-top:10px"><label for="runNotes">Context / reference</label><textarea id="runNotes" maxlength="1200" placeholder="PO number, buyer, supplier, quality, portal reference — sensitive credentials नहीं।"></textarea></div>
+</section>
+<section class="card full">
+<div class="row" style="align-items:center;margin-top:0"><h2 style="margin:0;flex:2">3. Execution checklist</h2><span class="tag" id="count">0 / 0 complete</span></div>
+<div class="stats"><div class="stat"><b id="total">0</b><small>Steps</small></div><div class="stat"><b id="done">0</b><small>Completed</small></div><div class="stat"><b id="percent">0%</b><small>Progress</small></div></div>
+<div class="progress" aria-label="Checklist completion"><div id="bar"></div></div>
+<div id="steps" style="margin-top:10px"></div>
+<div class="row controls"><input id="newStep" maxlength="160" placeholder="Add a custom step..." aria-label="New checklist step"><button class="btn" id="addStep">+ Add step</button></div>
+<div class="row controls"><button class="btn primary" id="save">Save current run</button><button class="btn" id="finish">Complete & archive</button><button class="btn" id="export">Export JSON</button></div>
+<p class="muted" id="status" role="status" aria-live="polite"></p>
+</section>
+<section class="card full history">
+<h2>4. Completed playbooks</h2><p class="muted">पुराने completed runs से सीखें और repeat होने वाली गलती पहचानें।</p><div id="history"></div>
+</section>
+</div>
+<p class="muted" style="font-size:12px;text-align:center;margin-top:20px">Fashion Looks™ SOP Playbook · Browser local storage only · No external API</p>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='fl-sop-playbook-v1';
+const templates={
+fabric:{title:'Fabric dispatch verification',steps:['PO number, fabric quality, width and ordered quantity verify करें','Supplier commitment date और dispatch plan लिखित में confirm करें','Dispatch challan / invoice और vehicle details प्राप्त करें','Dispatched quantity को PO balance से reconcile करें','Transporter pickup और expected arrival confirm करें','Buyer / internal team को factual status और ETA share करें','Goods receipt के बाद received quantity और balance update करें']},
+tc:{title:'Transaction Certificate preparation',steps:['Applicable certification scope और validity verify करें','Buyer order, invoice और shipment details cross-check करें','Supplier Scope Certificate और transaction evidence verify करें','Input-output quantity और mass-balance reconciliation करें','Required portal fields और supporting documents check करें','Submission से पहले independent document review करें','Portal submission reference और final TC status record करें']},
+po:{title:'New PO hand-off',steps:['Buyer PO number, date, delivery date और quantity capture करें','Fabric quality, composition, width, colour and specs verify करें','Supplier / mill capacity and lead time confirm करें','Milestone-wise delivery plan लिखित में लें','Risk items, owner and escalation contact तय करें','PO tracker और internal team records update करें','Buyer को confirmed plan और open assumptions communicate करें']},
+supplier:{title:'Supplier follow-up closure',steps:['Open requirement और pending quantity स्पष्ट लिखें','Last commitment date और latest received update verify करें','Delay reason supplier से specific evidence सहित लें','Next dispatch quantity और date लिखित में confirm करें','Transport / pickup dependency की जिम्मेदारी तय करें','Buyer-facing update को facts और ETA तक सीमित रखें','Commitment पूरा होने पर closure evidence save करें']},
+custom:{title:'Custom standard operating procedure',steps:['काम का अपेक्षित परिणाम स्पष्ट लिखें','जरूरी inputs और source documents verify करें','मुख्य execution step पूरा करें','Result को independent तरीके से check करें','Evidence और hand-off record करें']}
+};
+let run=null,history=[];
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'{}');history=Array.isArray(saved.history)?saved.history:[];run=saved.current||null}catch{run=null;history=[]}
+const today=()=>new Date().toISOString().slice(0,10);
+function fresh(id){const t=templates[id]||templates.custom;return{id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),template:id,title:t.title,owner:'',start:today(),due:'',notes:'',steps:t.steps.map(text=>({id:Math.random().toString(36).slice(2),text,done:false,evidence:''})),created:new Date().toISOString()}}
+function persist(){localStorage.setItem(KEY,JSON.stringify({current:run,history}))}
+function syncFields(){if(!run)return;$('runTitle').value=run.title;$('owner').value=run.owner;$('runDate').value=run.start;$('dueDate').value=run.due;$('runNotes').value=run.notes}
+function fieldsToRun(){if(!run)return;run.title=$('runTitle').value.trim();run.owner=$('owner').value.trim();run.start=$('runDate').value;run.due=$('dueDate').value;run.notes=$('runNotes').value}
+function render(){const root=$('steps');root.replaceChildren();if(!run){$('total').textContent='0';$('done').textContent='0';$('percent').textContent='0%';$('count').textContent='No active run';$('bar').style.width='0%';return}
+run.steps.forEach((s,i)=>{const row=document.createElement('div');row.className='step';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!s.done;cb.setAttribute('aria-label','Mark step complete');cb.addEventListener('change',()=>{s.done=cb.checked;persist();render()});const body=document.createElement('div');const txt=document.createElement('div');txt.className='stepText'+(s.done?' done':'');txt.textContent=(i+1)+'. '+s.text;const evidence=document.createElement('input');evidence.className='evidence';evidence.maxLength=240;evidence.placeholder='Evidence / reference (optional)';evidence.value=s.evidence||'';evidence.setAttribute('aria-label','Evidence for step '+(i+1));evidence.addEventListener('change',()=>{s.evidence=evidence.value;persist()});body.append(txt,evidence);const del=document.createElement('button');del.className='btn danger';del.type='button';del.textContent='Remove';del.addEventListener('click',()=>{run.steps.splice(i,1);persist();render()});row.append(cb,body,del);root.append(row)});
+const done=run.steps.filter(s=>s.done).length,total=run.steps.length,pct=total?Math.round(done/total*100):0;$('total').textContent=total;$('done').textContent=done;$('percent').textContent=pct+'%';$('count').textContent=done+' / '+total+' complete';$('bar').style.width=pct+'%'}
+function renderHistory(){const root=$('history');root.replaceChildren();if(!history.length){const p=document.createElement('p');p.className='muted';p.textContent='अभी कोई archived run नहीं है।';root.append(p);return}history.slice().reverse().slice(0,12).forEach(item=>{const el=document.createElement('div');el.className='historyItem';const strong=document.createElement('strong');strong.textContent=item.title;const meta=document.createElement('span');meta.className='muted';meta.textContent=item.completed+' · '+item.done+'/'+item.total+' steps · Owner: '+(item.owner||'Not assigned');el.append(strong,meta);root.append(el)})}
+$('load').addEventListener('click',()=>{if(run&&run.steps.some(s=>s.done)&&!confirm('Current run में progress है। नया template load करने से यह current run replace होगा। Continue?'))return;run=fresh($('template').value);syncFields();persist();render();$('status').textContent='Checklist loaded. Owner और target date भरें।'});
+$('addStep').addEventListener('click',()=>{if(!run){run=fresh($('template').value);syncFields()}const text=$('newStep').value.trim();if(!text)return;run.steps.push({id:Math.random().toString(36).slice(2),text,done:false,evidence:''});$('newStep').value='';persist();render()});
+['runTitle','owner','runDate','dueDate','runNotes'].forEach(id=>$(id).addEventListener('change',()=>{fieldsToRun();persist()}));
+$('save').addEventListener('click',()=>{if(!run){$('status').textContent='पहले checklist load करें।';return}fieldsToRun();if(!run.title){$('status').textContent='Run title भरना जरूरी है।';return}persist();$('status').textContent='Saved on this device ✓'});
+$('finish').addEventListener('click',()=>{if(!run){$('status').textContent='पहले checklist load करें।';return}fieldsToRun();const done=run.steps.filter(s=>s.done).length;if(done!==run.steps.length){$('status').textContent='Archive करने से पहले सभी steps complete करें।';return}if(!run.title){$('status').textContent='Run title भरना जरूरी है।';return}history.push({title:run.title,owner:run.owner,completed:today(),done,total:run.steps.length,template:run.template});history=history.slice(-50);run=null;persist();$('runTitle').value='';$('owner').value='';$('runDate').value='';$('dueDate').value='';$('runNotes').value='';render();renderHistory();$('status').textContent='Completed run archived ✓'});
+$('export').addEventListener('click',()=>{fieldsToRun();const payload={exportedAt:new Date().toISOString(),current:run,history};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='fashion-looks-sop-playbook.json';a.click();URL.revokeObjectURL(url);persist();$('status').textContent='JSON backup exported ✓'});
+$('print').addEventListener('click',()=>window.print());
+if(run){syncFields()}else{run=fresh('fabric');syncFields();persist()}
+render();renderHistory();
+})();
+</script></body></html>

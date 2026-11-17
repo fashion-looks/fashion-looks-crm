@@ -11,11 +11,11 @@ A responsive, single-file productivity dashboard for focused execution.
 - Decision Journal with facts, options, chosen action, confidence, risk/pre-mortem, and review dates
 - Blocker Radar for PO, fabric dispatch, supplier, buyer, and certification blockers with owner, priority, due date, status filters, overdue detection, and JSON export
 - SOP Playbook with reusable fabric dispatch, TC preparation, new PO hand-off, supplier follow-up, and custom checklists; evidence notes, progress tracking, archive, print, and JSON export
-- Review notes to compare expected and actual outcomes
+- Commitment Ledger to record supplier, buyer, mill, and transporter promises; reconcile committed vs received quantity; track promised dates and next follow-ups; search, filter, update receipts, and export JSON\n- Review notes to compare expected and actual outcomes
 - Mobile-friendly layout; no external libraries
 
 ## Run
-Open `index.html` in any modern browser. Use the **Decision Journal**, **Blocker Radar**, and **SOP Playbook** links to open `decision-journal.html`, `blocker-radar.html`, and `sop-playbook.html`.
+Open `index.html` in any modern browser. Use the **Decision Journal**, **Blocker Radar**, **SOP Playbook**, and **Commitment Ledger** links to open `decision-journal.html`, `blocker-radar.html`, and `sop-playbook.html`, and `commitment-ledger.html`.
 
 ## Storage and privacy
 Tasks, notes, and reviews are stored in the browser's local storage on the current device. They are not automatically synchronized to GitHub or other devices. Use Export JSON to create a backup. Do not enter passwords or sensitive financial information.
@@ -41,7 +41,7 @@ Tasks, notes, and reviews are stored in the browser's local storage on the curre
 4. Add an evidence/reference note to each step where useful.
 5. Save progress locally, then archive only when all steps are complete; export JSON or print a working copy as needed.
 
-## Quality and privacy notes
+## Commitment Ledger workflow\n1. Record the party, PO/reference, item, committed quantity, actual received quantity, promise date, and next follow-up date.\n2. Count quantity as received only after checking dispatch proof, GRN, or the relevant portal record.\n3. Update actual received quantity and add a short proof/update note after each verified receipt.\n4. Review the Follow-up due and Commitment overdue filters each workday.\n5. Export a JSON backup periodically. The ledger does not send messages or independently verify supplier claims.\n\n## Quality and privacy notes
 The journal validates required fields and review dates, renders user-entered text as text rather than HTML, and stores records only in local storage. Export a JSON backup before clearing browser data. No cloud sync or AI API is enabled. Checklist completion is a user-entered control and does not independently verify documents or portal data.
 
 ## Next improvements

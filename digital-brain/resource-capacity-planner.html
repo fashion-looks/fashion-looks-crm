@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827"><title>Resource & Capacity Planner · Fashion Looks</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#20314b;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#ffd27a;--bad:#ff9292}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 38%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1080px;margin:auto;padding:20px 14px 50px}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--accent)}.pill,.tag{border:1px solid var(--line);border-radius:30px;padding:5px 10px;color:var(--muted);font-size:12px}
+a{color:var(--accent)}h1{font-size:clamp(28px,5vw,42px);line-height:1.12;margin:22px 0 6px}h1 em{font-style:normal}.sub,.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px;margin-top:20px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:17px;padding:16px;min-width:0}.full{grid-column:1/-1}.half{grid-column:span 6}h2{font-size:17px;margin:0 0 12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:var(--panel2);border-radius:12px;padding:12px}.stat b{font-size:24px;display:block;font-variant-numeric:tabular-nums}.stat small{color:var(--muted)}
+label{display:block;color:var(--muted);font-size:12px;margin:0 0 5px}input,select{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit}input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}.formgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:9px}.field{grid-column:span 3}.field.wide{grid-column:span 6}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .15s,background .15s}.btn:hover{transform:translateY(-2px);background:#17372f}.btn.primary{background:var(--accent);color:#092019}.btn.danger{border-color:var(--bad);color:var(--bad)}.btn:focus-visible{outline:2px solid white;outline-offset:2px}
+.resource{border:1px solid var(--line);background:#0f1b2e;border-radius:13px;padding:12px;margin-top:9px}.resourceHead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.bar{height:9px;background:#263650;border-radius:20px;overflow:hidden;margin:9px 0 5px}.bar span{display:block;height:100%;background:var(--accent)}.bar.over span{background:var(--bad)}.bar.near span{background:var(--warn)}.taskrow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}.taskrow:last-child{border:0}.tag.bad{color:var(--bad);border-color:#75464d}.tag.warn{color:var(--warn);border-color:#79633c}.empty{color:var(--muted);padding:14px 0}.note{border-left:3px solid var(--accent);background:#15302f;border-radius:0 10px 10px 0;padding:10px;margin-top:12px;font-size:13px}
+@media(max-width:720px){.half{grid-column:1/-1}.stats{grid-template-columns:repeat(2,1fr)}.field,.field.wide{grid-column:span 6}.taskrow{grid-template-columns:1fr auto}.taskrow .taskmeta{grid-column:1/-1;grid-row:2}.btn{min-height:40px}}
+@media(max-width:420px){.field,.field.wide{grid-column:1/-1}.stats{gap:7px}.stat{padding:9px}}
+</style>
+</head>
+<body><main>
+<header class="top"><div class="brand">FASHION <span>LOOKS™</span> · DIGITAL BRAIN</div><div class="pill">LOCAL-FIRST · PRIVATE BY DEFAULT</div></header>
+<h1>Resource & <em>Capacity Planner</em></h1>
+<p class="sub">दिन के काम को उपलब्ध लोगों और घंटों के अनुसार बाँटें। Overload और unassigned tasks पहले पहचानें—यह planning estimate है, staff performance score नहीं।</p>
+<p><a href="index.html">← Digital Brain home</a></p>
+<section class="card full"><h2>📅 Planning date</h2><div class="formgrid"><div class="field"><label for="planDate">Work date</label><input type="date" id="planDate"></div><div class="field wide"><label for="filterText">Find task or owner</label><input id="filterText" type="search" placeholder="PO, fabric, TC, person..."></div></div></section>
+<section class="grid">
+<div class="card full"><h2>📊 Capacity snapshot</h2><div class="stats"><div class="stat"><b id="totalCapacity">0h</b><small>Available capacity</small></div><div class="stat"><b id="plannedHours">0h</b><small>Planned workload</small></div><div class="stat"><b id="utilization">0%</b><small>Overall utilization</small></div><div class="stat"><b id="overloaded">0</b><small>Overloaded / unassigned</small></div></div></div>
+<section class="card half"><h2>👥 Add resource</h2><form id="personForm"><div class="formgrid"><div class="field wide"><label for="personName">Name or role</label><input id="personName" maxlength="60" placeholder="e.g. Dispatch Coordinator" required></div><div class="field"><label for="personRole">Team / function</label><input id="personRole" maxlength="50" placeholder="e.g. Operations"></div><div class="field"><label for="personCapacity">Available hours / day</label><input id="personCapacity" type="number" min="0.5" max="24" step="0.5" value="7.5" required></div></div><div class="actions"><button class="btn primary" type="submit">+ Add resource</button></div></form><div id="peopleList"></div></section>
+<section class="card half"><h2>🧾 Add work item</h2><form id="taskForm"><div class="formgrid"><div class="field wide"><label for="taskTitle">Task / reference</label><input id="taskTitle" maxlength="120" placeholder="e.g. PO 634 dispatch follow-up" required></div><div class="field"><label for="taskOwner">Assign to</label><select id="taskOwner"><option value="">Unassigned</option></select></div><div class="field"><label for="taskHours">Estimated hours</label><input id="taskHours" type="number" min="0.25" max="24" step="0.25" value="1" required></div><div class="field"><label for="taskPriority">Priority</label><select id="taskPriority"><option>Urgent</option><option selected>High</option><option>Normal</option><option>Low</option></select></div><div class="field"><label for="taskStatus">Status</label><select id="taskStatus"><option>Planned</option><option>In progress</option><option>Blocked</option><option>Done</option></select></div></div><div class="actions"><button class="btn primary" type="submit">+ Add work item</button></div></form></section>
+<section class="card full"><h2>⚖️ Resource load</h2><p class="muted">Done items capacity calculation में शामिल नहीं हैं। 85% से ऊपर load को review करें; 100% से ऊपर overload दिखेगा।</p><div id="resourceLoads"></div></section>
+<section class="card full"><h2>📋 Work queue</h2><div id="taskList"></div><div class="actions"><button class="btn" id="exportJson" type="button">Export JSON backup</button><button class="btn" id="exportCsv" type="button">Export daily CSV</button></div><p class="muted" id="status" aria-live="polite"></p></section>
+</section>
+<div class="note"><b>Planning guardrail:</b> केवल काम के लिए जरूरी जानकारी दर्ज करें। Password, personal identifiers या confidential buyer documents न डालें। Allocation बदलने से पहले संबंधित व्यक्ति से availability confirm करें।</div>
+<footer class="muted" style="text-align:center;font-size:12px;margin:22px 0">Fashion Looks™ · Resource & Capacity Planner v1.0 · Data stays in this browser.</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='fl-resource-capacity-v1';
+const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const validDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&!Number.isNaN(Date.parse(s+'T00:00:00'));
+const cleanNumber=(v,min,max)=>{const n=Number(v);return Number.isFinite(n)&&n>=min&&n<=max?n:null};
+let data={people:[],tasks:[]};
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&Array.isArray(saved.people)&&Array.isArray(saved.tasks))data=saved}catch{}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(data));$('status').textContent='Saved in this browser ✓'}catch{$('status').textContent='Could not save: browser storage may be full or disabled.'}};
+const active=t=>t.status!=='Done';
+const selectedDate=()=>validDate($('planDate').value)?$('planDate').value:today();
+function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
+function personById(id){return data.people.find(p=>p.id===id)}
+function tasksFor(p,date){return data.tasks.filter(t=>t.date===date&&t.ownerId===p.id&&active(t))}
+function render(){
+ const date=selectedDate(),query=$('filterText').value.trim().toLowerCase();
+ const dayTasks=data.tasks.filter(t=>t.date===date);
+ const capacity=data.people.reduce((s,p)=>s+p.hours,0);
+ const planned=dayTasks.filter(active).reduce((s,t)=>s+t.hours,0);
+ const overloadCount=data.people.filter(p=>tasksFor(p,date).reduce((s,t)=>s+t.hours,0)>p.hours).length;
+ const unassigned=dayTasks.filter(t=>active(t)&&!personById(t.ownerId)).length;
+ $('totalCapacity').textContent=capacity.toFixed(1)+'h';$('plannedHours').textContent=planned.toFixed(1)+'h';
+ $('utilization').textContent=(capacity?Math.round(planned/capacity*100):0)+'%';$('overloaded').textContent=String(overloadCount+unassigned);
+ const owner=$('taskOwner'),old=owner.value;owner.replaceChildren(el('option','','Unassigned'));owner.firstChild.value='';
+ data.people.forEach(p=>{const o=el('option','',p.name+' · '+p.hours+'h');o.value=p.id;owner.append(o)});if(personById(old))owner.value=old;
+ const people=$('peopleList');people.replaceChildren();
+ if(!data.people.length)people.append(el('p','empty','अभी कोई resource नहीं। ऊपर नाम/role और daily capacity जोड़ें।'));
+ data.people.forEach(p=>{const box=el('div','resource');const head=el('div','resourceHead');head.append(el('b','',p.name),el('span','tag',p.role||'Team member · '+p.hours+'h/day'));const remove=el('button','btn danger small','Remove');remove.type='button';remove.onclick=()=>{if(!confirm('Remove this resource? Assigned tasks will become unassigned.'))return;data.tasks.forEach(t=>{if(t.ownerId===p.id)t.ownerId=''});data.people=data.people.filter(x=>x.id!==p.id);persist();render()};head.append(remove);box.append(head);people.append(box)});
+ const loads=$('resourceLoads');loads.replaceChildren();
+ if(!data.people.length)loads.append(el('p','empty','Resource capacity देखने के लिए पहले resource जोड़ें।'));
+ data.people.forEach(p=>{const ts=tasksFor(p,date),hours=ts.reduce((s,t)=>s+t.hours,0),pct=p.hours?hours/p.hours*100:0;const box=el('div','resource'),head=el('div','resourceHead');head.append(el('b','',p.name),el('span','tag '+(pct>100?'bad':pct>=85?'warn':''),hours.toFixed(1)+'h / '+p.hours.toFixed(1)+'h · '+Math.round(pct)+'%'));const bar=el('div','bar '+(pct>100?'over':pct>=85?'near':''));const fill=el('span');fill.style.width=Math.min(pct,100)+'%';bar.append(fill);box.append(head,bar,el('small','muted',ts.length+' active item(s)'));if(pct>100)box.append(el('p','tag bad','Over capacity by '+(hours-p.hours).toFixed(1)+'h — review assignment'));else if(pct>=85)box.append(el('p','tag warn','Near capacity — leave room for urgent work'));loads.append(box)});
+ const list=$('taskList');list.replaceChildren();const visible=dayTasks.filter(t=>{const p=personById(t.ownerId);return !query||t.title.toLowerCase().includes(query)||(p&&p.name.toLowerCase().includes(query))});
+ if(!visible.length)list.append(el('p','empty','इस तारीख के लिए कोई work item नहीं मिला।'));
+ visible.forEach(t=>{const row=el('div','taskrow');const info=el('div','');info.append(el('b','',t.title));const p=personById(t.ownerId);info.append(el('div','taskmeta muted',(p?p.name:'Unassigned')+' · '+t.hours.toFixed(2)+'h · '+t.priority+' · '+t.status));const status=el('span','tag '+(!p&&active(t)?'bad':''),!p&&active(t)?'Needs owner':t.status);const del=el('button','btn danger','Delete');del.type='button';del.onclick=()=>{data.tasks=data.tasks.filter(x=>x.id!==t.id);persist();render()};row.append(info,status,del);list.append(row)});
+}
+$('planDate').value=today();
+$('planDate').addEventListener('change',render);$('filterText').addEventListener('input',render);
+$('personForm').addEventListener('submit',e=>{e.preventDefault();const name=$('personName').value.trim(),role=$('personRole').value.trim(),hours=cleanNumber($('personCapacity').value,.5,24);if(!name||hours===null){$('status').textContent='Name और 0.5–24 hours की valid capacity दर्ज करें।';return}data.people.push({id:uid(),name,role,hours});$('personForm').reset();$('personCapacity').value='7.5';persist();render()});
+$('taskForm').addEventListener('submit',e=>{e.preventDefault();const title=$('taskTitle').value.trim(),hours=cleanNumber($('taskHours').value,.25,24);if(!title||hours===null){$('status').textContent='Task और 0.25–24 hours का valid estimate दर्ज करें।';return}data.tasks.push({id:uid(),title,ownerId:$('taskOwner').value,date:selectedDate(),hours,priority:$('taskPriority').value,status:$('taskStatus').value});$('taskForm').reset();$('taskHours').value='1';persist();render()});
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url)}
+$('exportJson').onclick=()=>download('fashion-looks-capacity-backup.json',JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2),'application/json');
+function csvCell(v){let s=String(v??'');if(/^[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+$('exportCsv').onclick=()=>{const rows=[['Date','Task','Owner','Hours','Priority','Status'],...data.tasks.filter(t=>t.date===selectedDate()).map(t=>[t.date,t.title,personById(t.ownerId)?.name||'Unassigned',t.hours,t.priority,t.status])];download('fashion-looks-capacity-'+selectedDate()+'.csv',rows.map(r=>r.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
+render();
+})();
+</script></body></html>

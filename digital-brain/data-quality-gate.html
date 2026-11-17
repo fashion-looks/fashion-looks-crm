@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1220">
+<title>Data Quality Gate · Fashion Looks™</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#20314b;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--red:#ff8b8b;--amber:#ffd27b;--green:#8be0b5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 38%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1120px;margin:auto;padding:20px 14px 48px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:850;letter-spacing:.2px}.brand span,h1 em{color:var(--accent)}.pill,.tag{border:1px solid var(--line);border-radius:30px;padding:5px 9px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(27px,5vw,42px);line-height:1.12;margin:22px 0 7px}h1 em{font-style:normal}.sub,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px;margin-top:18px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:17px;padding:16px;min-width:0}.full{grid-column:1/-1}.half{grid-column:span 6}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:var(--panel2);border-radius:12px;padding:11px}.stat b{font-size:24px;display:block;font-variant-numeric:tabular-nums}.stat small{color:var(--muted)}
+h2{font-size:17px;margin:0 0 12px}.fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.field{min-width:0}.field.wide{grid-column:span 2}label{display:block;color:var(--muted);font-size:12px;margin:0 0 5px}
+input,select{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit}input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:transform .16s,background .16s}.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.97)}.btn.primary{background:var(--accent);color:#092019}.btn.danger{border-color:var(--red);color:var(--red)}.btn.small{padding:6px 9px;font-size:12px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:10px}.toolbar input{flex:2;min-width:180px}.toolbar select{flex:1;min-width:140px}
+.record{border:1px solid var(--line);border-radius:13px;padding:12px;margin-top:9px;background:#101b2d}.recordHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}.recordTitle{font-weight:750;overflow-wrap:anywhere}.meta{color:var(--muted);font-size:12px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.chip{font-size:11px;border-radius:30px;padding:3px 8px;border:1px solid var(--line);color:var(--muted)}.chip.error{border-color:#8e4545;color:var(--red)}.chip.warn{border-color:#80663c;color:var(--amber)}.chip.ok{border-color:#386d58;color:var(--green)}
+.issueList{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:12px}.issueList li{margin:3px 0}.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+.note{border-left:3px solid var(--accent);background:#15302f;padding:10px 12px;border-radius:0 10px 10px 0;color:var(--muted);font-size:13px;margin-top:12px}
+footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0}
+@media(max-width:760px){.half{grid-column:1/-1}.fields{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:430px){main{padding:14px 10px 36px}.card{padding:12px}.fields{grid-template-columns:1fr}.field.wide{grid-column:auto}.toolbar>*{width:100%;min-width:0!important}.actions .btn{flex:1}}
+</style></head>
+<body><main>
+<header class="top"><div class="brand">FASHION <span>LOOKS™</span> · DATA QUALITY GATE</div><div class="pill">LOCAL-FIRST · NO CLOUD SYNC</div></header>
+<h1>Trust the data. <em>Then decide.</em></h1>
+<p class="sub">PO और fabric records में missing fields, duplicate entries, quantity mismatch, date errors और पुराने updates पकड़ें—forecast या follow-up से पहले।</p>
+<div class="grid">
+<section class="card full"><h2>📊 Data quality overview</h2><div class="stats">
+<div class="stat"><b id="total">0</b><small>Total records</small></div><div class="stat"><b id="clean">0</b><small>Clean records</small></div><div class="stat"><b id="reviewCount">0</b><small>Need review</small></div><div class="stat"><b id="score">—</b><small>Average quality</small></div>
+</div><div class="note">यह tool data consistency जाँचता है; supplier claims, dispatch proof या portal entries को independently verify नहीं करता।</div></section>
+<section class="card full"><h2 id="formTitle">＋ Add a PO data record</h2>
+<form id="recordForm">
+<div class="fields">
+<div class="field"><label for="po">PO number *</label><input id="po" name="po" maxlength="50" placeholder="PO-634"></div>
+<div class="field"><label for="supplier">Supplier *</label><input id="supplier" name="supplier" maxlength="100" placeholder="Supplier name"></div>
+<div class="field"><label for="buyer">Buyer (optional)</label><input id="buyer" name="buyer" maxlength="100" placeholder="Buyer name"></div>
+<div class="field"><label for="fabric">Fabric / quality *</label><input id="fabric" name="fabric" maxlength="120" placeholder="Fabric or quality"></div>
+<div class="field"><label for="unit">Unit *</label><select id="unit" name="unit"><option value="mtr">mtr</option><option value="kg">kg</option><option value="pcs">pcs</option><option value="roll">roll</option></select></div>
+<div class="field"><label for="ordered">Order quantity *</label><input id="ordered" name="ordered" type="number" min="0" step="0.01" placeholder="0"></div>
+<div class="field"><label for="received">Received quantity *</label><input id="received" name="received" type="number" min="0" step="0.01" placeholder="0"></div>
+<div class="field"><label for="balance">Recorded balance *</label><input id="balance" name="balance" type="number" min="0" step="0.01" placeholder="0"></div>
+<div class="field"><label for="poDate">PO date *</label><input id="poDate" name="poDate" type="date"></div>
+<div class="field"><label for="dueDate">Committed due date *</label><input id="dueDate" name="dueDate" type="date"></div>
+<div class="field"><label for="verifiedDate">Last verified date *</label><input id="verifiedDate" name="verifiedDate" type="date"></div>
+<div class="field"><label for="evidence">Evidence reference (optional)</label><input id="evidence" name="evidence" maxlength="100" placeholder="Non-sensitive file / mail ref"></div>
+</div>
+<div class="actions"><button class="btn primary" type="submit" id="saveBtn">Save & validate</button><button class="btn" type="button" id="clearBtn">Clear form</button><button class="btn" type="button" id="validateBtn">Recheck all records</button></div>
+<p class="meta" id="formStatus" role="status" aria-live="polite">* Required for a clean record. Incomplete rows can still be saved and flagged.</p>
+</form></section>
+<section class="card full"><h2>🔎 Quality review queue</h2>
+<div class="toolbar"><input id="search" type="search" placeholder="Search PO, supplier, buyer or fabric"><select id="filter"><option value="all">All records</option><option value="issues">Needs review</option><option value="clean">Clean only</option><option value="overdue">Overdue balance</option></select></div>
+<div id="records" aria-live="polite"></div>
+<div class="actions"><button class="btn" id="exportJson" type="button">Export JSON</button><button class="btn" id="exportCsv" type="button">Export CSV</button></div>
+</section>
+</div>
+<footer>Fashion Looks™ · Data Quality Gate v1.0 · Records remain in this browser.</footer>
+</main>
+<script>
+(function(){
+'use strict';
+var KEY='fl-data-quality-gate-v1',MAX_RECORDS=500,editingId=null;
+var $=function(id){return document.getElementById(id);};
+function todayLocal(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function dateMs(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return NaN;var d=new Date(s+'T00:00:00Z');return d.toISOString().slice(0,10)===s?d.getTime():NaN;}
+function daysBetween(a,b){return Math.floor((dateMs(b)-dateMs(a))/86400000);}
+function cleanText(v){return String(v==null?'':v).trim();}
+function num(v){if(v===null||v===undefined||String(v).trim()==='')return NaN;return Number(v);}
+function makeId(){return (window.crypto&&typeof window.crypto.randomUUID==='function')?window.crypto.randomUUID():'dq-'+Date.now()+'-'+Math.random().toString(16).slice(2);}
+function load(){try{var x=JSON.parse(localStorage.getItem(KEY)||'{"records":[]}');return x&&Array.isArray(x.records)?x.records.slice(0,MAX_RECORDS):[];}catch(e){return [];}}
+var records=load();
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({records:records,updatedAt:new Date().toISOString()}));return true;}catch(e){$('formStatus').textContent='Storage unavailable or full. Export a backup and reduce stored data.';return false;}}
+function validate(r,others){
+ var out=[],required=[['po','PO number'],['supplier','Supplier'],['fabric','Fabric / quality'],['unit','Unit'],['poDate','PO date'],['dueDate','Due date'],['verifiedDate','Last verified date']];
+ required.forEach(function(pair){if(!cleanText(r[pair[0]]))out.push({level:'error',msg:'Missing '+pair[1]+'.'});});
+ var ordered=num(r.ordered),received=num(r.received),balance=num(r.balance);
+ [['Order quantity',ordered],['Received quantity',received],['Recorded balance',balance]].forEach(function(x){if(!Number.isFinite(x[1]))out.push({level:'error',msg:x[0]+' must be a valid number.'});else if(x[1]<0)out.push({level:'error',msg:x[0]+' cannot be negative.'});});
+ if(Number.isFinite(ordered)&&ordered<=0)out.push({level:'error',msg:'Order quantity must be greater than zero.'});
+ if(Number.isFinite(ordered)&&Number.isFinite(received)&&received>ordered)out.push({level:'error',msg:'Received quantity exceeds ordered quantity.'});
+ if(Number.isFinite(ordered)&&Number.isFinite(received)&&Number.isFinite(balance)&&Math.abs((ordered-received)-balance)>0.01)out.push({level:'error',msg:'Balance mismatch: expected '+(ordered-received).toFixed(2)+' '+(r.unit||'unit')+'.'});
+ var p=dateMs(r.poDate),due=dateMs(r.dueDate),verified=dateMs(r.verifiedDate),today=dateMs(todayLocal());
+ if(r.poDate&&!Number.isFinite(p))out.push({level:'error',msg:'PO date is invalid.'});
+ if(r.dueDate&&!Number.isFinite(due))out.push({level:'error',msg:'Due date is invalid.'});
+ if(r.verifiedDate&&!Number.isFinite(verified))out.push({level:'error',msg:'Last verified date is invalid.'});
+ if(Number.isFinite(p)&&Number.isFinite(due)&&due<p)out.push({level:'error',msg:'Due date is earlier than PO date.'});
+ if(Number.isFinite(verified)&&Number.isFinite(p)&&verified<p)out.push({level:'error',msg:'Last verified date is earlier than PO date.'});
+ if(Number.isFinite(verified)&&Number.isFinite(today)&&verified>today)out.push({level:'error',msg:'Last verified date cannot be in the future.'});
+ if(Number.isFinite(verified)&&Number.isFinite(today)&&daysBetween(r.verifiedDate,todayLocal())>3)out.push({level:'warn',msg:'Data has not been verified for more than 3 days.'});
+ if(cleanText(r.po)&&cleanText(r.supplier)&&Array.isArray(others)){
+  var key=cleanText(r.po).toLowerCase()+'|'+cleanText(r.supplier).toLowerCase();
+  if(others.some(function(x){return x.id!==r.id&&cleanText(x.po).toLowerCase()+'|'+cleanText(x.supplier).toLowerCase()===key;}))out.push({level:'error',msg:'Duplicate PO number for this supplier.'});
+ }
+ if(!cleanText(r.evidence))out.push({level:'warn',msg:'No evidence reference recorded; add a non-sensitive reference if available.'});
+ if(Number.isFinite(balance)&&balance>0&&Number.isFinite(due)&&due<today)out.push({level:'warn',msg:'Committed due date has passed while balance remains.'});
+ if(!cleanText(r.buyer))out.push({level:'warn',msg:'Buyer is blank; add it if this PO requires buyer tracking.'});
+ var errors=out.filter(function(x){return x.level==='error';}).length,warnings=out.length-errors;
+ return {issues:out,errors:errors,warnings:warnings,score:Math.max(0,100-errors*25-warnings*8),clean:out.length===0,overdue:Number.isFinite(balance)&&balance>0&&Number.isFinite(due)&&due<today};
+}
+function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}
+function render(){
+ var root=$('records');root.replaceChildren();
+ var checks=records.map(function(r){return {r:r,v:validate(r,records)};});
+ var clean=checks.filter(function(x){return x.v.clean;}).length,attention=checks.length-clean;
+ $('total').textContent=records.length;$('clean').textContent=clean;$('reviewCount').textContent=attention;
+ $('score').textContent=checks.length?Math.round(checks.reduce(function(s,x){return s+x.v.score;},0)/checks.length)+'%':'—';
+ var q=cleanText($('search').value).toLowerCase(),f=$('filter').value;
+ var visible=checks.filter(function(x){var r=x.r,v=x.v,hay=[r.po,r.supplier,r.buyer,r.fabric].join(' ').toLowerCase();return (!q||hay.indexOf(q)>=0)&&(f==='all'||(f==='issues'&&!v.clean)||(f==='clean'&&v.clean)||(f==='overdue'&&v.overdue));});
+ if(!visible.length){root.append(el('div','empty',records.length?'No records match this filter.':'No records yet. Add a PO above to run your first quality check.'));return;}
+ visible.forEach(function(x){
+  var r=x.r,v=x.v,card=el('article','record'),head=el('div','recordHead'),left=el('div',''),title=el('div','recordTitle',(r.po||'PO not entered')+' · '+(r.supplier||'Supplier missing')),meta=el('div','meta',(r.fabric||'Fabric missing')+' · '+(r.received||'0')+'/'+(r.ordered||'0')+' '+(r.unit||''));
+  left.append(title,meta);var chips=el('div','chips');
+  chips.append(el('span','chip '+(v.clean?'ok':v.errors?'error':'warn'),v.clean?'Clean':v.errors+' errors'),el('span','chip '+(v.warnings?'warn':'ok'),v.warnings+' warnings'),el('span','chip',v.score+'% quality'));
+  if(v.overdue)chips.append(el('span','chip error','Overdue balance'));
+  head.append(left,chips);card.append(head);
+  if(v.issues.length){var ul=el('ul','issueList');v.issues.forEach(function(issue){ul.append(el('li','',issue.msg));});card.append(ul);}
+  var actions=el('div','actions'),edit=el('button','btn small','Edit'),del=el('button','btn danger small','Delete');
+  edit.type='button';del.type='button';edit.onclick=function(){fillForm(r);};del.onclick=function(){if(window.confirm('Delete record '+(r.po||'')+'?')){records=records.filter(function(y){return y.id!==r.id;});persist();render();}};
+  actions.append(edit,del);card.append(actions);root.append(card);
+ });
+}
+function fillForm(r){
+ editingId=r.id;['po','supplier','buyer','fabric','unit','ordered','received','balance','poDate','dueDate','verifiedDate','evidence'].forEach(function(k){$(k).value=r[k]===undefined?'':r[k];});
+ $('formTitle').textContent='✎ Edit PO data record';$('saveBtn').textContent='Update & validate';$('formStatus').textContent='Editing '+(r.po||'record')+'. Save to re-run validation.';window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetForm(){editingId=null;$('recordForm').reset();$('formTitle').textContent='＋ Add a PO data record';$('saveBtn').textContent='Save & validate';}
+$('recordForm').addEventListener('submit',function(e){
+ e.preventDefault();var r={};['po','supplier','buyer','fabric','unit','ordered','received','balance','poDate','dueDate','verifiedDate','evidence'].forEach(function(k){r[k]=cleanText($(k).value);});
+ r.id=editingId||makeId();r.createdAt=(records.find(function(x){return x.id===r.id;})||{}).createdAt||new Date().toISOString();r.updatedAt=new Date().toISOString();
+ var next=records.filter(function(x){return x.id!==r.id;});if(!editingId&&records.length>=MAX_RECORDS){$('formStatus').textContent='Maximum of '+MAX_RECORDS+' records reached. Export and archive before adding more.';return;}
+ next.unshift(r);records=next;persist();var v=validate(r,records);$('formStatus').textContent='Saved. '+v.errors+' errors and '+v.warnings+' warnings found.';resetForm();render();
+});
+$('clearBtn').onclick=resetForm;$('validateBtn').onclick=render;$('search').addEventListener('input',render);$('filter').addEventListener('change',render);
+function download(name,content,type){var blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);}
+$('exportJson').onclick=function(){download('fashion-looks-data-quality-backup.json',JSON.stringify({exportedAt:new Date().toISOString(),records:records},null,2),'application/json');};
+function csvCell(v){var s=String(v==null?'':v);if(/^[\s]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+$('exportCsv').onclick=function(){var cols=['po','supplier','buyer','fabric','unit','ordered','received','balance','poDate','dueDate','verifiedDate','evidence'];var rows=[cols.join(',')];records.forEach(function(r){rows.push(cols.map(function(k){return csvCell(r[k]);}).join(','));});download('fashion-looks-data-quality.csv','\ufeff'+rows.join('\r\n'),'text/csv;charset=utf-8');};
+render();
+})();
+</script></body></html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827">
+<title>Fashion Looks™ · Commitment Ledger</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--mint:#72e0c1;--amber:#ffd27a;--red:#ff9292}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 38%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1120px;margin:auto;padding:20px 14px 48px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--mint)}.pill,.tag{border:1px solid var(--line);border-radius:99px;padding:5px 9px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(29px,5vw,44px);line-height:1.1;margin:24px 0 6px}h1 em{font-style:normal}.muted{color:var(--muted)}.layout{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:20px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:17px;padding:16px;min-width:0}.full{grid-column:1/-1}.formcard{grid-column:span 5}.listcard{grid-column:span 7}h2{font-size:17px;margin:0 0 13px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#20314b;border-radius:12px;padding:12px}.stat b{font-size:24px;display:block}.stat small{color:var(--muted)}
+label{display:block;color:var(--muted);font-size:12px;margin:9px 0 5px}input,select,textarea{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit}textarea{min-height:76px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.btn{border:1px solid var(--mint);background:transparent;color:var(--mint);padding:10px 12px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}.btn:hover{transform:translateY(-2px);background:#17372f}.primary{background:var(--mint);color:#092019}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions>*{flex:1}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.filters>*{flex:1;min-width:130px}.entry{border:1px solid var(--line);border-radius:13px;padding:13px;margin-top:10px;background:#101b2d}.entryhead{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.entry h3{font-size:15px;margin:0 0 3px}.meta{color:var(--muted);font-size:12px}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.number{background:#1c2b42;padding:9px;border-radius:9px}.number b{display:block;font-size:17px}.number small{font-size:11px;color:var(--muted)}.entryupdate{display:grid;grid-template-columns:1fr 2fr auto;gap:8px;align-items:end}.status{font-size:11px;border:1px solid var(--line);padding:4px 8px;border-radius:99px}.status.overdue{color:var(--red);border-color:#8e4545}.status.due{color:var(--amber);border-color:#80622e}.status.done{color:var(--mint);border-color:#326e60}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}.notice{background:#142d30;border-left:3px solid var(--mint);padding:10px;border-radius:0 9px 9px 0;color:#c9e8df;font-size:13px;margin-top:12px}
+@media(max-width:820px){.formcard,.listcard{grid-column:1/-1}}@media(max-width:520px){main{padding:14px 10px}.card{padding:13px}.fields{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.entryupdate{grid-template-columns:1fr 1fr}.entryupdate button{grid-column:1/-1}}
+</style></head>
+<body><main>
+<div class="top"><div class="brand">FASHION <span>LOOKS™</span> · COMMITMENT LEDGER</div><div class="pill">LOCAL-FIRST · MANUAL VERIFICATION</div></div>
+<h1>Promises into <em>proof.</em></h1>
+<p class="muted">Supplier, buyer, mill और transporter की commitments को committed quantity, actual receipt और next follow-up के साथ मिलाकर देखें।</p>
+<div class="layout">
+<section class="card full"><h2>📊 Commitment health</h2><div class="stats"><div class="stat"><b id="activeCount">0</b><small>Open commitments</small></div><div class="stat"><b id="followCount">0</b><small>Follow-ups due</small></div><div class="stat"><b id="pendingQty">0</b><small>Pending quantity</small></div></div></section>
+<section class="card formcard"><h2>＋ Add commitment</h2>
+<form id="addForm">
+<div class="fields">
+<div><label for="partyType">Party type</label><select id="partyType"><option>Supplier</option><option>Buyer</option><option>Mill</option><option>Transporter</option><option>Internal team</option></select></div>
+<div><label for="party">Party / contact name</label><input id="party" maxlength="80" required placeholder="e.g. Supplier name"></div>
+<div><label for="ref">PO / reference</label><input id="ref" maxlength="50" placeholder="e.g. PO 634"></div>
+<div><label for="item">Fabric / item</label><input id="item" maxlength="90" placeholder="e.g. 60x80 fabric"></div>
+<div><label for="committed">Committed quantity</label><input id="committed" type="number" min="0.01" step="0.01" required placeholder="5000"></div>
+<div><label for="received">Received / completed</label><input id="received" type="number" min="0" step="0.01" value="0" required></div>
+<div><label for="unit">Unit</label><select id="unit"><option>mtr</option><option>pcs</option><option>kg</option><option>rolls</option><option>documents</option></select></div>
+<div><label for="promiseDate">Committed date</label><input id="promiseDate" type="date" required></div>
+<div><label for="followDate">Next follow-up date</label><input id="followDate" type="date" required></div>
+</div>
+<label for="note">Last confirmed update / evidence reference</label><textarea id="note" maxlength="500" placeholder="Phone confirmation, dispatch note reference, email date…"></textarea>
+<div class="actions"><button class="btn primary" type="submit">Save commitment</button><button class="btn" type="reset">Clear form</button></div>
+</form>
+<div class="notice">Rule: phone पर मिली commitment को भी लिखें, लेकिन dispatch proof / GRN / portal record देखकर ही quantity को received मानें।</div>
+</section>
+<section class="card listcard"><h2>📋 Commitment register</h2>
+<div class="filters"><input id="search" placeholder="Search party, PO, fabric…"><select id="filter"><option value="all">All records</option><option value="open">Open / partial</option><option value="follow">Follow-up due</option><option value="overdue">Commitment overdue</option><option value="done">Fulfilled</option></select></div>
+<div class="actions" style="margin:0 0 10px"><button class="btn" id="export">Export JSON backup</button><button class="btn" id="print">Print register</button></div>
+<div id="records" aria-live="polite"></div>
+</section></div>
+<p class="muted" style="font-size:12px;margin-top:18px">Data इस browser के local storage में रहता है। इस page में कोई cloud sync या automatic supplier messaging नहीं है।</p>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='fl-commitment-ledger-v1';
+const today=()=>{const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)};
+const num=n=>Number.isFinite(Number(n))?Number(n):0;
+let rows=[];try{const raw=JSON.parse(localStorage.getItem(KEY)||'[]');rows=Array.isArray(raw)?raw.filter(x=>x&&typeof x==='object'):[]}catch{rows=[]}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(rows));return true}catch{$('records').textContent='Storage is full. Export a backup and remove old records.';return false}};
+const escDate=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'');
+const remaining=r=>Math.max(0,num(r.committed)-num(r.received));
+function state(r){if(r.cancelled)return 'Cancelled';if(remaining(r)===0)return 'Fulfilled';if(num(r.received)>0)return 'Partial';return r.promiseDate<today()?'Overdue':'Open'}
+function daysUntil(s){if(!escDate(s))return null;const a=new Date(today()+'T00:00:00'),b=new Date(s+'T00:00:00');return Math.round((b-a)/86400000)}
+function followDue(r){return !r.cancelled&&state(r)!=='Fulfilled'&&escDate(r.followDate)&&daysUntil(r.followDate)<=0}
+function badge(r){const s=state(r);if(s==='Fulfilled')return '<span class="status done">Fulfilled</span>';if(s==='Overdue')return '<span class="status overdue">Commitment overdue</span>';if(followDue(r))return '<span class="status due">Follow-up due</span>';return '<span class="status">'+s+'</span>'}
+function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
+function render(){const root=$('records');root.replaceChildren();const q=$('search').value.trim().toLowerCase(),f=$('filter').value;
+const visible=rows.filter(r=>{const text=[r.party,r.partyType,r.ref,r.item,r.note].join(' ').toLowerCase();if(q&&!text.includes(q))return false;const s=state(r);if(f==='open'&&!['Open','Partial','Overdue'].includes(s))return false;if(f==='follow'&&!followDue(r))return false;if(f==='overdue'&&s!=='Overdue')return false;if(f==='done'&&s!=='Fulfilled')return false;return true}).sort((a,b)=>(a.followDate||'').localeCompare(b.followDate||''));
+if(!visible.length)root.append(el('div','empty','No matching commitments. Add a commitment or change the filter.'));
+visible.forEach(r=>{const card=el('article','entry'),head=el('div','entryhead'),left=el('div'),title=el('h3',null,(r.party||'Unknown party')+' · '+(r.ref||'No reference'));left.append(title,el('div','meta',[r.partyType,r.item].filter(Boolean).join(' · ')));head.append(left);const status=document.createElement('span');status.innerHTML=badge(r);head.append(status);card.append(head);
+const nums=el('div','numbers');[[r.committed,r.unit,'Committed'],[r.received,r.unit,'Received'],[remaining(r).toFixed(2),r.unit,'Balance']].forEach(([v,u,l])=>{const box=el('div','number');box.append(el('b',null,Number(v).toLocaleString('en-IN')+' '+u),el('small',null,l));nums.append(box)});card.append(nums);
+card.append(el('div','meta','Promise: '+(r.promiseDate||'—')+'  |  Next follow-up: '+(r.followDate||'—')));
+if(r.note)card.append(el('p','meta','Last update: '+r.note));
+const update=el('div','entryupdate');const qty=document.createElement('input');qty.type='number';qty.min='0';qty.step='0.01';qty.max=String(num(r.committed));qty.value=String(num(r.received));qty.setAttribute('aria-label','Actual received quantity');const note=document.createElement('input');note.maxLength=500;note.placeholder='New update / proof reference';note.setAttribute('aria-label','New update note');const saveBtn=el('button','btn','Update');saveBtn.type='button';saveBtn.onclick=()=>{const v=Number(qty.value);if(!Number.isFinite(v)||v<0||v>num(r.committed)){note.value='Enter a valid quantity not above committed quantity';return}r.received=v;if(note.value.trim())r.note=note.value.trim();r.updatedAt=new Date().toISOString();save();render()};update.append(qty,note,saveBtn);card.append(update);
+const foot=el('div','actions');const follow=document.createElement('input');follow.type='date';follow.value=r.followDate||'';follow.setAttribute('aria-label','Set next follow-up date');const followBtn=el('button','btn','Set follow-up');followBtn.onclick=()=>{if(!escDate(follow.value))return; r.followDate=follow.value;save();render()};const cancel=el('button','btn','Cancel record');cancel.onclick=()=>{if(confirm('Cancel this commitment record?')){r.cancelled=true;save();render()}};foot.append(follow,followBtn,cancel);card.append(foot);root.append(card)});
+const active=rows.filter(r=>!r.cancelled&&state(r)!=='Fulfilled'),due=active.filter(followDue),pending=active.reduce((s,r)=>s+remaining(r),0);
+$('activeCount').textContent=active.length;$('followCount').textContent=due.length;$('pendingQty').textContent=pending.toLocaleString('en-IN',{maximumFractionDigits:2});
+}
+$('addForm').onsubmit=e=>{e.preventDefault();const committed=Number($('committed').value),received=Number($('received').value),promiseDate=$('promiseDate').value,followDate=$('followDate').value;
+if(!Number.isFinite(committed)||committed<=0||!Number.isFinite(received)||received<0||received>committed){alert('Quantity सही दर्ज करें: received, committed से अधिक नहीं हो सकती।');return}
+if(!escDate(promiseDate)||!escDate(followDate)){alert('दोनों dates चुनें।');return}
+rows.unshift({id:Date.now().toString(36)+Math.random().toString(36).slice(2,7),partyType:$('partyType').value,party:$('party').value.trim(),ref:$('ref').value.trim(),item:$('item').value.trim(),committed,received,unit:$('unit').value,promiseDate,followDate,note:$('note').value.trim(),createdAt:new Date().toISOString()});
+if(save()){e.target.reset();$('received').value='0';render()}
+};
+$('search').oninput=render;$('filter').onchange=render;
+$('export').onclick=()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),commitments:rows},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='fashion-looks-commitment-ledger.json';a.click();URL.revokeObjectURL(url)};
+$('print').onclick=()=>window.print();
+render();
+})();
+</script></body></html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Knowledge Vault · Fashion Looks™</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#1c2d47;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#ffd27a;--danger:#ff9292}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 38%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:auto;padding:20px 14px 52px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--accent)}.pill,.tag{border:1px solid var(--line);border-radius:99px;padding:5px 9px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(29px,5vw,43px);line-height:1.1;margin:23px 0 6px}h1 em{font-style:normal}.muted{color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:14px;margin-top:20px}.panel{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:17px;padding:16px;min-width:0}.panel h2{font-size:17px;margin:0 0 13px}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:13px;color:var(--muted)}input,textarea,select{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit}textarea{min-height:120px;resize:vertical}input:focus,textarea:focus,select:focus{outline:2px solid #72e0c155;border-color:var(--accent)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.97)}.primary{background:var(--accent);color:#092019}.danger{border-color:var(--danger);color:var(--danger)}.small{padding:6px 9px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px}.stat{background:var(--panel2);padding:11px;border-radius:11px}.stat b{display:block;font-size:23px}.stat small{color:var(--muted)}.filters{display:grid;grid-template-columns:1fr 180px auto;gap:8px;margin:10px 0 13px}.cards{display:grid;gap:10px}.entry{background:#101c30;border:1px solid var(--line);border-radius:13px;padding:13px}.entry h3{font-size:16px;margin:0 0 7px;overflow-wrap:anywhere}.entry p{white-space:pre-wrap;overflow-wrap:anywhere;margin:7px 0}.meta{display:flex;gap:7px;flex-wrap:wrap;align-items:center}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.due{color:var(--warn)}.empty{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:13px}.status{min-height:22px;font-size:12px;color:var(--accent)}.back{display:inline-block;margin-top:15px;text-decoration:none}.note{font-size:12px;color:var(--muted);margin-top:12px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}}
+@media(max-width:430px){main{padding:15px 11px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:20px}.panel{padding:13px}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div class="brand">FASHION <span>LOOKS™</span> · KNOWLEDGE VAULT</div><span class="pill">LOCAL-FIRST · PRIVATE</span></header>
+<h1>Capture learning. <em>Reuse knowledge.</em></h1>
+<p class="muted">Verified facts, process learnings और useful solutions को एक जगह save करें। Search करें और समय पर दोबारा review करें।</p>
+<div class="stats" aria-live="polite">
+<div class="stat"><b id="total">0</b><small>Saved notes</small></div>
+<div class="stat"><b id="due">0</b><small>Review due</small></div>
+<div class="stat"><b id="pinned">0</b><small>Pinned</small></div>
+</div>
+<div class="layout">
+<section class="panel">
+<h2 id="formHeading">＋ Add knowledge</h2>
+<form id="entryForm">
+<div class="field"><label for="title">Title *</label><input id="title" maxlength="120" required placeholder="उदाहरण: TC application में common checks"></div>
+<div class="field"><label for="category">Category</label><select id="category"><option>Process</option><option>Certification</option><option>Supplier</option><option>Buyer</option><option>Fabric & PO</option><option>Learning</option><option>Idea</option><option>Other</option></select></div>
+<div class="field"><label for="body">What did you learn? *</label><textarea id="body" maxlength="3000" required placeholder="Verified information, steps, solution या सीख लिखें..."></textarea></div>
+<div class="field"><label for="source">Source / reference (non-sensitive)</label><input id="source" maxlength="180" placeholder="Document name, PO reference, URL title..."></div>
+<div class="field"><label for="tags">Tags (comma separated)</label><input id="tags" maxlength="180" placeholder="GOTS, audit, dispatch"></div>
+<div class="field"><label for="nextAction">Next action</label><input id="nextAction" maxlength="240" placeholder="अगली बार क्या करना है?"></div>
+<div class="field"><label for="reviewDate">Review date</label><input id="reviewDate" type="date"></div>
+<div class="row"><button class="btn primary" type="submit" id="saveBtn">Save knowledge</button><button class="btn" type="button" id="clearBtn">Clear</button></div>
+<div class="status" id="formStatus" role="status"></div>
+</form>
+<p class="note">Tip: confidential buyer data, passwords, bank details या personal information save न करें।</p>
+</section>
+<section class="panel">
+<h2>🔎 Search your knowledge</h2>
+<div class="filters">
+<input id="search" type="search" placeholder="Search title, notes, tags...">
+<select id="filter"><option value="All">All categories</option><option>Process</option><option>Certification</option><option>Supplier</option><option>Buyer</option><option>Fabric & PO</option><option>Learning</option><option>Idea</option><option>Other</option></select>
+<select id="view"><option value="all">All notes</option><option value="due">Review due</option><option value="pinned">Pinned</option></select>
+</div>
+<div class="row" style="margin-bottom:12px"><button class="btn small" id="exportBtn" type="button">Export JSON backup</button><button class="btn small" id="dueBtn" type="button">Show review due</button></div>
+<div id="entries" class="cards" aria-live="polite"></div>
+<div class="note">Review tip: नई सीख को 7 दिन बाद दोबारा देखें। Reviewed बटन अगली review date 7 दिन आगे रखता है; जरूरत हो तो edit करके बदलें।</div>
+</section>
+</div>
+<a class="btn back" href="index.html">← Back to Digital Brain</a>
+<p class="note">Version 1.0 · Browser local storage only · No external libraries or AI API</p>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const KEY='fashion-looks-knowledge-vault-v1';
+const today=()=>new Date().toISOString().slice(0,10);
+const addDays=(date,n)=>{const d=new Date(date+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
+const makeId=()=>('k'+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+const cleanTags=s=>s.split(',').map(x=>x.trim().slice(0,32)).filter(Boolean).slice(0,12);
+let records=[],editingId=null;
+try{const parsed=JSON.parse(localStorage.getItem(KEY)||'[]');records=Array.isArray(parsed)?parsed.filter(x=>x&&typeof x==='object'&&typeof x.title==='string'&&typeof x.body==='string').slice(0,500):[]}catch{records=[]}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(records));return true}catch{return false}};
+const setStatus=(msg)=>{$('formStatus').textContent=msg};
+function resetForm(){editingId=null;$('entryForm').reset();$('formHeading').textContent='＋ Add knowledge';$('saveBtn').textContent='Save knowledge';setStatus('')}
+function fillForm(r){editingId=r.id;$('title').value=r.title;$('category').value=r.category;$('body').value=r.body;$('source').value=r.source||'';$('tags').value=(r.tags||[]).join(', ');$('nextAction').value=r.nextAction||'';$('reviewDate').value=r.reviewDate||'';$('formHeading').textContent='✎ Edit knowledge';$('saveBtn').textContent='Update knowledge';$('title').focus()}
+function isDue(r){return !!r.reviewDate&&r.reviewDate<=today()}
+function render(){
+ const q=$('search').value.trim().toLowerCase(),cat=$('filter').value,mode=$('view').value;
+ $('total').textContent=records.length;$('due').textContent=records.filter(isDue).length;$('pinned').textContent=records.filter(r=>r.pinned).length;
+ let list=records.filter(r=>{
+  const hay=[r.title,r.body,r.category,r.source,r.nextAction,(r.tags||[]).join(' ')].join(' ').toLowerCase();
+  return (!q||hay.includes(q))&&(cat==='All'||r.category===cat)&&(mode==='all'||(mode==='due'&&isDue(r))||(mode==='pinned'&&r.pinned));
+ }).sort((a,b)=>(Number(!!b.pinned)-Number(!!a.pinned))||String(b.updatedAt||b.createdAt).localeCompare(String(a.updatedAt||a.createdAt)));
+ const root=$('entries');root.replaceChildren();
+ if(!list.length){const e=document.createElement('div');e.className='empty';e.textContent='कोई matching note नहीं मिला। नई learning ऊपर add करें।';root.append(e);return}
+ list.forEach(r=>{
+  const card=document.createElement('article');card.className='entry';
+  const h=document.createElement('h3');h.textContent=(r.pinned?'📌 ':'')+r.title;card.append(h);
+  const meta=document.createElement('div');meta.className='meta';
+  [r.category,r.reviewDate?'Review: '+r.reviewDate:'No review date'].forEach(v=>{const s=document.createElement('span');s.className='tag'+(r.reviewDate&&isDue(r)?' due':'');s.textContent=v;meta.append(s)});
+  (r.tags||[]).forEach(t=>{const s=document.createElement('span');s.className='tag';s.textContent='#'+t;meta.append(s)});
+  card.append(meta);
+  const body=document.createElement('p');body.textContent=r.body;card.append(body);
+  if(r.source){const src=document.createElement('p');src.className='muted';src.textContent='Source: '+r.source;card.append(src)}
+  if(r.nextAction){const next=document.createElement('p');next.textContent='Next action: '+r.nextAction;card.append(next)}
+  const foot=document.createElement('div');foot.className='muted';foot.textContent='Updated: '+(r.updatedAt||r.createdAt||'');card.append(foot);
+  const actions=document.createElement('div');actions.className='actions';
+  const button=(label,fn,cls='btn small')=>{const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=label;b.addEventListener('click',fn);actions.append(b)};
+  button('Edit',()=>fillForm(r));button(r.pinned?'Unpin':'Pin',()=>{r.pinned=!r.pinned;r.updatedAt=today();persist();render()});
+  button('Reviewed · +7d',()=>{r.lastReviewed=today();r.reviewDate=addDays(today(),7);r.updatedAt=today();persist();render()});
+  button('Delete',()=>{if(!confirm('इस knowledge note को delete करना है?'))return;records=records.filter(x=>x.id!==r.id);persist();if(editingId===r.id)resetForm();render()},'btn small danger');
+  card.append(actions);root.append(card);
+ });
+}
+$('entryForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const title=$('title').value.trim(),body=$('body').value.trim();
+ if(!title||!body){setStatus('Title और learning note जरूरी हैं।');return}
+ const now=today(),old=records.find(r=>r.id===editingId);
+ const item={id:old?old.id:makeId(),title,category:$('category').value,body,source:$('source').value.trim(),tags:cleanTags($('tags').value),nextAction:$('nextAction').value.trim(),reviewDate:$('reviewDate').value,createdAt:old?old.createdAt:now,updatedAt:now,lastReviewed:old?old.lastReviewed:null,pinned:old?!!old.pinned:false};
+ if(old)records=records.map(r=>r.id===old.id?item:r);else{if(records.length>=500){setStatus('500 notes की limit पूरी है। पहले backup export करें।');return}records.unshift(item)}
+ if(!persist()){setStatus('Browser storage में save नहीं हुआ। जगह खाली करें या backup लें।');return}
+ resetForm();setStatus('Saved locally ✓');render();
+});
+$('clearBtn').addEventListener('click',resetForm);
+['search','filter','view'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',render));
+$('dueBtn').addEventListener('click',()=>{$('view').value='due';render()});
+$('exportBtn').addEventListener('click',()=>{
+ const payload={app:'Fashion Looks Knowledge Vault',version:1,exportedAt:new Date().toISOString(),records};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='fashion-looks-knowledge-vault-backup.json';a.click();URL.revokeObjectURL(url);
+});
+render();
+})();
+</script>
+</body></html>

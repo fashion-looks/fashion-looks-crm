@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Workflow Opportunity Mapper · Fashion Looks</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#1d304b;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#ffd38a;--danger:#ff9999}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 82% 0,#203c5d,transparent 38%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1100px;margin:auto;padding:22px 15px 52px}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--accent)}.pill,.tag{border:1px solid var(--line);border-radius:30px;padding:5px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:25px 0 7px}h1 em{font-style:normal}.sub,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:20px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}.full{grid-column:1/-1}.half{grid-column:span 6}.third{grid-column:span 4}h2{font-size:17px;margin:0 0 12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--panel2);padding:12px;border-radius:12px}.stat b{display:block;font-size:25px}.stat small{color:var(--muted)}
+label{display:block;color:var(--muted);font-size:12px;margin:0 0 5px}input,textarea,select{width:100%;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit;min-width:0}textarea{min-height:76px;resize:vertical}input:focus,textarea:focus,select:focus{outline:2px solid #72e0c155;border-color:var(--accent)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.span2{grid-column:1/-1}.check{display:flex;gap:9px;align-items:center;color:var(--txt);font-size:13px}.check input{width:auto}
+.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:10px 13px;border-radius:11px;font-weight:700;cursor:pointer;transition:.18s transform,.18s background}.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.98)}.primary{background:var(--accent);color:#092019}.danger{border-color:var(--danger);color:var(--danger)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.list{display:grid;gap:10px}.item{border:1px solid var(--line);background:#101b2d;border-radius:13px;padding:13px}.itemhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}.item h3{margin:0;font-size:15px}.metrics{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}.metric{background:var(--panel2);border-radius:8px;padding:5px 8px;font-size:12px}.gate{border-left:3px solid var(--warn);background:#30291c;padding:8px 10px;border-radius:0 8px 8px 0;font-size:13px;margin-top:8px}.gate.safe{border-color:var(--accent);background:#15302f}
+footer{text-align:center;color:var(--muted);font-size:12px;margin:24px}
+@media(max-width:720px){.half,.third{grid-column:1/-1}.fields{grid-template-columns:1fr}.span2{grid-column:auto}.card{padding:14px}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stat b{font-size:21px}}
+</style>
+</head>
+<body><main>
+<div class="top"><div class="brand">FASHION <span>LOOKS™</span> · WORKFLOW INTELLIGENCE</div><div class="pill">LOCAL-FIRST · NO AUTO-EXECUTION</div></div>
+<h1>Find the work worth <em>automating.</em></h1>
+<p class="sub">बार-बार होने वाले काम दर्ज करें। अनुमानित समय-बचत, setup effort और risk देखकर तय करें कि किस workflow को पहले छोटा pilot देना चाहिए।</p>
+<div class="grid">
+<section class="card full"><h2>📊 Opportunity snapshot</h2><div class="stats">
+<div class="stat"><b id="workflowCount">0</b><small>Workflows mapped</small></div>
+<div class="stat"><b id="savedHours">0.0 h</b><small>Potential hours saved / week</small></div>
+<div class="stat"><b id="pilotCount">0</b><small>Ready for controlled pilot</small></div>
+</div><p class="muted" style="font-size:12px;margin:10px 0 0">ये आपके estimates पर आधारित planning numbers हैं, guaranteed savings नहीं।</p></section>
+<section class="card half"><h2>➕ Add a workflow</h2>
+<form id="workflowForm"><div class="fields">
+<div class="span2"><label for="name">Workflow name</label><input id="name" maxlength="90" required placeholder="जैसे: Daily PO status consolidation"></div>
+<div><label for="department">Department</label><select id="department"><option>Operations</option><option>Fabric & PO</option><option>Certification</option><option>Sales & Buyer</option><option>Finance & Admin</option><option>E-commerce</option></select></div>
+<div><label for="status">Current stage</label><select id="stage"><option>Idea</option><option>Pilot</option><option>Standardized</option></select></div>
+<div><label for="runs">Runs per week</label><input id="runs" type="number" min="1" max="1000" step="1" value="5" required></div>
+<div><label for="minutes">Manual minutes per run</label><input id="minutes" type="number" min="1" max="600" step="1" value="15" required></div>
+<div><label for="fit">Estimated automatable share (%)</label><input id="fit" type="number" min="0" max="100" step="5" value="50" required></div>
+<div><label for="setup">Setup effort (hours)</label><input id="setup" type="number" min="0" max="500" step="0.5" value="2" required></div>
+<div><label for="risk">Operational risk if wrong</label><select id="risk"><option value="Low">Low</option><option value="Medium" selected>Medium</option><option value="High">High</option></select></div>
+<div><label for="dataClass">Data involved</label><select id="dataClass"><option value="Public">Public</option><option value="Internal" selected>Internal</option><option value="Sensitive">Sensitive</option></select></div>
+<div class="span2"><label for="trigger">What starts this work?</label><input id="trigger" maxlength="120" placeholder="जैसे: हर सुबह supplier updates मिलने पर"></div>
+<div class="span2"><label for="notes">Notes / possible first step</label><textarea id="notes" maxlength="500" placeholder="अभी कौन-से steps manual हैं?"></textarea></div>
+<label class="check span2"><input id="approval" type="checkbox" checked> Human approval required before any external or consequential action</label>
+</div><div class="actions"><button class="btn primary" type="submit">Save workflow</button><button class="btn" type="reset">Clear form</button></div></form>
+</section>
+<section class="card half"><h2>🧭 How to prioritize</h2>
+<p class="muted">1. High-frequency, repeatable work पहले देखें।</p>
+<p class="muted">2. Setup effort कम और recoverable time अधिक हो तो छोटा pilot चुनें।</p>
+<p class="muted">3. Sensitive data या high operational risk पर security review और human approval रखें।</p>
+<div class="gate">Automation पहले draft, reminder या report तैयार करे। Payment, certificate submission, supplier commitment और buyer communication जैसे actions इंसानी जाँच के बाद ही हों।</div>
+<div class="actions"><button class="btn" id="export">Export JSON backup</button></div>
+</section>
+<section class="card full"><div class="itemhead"><div><h2 style="margin-bottom:3px">🗂 Workflow portfolio</h2><div class="muted" style="font-size:12px">Potential value के आधार पर क्रमबद्ध</div></div><div style="min-width:190px"><label for="search">Search</label><input id="search" placeholder="Workflow या department..."></div></div>
+<div id="workflowList" class="list" style="margin-top:12px"></div><p id="empty" class="muted">अभी कोई workflow दर्ज नहीं है। पहला workflow ऊपर add करें।</p></section>
+</div>
+<footer>Fashion Looks™ Workflow Opportunity Mapper · v1.0 · Estimates only · Data stays in this browser</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='fl-workflow-opportunity-mapper-v1';
+const safeRead=()=>{try{const v=JSON.parse(localStorage.getItem(KEY)||'{"workflows":[]}');return Array.isArray(v.workflows)?v.workflows:[]}catch{return[]}};
+let workflows=safeRead();
+const riskFactor={Low:1,Medium:.75,High:.5};
+function calculate(w){
+ const gross=(w.runs*w.minutes)/60;
+ const saved=gross*(w.fit/100);
+ const score=(saved*riskFactor[w.risk])/(w.setup+.5);
+ return {gross,saved,score,payback:saved>0?w.setup/saved:null};
+}
+function gateText(w){
+ if(w.dataClass==='Sensitive')return 'Security review first: sensitive data को external AI या automation service में न भेजें। Approved environment और access controls के बिना pilot न करें।';
+ if(w.risk==='High')return 'High operational risk: पहले test data पर simulation करें और हर output की human verification रखें।';
+ if(w.approval)return 'Controlled pilot: draft/report बनाएं; external action से पहले human approval रखें।';
+ return 'Low-risk pilot candidate: केवल non-sensitive test data से शुरू करें और परिणाम verify करें।';
+}
+function render(){
+ const q=$('search').value.trim().toLowerCase();
+ const visible=workflows.filter(w=>(w.name+' '+w.department+' '+w.trigger).toLowerCase().includes(q))
+  .sort((a,b)=>calculate(b).score-calculate(a).score);
+ const root=$('workflowList');root.replaceChildren();
+ visible.forEach(w=>{
+  const c=calculate(w),card=document.createElement('article');card.className='item';
+  const head=document.createElement('div');head.className='itemhead';
+  const title=document.createElement('h3');title.textContent=w.name;
+  const tag=document.createElement('span');tag.className='tag';tag.textContent=w.department+' · '+w.stage;
+  head.append(title,tag);
+  const metrics=document.createElement('div');metrics.className='metrics';
+  const vals=[
+   'Potential '+c.saved.toFixed(1)+' h/week',
+   'Setup '+w.setup+' h',
+   'Payback '+(c.payback===null?'—':c.payback.toFixed(1)+' weeks'),
+   'Priority index '+c.score.toFixed(2),
+   'Risk '+w.risk,
+   'Data '+w.dataClass
+  ];
+  vals.forEach(v=>{const s=document.createElement('span');s.className='metric';s.textContent=v;metrics.append(s)});
+  const detail=document.createElement('p');detail.className='muted';detail.style.fontSize='13px';detail.textContent='Trigger: '+(w.trigger||'Not specified')+' · '+w.runs+' runs/week × '+w.minutes+' min/run · Automatable estimate '+w.fit+'%';
+  const gate=document.createElement('div');gate.className='gate'+(w.dataClass!=='Sensitive'&&w.risk!=='High'?' safe':'');gate.textContent=gateText(w);
+  const actions=document.createElement('div');actions.className='actions';
+  const del=document.createElement('button');del.type='button';del.className='btn danger';del.textContent='Delete';
+  del.onclick=()=>{workflows=workflows.filter(x=>x.id!==w.id);persist();render()};
+  actions.append(del);card.append(head,metrics,detail);
+  if(w.notes){const note=document.createElement('p');note.className='muted';note.style.fontSize='13px';note.textContent='Notes: '+w.notes;card.append(note)}
+  card.append(gate,actions);root.append(card);
+ });
+ $('empty').hidden=visible.length>0;
+ $('workflowCount').textContent=workflows.length;
+ const total=workflows.reduce((n,w)=>n+calculate(w).saved,0);
+ $('savedHours').textContent=total.toFixed(1)+' h';
+ $('pilotCount').textContent=workflows.filter(w=>w.dataClass!=='Sensitive'&&w.risk!=='High'&&calculate(w).saved>0).length;
+}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify({workflows,updatedAt:new Date().toISOString()}))}catch{$('empty').textContent='Browser storage is full or unavailable. Export a backup and clear unused browser data.'}}
+$('workflowForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('name').value.trim(),runs=Number($('runs').value),minutes=Number($('minutes').value),fit=Number($('fit').value),setup=Number($('setup').value);
+ if(!name||!Number.isInteger(runs)||runs<1||runs>1000||!Number.isInteger(minutes)||minutes<1||minutes>600||!Number.isFinite(fit)||fit<0||fit>100||!Number.isFinite(setup)||setup<0||setup>500){$('name').setCustomValidity('Please check all required values.');$('name').reportValidity();$('name').setCustomValidity('');return}
+ const id=(globalThis.crypto&&crypto.randomUUID)?crypto.randomUUID():'wf-'+Date.now()+'-'+Math.floor(Math.random()*1e6);
+ workflows.push({id,name,department:$('department').value,stage:$('stage').value,runs,minutes,fit,setup,risk:$('risk').value,dataClass:$('dataClass').value,trigger:$('trigger').value.trim(),notes:$('notes').value.trim(),approval:$('approval').checked,createdAt:new Date().toISOString()});
+ persist();e.target.reset();render();
+});
+$('search').addEventListener('input',render);
+$('export').addEventListener('click',()=>{
+ const blob=new Blob([JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),workflows},null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='fashion-looks-workflow-opportunities.json';a.click();URL.revokeObjectURL(url);
+});
+render();
+})();
+</script></body></html>

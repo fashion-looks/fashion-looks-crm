@@ -60,7 +60,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin:22px 0}
 var KEY='fl-data-quality-gate-v1',MAX_RECORDS=500,editingId=null;
 var $=function(id){return document.getElementById(id);};
 function todayLocal(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
-function dateMs(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return NaN;var d=new Date(s+'T00:00:00Z');return d.toISOString().slice(0,10)===s?d.getTime():NaN;}
+function dateMs(s){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return NaN;var d=new Date(s+'T00:00:00Z');if(Number.isNaN(d.getTime()))return NaN;return d.toISOString().slice(0,10)===s?d.getTime():NaN;}
 function daysBetween(a,b){return Math.floor((dateMs(b)-dateMs(a))/86400000);}
 function cleanText(v){return String(v==null?'':v).trim();}
 function num(v){if(v===null||v===undefined||String(v).trim()==='')return NaN;return Number(v);}
@@ -125,7 +125,7 @@ $('recordForm').addEventListener('submit',function(e){
  e.preventDefault();var r={};['po','supplier','buyer','fabric','unit','ordered','received','balance','poDate','dueDate','verifiedDate','evidence'].forEach(function(k){r[k]=cleanText($(k).value);});
  r.id=editingId||makeId();r.createdAt=(records.find(function(x){return x.id===r.id;})||{}).createdAt||new Date().toISOString();r.updatedAt=new Date().toISOString();
  var next=records.filter(function(x){return x.id!==r.id;});if(!editingId&&records.length>=MAX_RECORDS){$('formStatus').textContent='Maximum of '+MAX_RECORDS+' records reached. Export and archive before adding more.';return;}
- next.unshift(r);records=next;persist();var v=validate(r,records);$('formStatus').textContent='Saved. '+v.errors+' errors and '+v.warnings+' warnings found.';resetForm();render();
+ next.unshift(r);records=next;var stored=persist();var v=validate(r,records);$('formStatus').textContent=(stored?'Saved locally. ':'Storage failed; record remains only in this open session. ')+v.errors+' errors and '+v.warnings+' warnings found.';resetForm();render();
 });
 $('clearBtn').onclick=resetForm;$('validateBtn').onclick=render;$('search').addEventListener('input',render);$('filter').addEventListener('change',render);
 function download(name,content,type){var blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);}

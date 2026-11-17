@@ -88,3 +88,12 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 - Shows per-record quality scores, issue queues, search and filters; exports JSON and formula-protected CSV.
 - Records are stored in this browser's local storage only. No cloud sync, supplier verification, or external action is performed.
 - Open `data-quality-gate.html` from the dashboard. Correct errors and refresh the last-verified date only after checking the source record.
+
+## Resource & Capacity Planner
+- Add team resources or role-based capacity with available hours per workday.
+- Add dated work items with an owner, estimated hours, priority, and status.
+- Compare daily demand with available capacity; highlight loads at or above 85%, overload above 100%, and active tasks without an owner.
+- Completed items are excluded from active workload totals. Removing a resource leaves their tasks unassigned so they remain visible for reassignment.
+- Search the selected day's queue and export a JSON backup or date-specific CSV. CSV cells are quoted and common spreadsheet formula prefixes are neutralized.
+- Open `resource-capacity-planner.html` from the dashboard. The planner is a manual planning aid: confirm people's actual availability before changing assignments; it does not monitor staff or automatically assign work.
+- Data is stored in this browser's local storage only. No cloud sync, AI API, or external integrations are enabled. Avoid passwords and confidential personal data.

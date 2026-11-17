@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Process Bottleneck Intelligence · Fashion Looks</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#1b2c46;--line:#30415d;--text:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#ffd27a;--danger:#ff9292}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1120px;margin:auto;padding:22px 15px 52px}
+a{color:var(--accent);text-decoration:none}.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.brand{font-weight:850;letter-spacing:.3px}.brand span{color:var(--accent)}
+.pill,.tag{border:1px solid var(--line);border-radius:30px;padding:5px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(29px,5vw,43px);line-height:1.12;margin:22px 0 6px}h1 em{font-style:normal;color:var(--accent)}
+.sub,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin-top:20px}
+.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}
+.full{grid-column:1/-1}.half{grid-column:span 6}.third{grid-column:span 4}
+h2{font-size:17px;margin:0 0 12px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stat{background:var(--panel2);padding:12px;border-radius:12px;min-width:0}.stat b{font-size:24px;display:block;overflow-wrap:anywhere}.stat small{color:var(--muted)}
+label{display:block;font-size:12px;color:var(--muted);margin:0 0 5px}
+input,textarea,select{width:100%;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text);font:inherit;min-width:0}
+textarea{min-height:78px;resize:vertical}input:focus,textarea:focus,select:focus{outline:2px solid #72e0c155;border-color:var(--accent)}
+.field{min-width:0}.formgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:span 6}.s12{grid-column:1/-1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+.btn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:10px 13px;border-radius:11px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}
+.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.97)}.primary{background:var(--accent);color:#092019}.secondary{border-color:var(--line);color:var(--text)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--warn);outline-offset:3px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.metric{padding:12px;background:#0d1a2d;border:1px solid var(--line);border-radius:12px}.metric b{font-size:21px;display:block}.metric small{color:var(--muted)}
+.stage{padding:13px 0;border-bottom:1px solid var(--line)}.stage:last-child{border-bottom:0}
+.stagehead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.stagehead strong{overflow-wrap:anywhere}
+.bar{height:9px;background:#263952;border-radius:99px;overflow:hidden;margin:9px 0}.bar span{display:block;height:100%;background:var(--accent);border-radius:99px}
+.stage-meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+.record{border-top:1px solid var(--line);padding:13px 0}.record:first-child{border-top:0}
+.record-title{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.record-title strong{overflow-wrap:anywhere}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.actions .btn{padding:6px 9px;font-size:12px}
+.note{border-left:3px solid var(--accent);background:#15302f;padding:10px 12px;border-radius:0 10px 10px 0;margin-top:12px}
+.alert{color:var(--warn)}.error{color:var(--danger)}.success{color:var(--accent)}
+.empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+footer{text-align:center;color:var(--muted);font-size:12px;margin:24px 0 0}
+@media(max-width:760px){main{padding:16px 12px 42px}.half,.third{grid-column:1/-1}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.s3,.s4,.s6{grid-column:span 6}}
+@media(max-width:480px){.s3,.s4,.s6{grid-column:1/-1}.card{padding:14px}.metrics{grid-template-columns:1fr}.stagehead{display:block}}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+  <div class="brand">FASHION <span>LOOKS™</span> · PROCESS INTELLIGENCE</div>
+  <div class="pill">LOCAL-FIRST · MANUAL VERIFIED DATA</div>
+</header>
+<h1>Find the delay. <em>Improve the flow.</em></h1>
+<p class="sub">किस process stage पर सबसे ज्यादा समय रुक रहा है, उसे data से पहचानें। पहले baseline दर्ज करें, फिर एक छोटा सुधार test करें।</p>
+
+<div class="grid">
+<section class="card full">
+  <h2>📊 Selected workflow snapshot</h2>
+  <div class="row" style="margin-bottom:12px">
+    <div class="field" style="max-width:420px;flex:2"><label for="workflowFilter">Workflow filter</label><select id="workflowFilter"><option value="all">All workflows</option></select></div>
+    <div class="field" style="flex:1"><label for="search">Search stage / cause</label><input id="search" type="search" placeholder="Search records..."></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="workflowCount">0</b><small>Workflows</small></div>
+    <div class="stat"><b id="stageCount">0</b><small>Stages observed</small></div>
+    <div class="stat"><b id="avgCycle">0.0d</b><small>Weighted avg stage time</small></div>
+    <div class="stat"><b id="reworkRate">0%</b><small>Weighted rework rate</small></div>
+  </div>
+</section>
+
+<section class="card half">
+  <h2>➕ Record a stage observation</h2>
+  <form id="stageForm">
+    <div class="formgrid">
+      <div class="field s6"><label for="workflow">Workflow name *</label><input id="workflow" maxlength="80" required placeholder="e.g. Fabric dispatch"></div>
+      <div class="field s6"><label for="stageName">Process stage *</label><input id="stageName" maxlength="80" required placeholder="e.g. Mill vehicle booking"></div>
+      <div class="field s3"><label for="cases">Cases observed *</label><input id="cases" type="number" min="1" max="100000" step="1" value="1" required></div>
+      <div class="field s3"><label for="waitDays">Total waiting days *</label><input id="waitDays" type="number" min="0" max="1000000" step="0.1" value="0" required></div>
+      <div class="field s3"><label for="workDays">Total active work days *</label><input id="workDays" type="number" min="0" max="1000000" step="0.1" value="0" required></div>
+      <div class="field s3"><label for="reworkCases">Cases reworked</label><input id="reworkCases" type="number" min="0" max="100000" step="1" value="0"></div>
+      <div class="field s6"><label for="owner">Owner / responsible role</label><input id="owner" maxlength="80" placeholder="e.g. Dispatch coordinator"></div>
+      <div class="field s6"><label for="reviewDate">Improvement review date</label><input id="reviewDate" type="date"></div>
+      <div class="field s12"><label for="cause">Observed cause (facts, not assumptions)</label><textarea id="cause" maxlength="600" placeholder="What is visibly delaying this stage?"></textarea></div>
+      <div class="field s12"><label for="experiment">One improvement experiment</label><textarea id="experiment" maxlength="600" placeholder="What small change will you test?"></textarea></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn primary" type="submit" id="saveButton">Save observation</button>
+      <button class="btn secondary" type="button" id="clearForm">Clear form</button>
+    </div>
+    <p class="muted" id="formStatus" aria-live="polite"></p>
+  </form>
+</section>
+
+<section class="card half">
+  <h2>🚦 Candidate bottlenecks</h2>
+  <p class="muted">Stages are ranked by weighted average elapsed days per case (waiting + active work). The longest stage is a candidate constraint, not proof of root cause.</p>
+  <div id="bottleneckSummary" class="empty">Add stage observations to see the analysis.</div>
+  <div class="note"><strong>How to use:</strong> पहले सबसे लंबे stage को verify करें। फिर एक ही improvement change test करें और अगली review date पर परिणाम compare करें।</div>
+</section>
+
+<section class="card full">
+  <div class="row">
+    <div><h2>📍 Stage analysis</h2><p class="muted">Average days per case, weighted by the number of observed cases.</p></div>
+    <div class="row" style="flex:0 0 auto">
+      <button class="btn secondary" type="button" id="exportJson">Export JSON</button>
+      <button class="btn secondary" type="button" id="exportCsv">Export CSV</button>
+    </div>
+  </div>
+  <div id="stageAnalysis"><div class="empty">No observations yet.</div></div>
+</section>
+
+<section class="card full">
+  <h2>🗂 Observation log & experiments</h2>
+  <div id="recordList"><div class="empty">Your saved observations will appear here.</div></div>
+</section>
+</div>
+<footer>Fashion Looks™ Process Bottleneck Intelligence · v1.0 · Browser-local storage</footer>
+</main>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const KEY='fashion-looks-process-bottleneck-v1';
+const MAX_RECORDS=500;
+let records=[];
+let editingId=null;
+try{const parsed=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(parsed))records=parsed.slice(0,MAX_RECORDS)}catch{records=[]}
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(records));return true}catch{$('formStatus').textContent='Storage unavailable or full. Export a backup and free browser space.';return false}};
+const number=(id)=>Number($(id).value);
+const clean=s=>String(s??'').trim();
+const dateLabel=s=>s?new Date(s+'T00:00:00').toLocaleDateString():'Not set';
+function validRecord(r){
+ return r&&typeof r.id==='string'&&typeof r.workflow==='string'&&typeof r.stage==='string'&&
+ Number.isInteger(r.cases)&&r.cases>0&&Number.isFinite(r.waitDays)&&r.waitDays>=0&&
+ Number.isFinite(r.workDays)&&r.workDays>=0&&Number.isInteger(r.reworkCases)&&
+ r.reworkCases>=0&&r.reworkCases<=r.cases;
+}
+function filtered(){
+ const wf=$('workflowFilter').value, q=clean($('search').value).toLowerCase();
+ return records.filter(r=>(wf==='all'||r.workflow===wf)&&(!q||[r.workflow,r.stage,r.cause,r.experiment,r.owner].join(' ').toLowerCase().includes(q)));
+}
+function aggregate(items){
+ const map=new Map();
+ items.forEach(r=>{
+  const key=r.workflow+'\u0000'+r.stage;
+  if(!map.has(key))map.set(key,{workflow:r.workflow,stage:r.stage,cases:0,waitDays:0,workDays:0,reworkCases:0,records:0});
+  const g=map.get(key);g.cases+=r.cases;g.waitDays+=r.waitDays;g.workDays+=r.workDays;g.reworkCases+=r.reworkCases;g.records++;
+ });
+ return Array.from(map.values()).map(g=>({...g,avgWait:g.waitDays/g.cases,avgWork:g.workDays/g.cases,avgCycle:(g.waitDays+g.workDays)/g.cases,reworkRate:g.reworkCases/g.cases})).sort((a,b)=>b.avgCycle-a.avgCycle);
+}
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function makeButton(label,action,cls='btn secondary'){const b=el('button',cls,label);b.type='button';b.addEventListener('click',action);return b}
+function refreshWorkflowOptions(){
+ const select=$('workflowFilter'),current=select.value;
+ const names=[...new Set(records.map(r=>r.workflow))].sort((a,b)=>a.localeCompare(b));
+ select.replaceChildren();const all=el('option');all.value='all';all.textContent='All workflows';select.append(all);
+ names.forEach(name=>{const o=el('option');o.value=name;o.textContent=name;select.append(o)});
+ select.value=names.includes(current)?current:'all';
+}
+function render(){
+ records=records.filter(validRecord);
+ refreshWorkflowOptions();
+ const items=filtered(),groups=aggregate(items);
+ const workflowNames=new Set(items.map(r=>r.workflow));
+ const totalCases=items.reduce((n,r)=>n+r.cases,0);
+ const totalWait=items.reduce((n,r)=>n+r.waitDays,0);
+ const totalWork=items.reduce((n,r)=>n+r.workDays,0);
+ const totalRework=items.reduce((n,r)=>n+r.reworkCases,0);
+ $('workflowCount').textContent=workflowNames.size;
+ $('stageCount').textContent=groups.length;
+ $('avgCycle').textContent=(totalCases?(totalWait+totalWork)/totalCases:0).toFixed(1)+'d';
+ $('reworkRate').textContent=(totalCases?Math.round(totalRework/totalCases*100):0)+'%';
+ const summary=$('bottleneckSummary');summary.replaceChildren();
+ if(!groups.length){summary.className='empty';summary.textContent='No observations match this filter.'}
+ else{
+  summary.className='';
+  const top=groups[0];
+  const title=el('strong','',top.stage+' · '+top.workflow);
+  const val=el('div','',top.avgCycle.toFixed(2)+' days average per case');
+  val.style.fontSize='22px';val.style.fontWeight='800';val.style.margin='7px 0';
+  const detail=el('p','muted','Waiting '+top.avgWait.toFixed(2)+'d · Active work '+top.avgWork.toFixed(2)+'d · Rework '+Math.round(top.reworkRate*100)+'% · '+top.cases+' cases');
+  const caution=el('p','alert','Candidate constraint: validate the cause with the process owner before changing the workflow.');
+  summary.append(title,val,detail,caution);
+ }
+ const analysis=$('stageAnalysis');analysis.replaceChildren();
+ if(!groups.length)analysis.append(el('div','empty','No observations yet.'));
+ else groups.forEach((g,i)=>{
+  const item=el('div','stage');
+  const head=el('div','stagehead');
+  const left=el('div');left.append(el('strong','',g.stage),el('div','muted',g.workflow));
+  const right=el('strong','',g.avgCycle.toFixed(2)+' d/case');
+  head.append(left,right);
+  const bar=el('div','bar');const fill=el('span');fill.style.width=(groups[0].avgCycle?Math.max(2,g.avgCycle/groups[0].avgCycle*100):0)+'%';bar.append(fill);
+  const meta=el('div','stage-meta','Wait '+g.avgWait.toFixed(2)+'d · Work '+g.avgWork.toFixed(2)+'d · Rework '+Math.round(g.reworkRate*100)+'% · '+g.cases+' cases · '+g.records+' entries');
+  item.append(head,bar,meta);analysis.append(item);
+ });
+ const list=$('recordList');list.replaceChildren();
+ const sorted=items.slice().sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+ if(!sorted.length)list.append(el('div','empty','No observations match this filter.'));
+ sorted.forEach(r=>{
+  const card=el('article','record');
+  const head=el('div','record-title');
+  const title=el('strong','',r.workflow+' / '+r.stage);
+  const date=el('span','tag',dateLabel(r.reviewDate));
+  head.append(title,date);
+  const metrics=el('p','muted','Cases '+r.cases+' · Wait '+r.waitDays+'d total · Active '+r.workDays+'d total · Rework '+r.reworkCases);
+  card.append(head,metrics);
+  if(r.cause)card.append(el('p','','Observed cause: '+r.cause));
+  if(r.experiment)card.append(el('p','','Experiment: '+r.experiment));
+  if(r.owner)card.append(el('p','muted','Owner: '+r.owner));
+  const actions=el('div','actions');
+  actions.append(makeButton('Edit',()=>loadForEdit(r.id)),makeButton('Delete',()=>removeRecord(r.id)));
+  card.append(actions);list.append(card);
+ });
+}
+function resetForm(){
+ editingId=null;$('stageForm').reset();$('cases').value='1';$('waitDays').value='0';$('workDays').value='0';$('reworkCases').value='0';
+ $('saveButton').textContent='Save observation';$('formStatus').textContent='';
+}
+function loadForEdit(id){
+ const r=records.find(x=>x.id===id);if(!r)return;
+ editingId=id;
+ $('workflow').value=r.workflow;$('stageName').value=r.stage;$('cases').value=r.cases;
+ $('waitDays').value=r.waitDays;$('workDays').value=r.workDays;$('reworkCases').value=r.reworkCases;
+ $('owner').value=r.owner||'';$('reviewDate').value=r.reviewDate||'';$('cause').value=r.cause||'';$('experiment').value=r.experiment||'';
+ $('saveButton').textContent='Update observation';$('formStatus').textContent='Editing selected observation.';window.scrollTo({top:0,behavior:'smooth'});
+}
+function removeRecord(id){
+ if(!window.confirm('Delete this observation?'))return;
+ records=records.filter(r=>r.id!==id);persist();render();if(editingId===id)resetForm();
+}
+$('stageForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const workflow=clean($('workflow').value),stage=clean($('stageName').value);
+ const cases=number('cases'),waitDays=number('waitDays'),workDays=number('workDays'),reworkCases=number('reworkCases');
+ if(!workflow||!stage){$('formStatus').textContent='Workflow and stage names are required.';return}
+ if(!Number.isInteger(cases)||cases<1||cases>100000||!Number.isInteger(reworkCases)||reworkCases<0||reworkCases>cases||
+ !Number.isFinite(waitDays)||waitDays<0||waitDays>1000000||!Number.isFinite(workDays)||workDays<0||workDays>1000000){
+  $('formStatus').textContent='Check the numbers: cases must be whole numbers; days cannot be negative; rework cannot exceed cases.';return;
+ }
+ const existing=editingId?records.find(r=>r.id===editingId):null;
+ if(!existing&&records.length>=MAX_RECORDS){$('formStatus').textContent='Maximum 500 observations reached. Export a backup before removing old records.';return}
+ const item={id:existing?existing.id:(window.crypto&&crypto.randomUUID?crypto.randomUUID():'obs-'+Date.now()+'-'+Math.random().toString(36).slice(2)),
+ workflow,stage,cases,waitDays,workDays,reworkCases,owner:clean($('owner').value),reviewDate:$('reviewDate').value,
+ cause:clean($('cause').value),experiment:clean($('experiment').value),createdAt:existing?existing.createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
+ if(existing)records=records.map(r=>r.id===editingId?item:r);else records.unshift(item);
+ if(persist()){resetForm();$('formStatus').textContent='Observation saved on this device.';render()}
+});
+$('clearForm').addEventListener('click',resetForm);
+$('workflowFilter').addEventListener('change',render);$('search').addEventListener('input',render);
+function download(name,content,type){
+ const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=name;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function csvCell(value){
+ let s=String(value??'');
+ if(/^[\s]*[=+@-]/.test(s)||/^[\t\r]/.test(s))s="'"+s;
+ return '"'+s.replace(/"/g,'""')+'"';
+}
+$('exportJson').addEventListener('click',()=>download('fashion-looks-process-bottleneck-backup.json',JSON.stringify({exportedAt:new Date().toISOString(),records},null,2),'application/json'));
+$('exportCsv').addEventListener('click',()=>{
+ const cols=['workflow','stage','cases','waitDays','workDays','reworkCases','owner','reviewDate','cause','experiment','createdAt'];
+ const rows=[cols.join(','),...records.map(r=>cols.map(k=>csvCell(r[k])).join(','))];
+ download('fashion-looks-process-bottleneck.csv','\uFEFF'+rows.join('\r\n'),'text/csv;charset=utf-8');
+});
+render();
+})();
+</script>
+</body>
+</html>

@@ -80,3 +80,11 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 - Exports CSV and JSON; CSV text fields are protected against common spreadsheet formula injection prefixes.
 - Uses local browser storage only. Forecasts are estimates based on the pace entered by the user, not guarantees or external supplier data.
 - Open `predictive-operations-planner.html` from the dashboard. Recalculate the recent daily receipt average and update received quantity after each verified receipt.
+
+
+## Data Quality Gate
+- Checks PO and supplier completeness, duplicate PO/supplier pairs, non-negative quantities, received quantity not exceeding order quantity, and recorded balance against ordered minus received.
+- Checks PO, due, and last-verified date order; flags stale verification, overdue balances, missing buyer details, and missing non-sensitive evidence references.
+- Shows per-record quality scores, issue queues, search and filters; exports JSON and formula-protected CSV.
+- Records are stored in this browser's local storage only. No cloud sync, supplier verification, or external action is performed.
+- Open `data-quality-gate.html` from the dashboard. Correct errors and refresh the last-verified date only after checking the source record.

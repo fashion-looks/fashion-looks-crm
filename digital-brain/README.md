@@ -10,11 +10,12 @@ A responsive, single-file productivity dashboard for focused execution.
 - JSON backup export
 - Decision Journal with facts, options, chosen action, confidence, risk/pre-mortem, and review dates
 - Blocker Radar for PO, fabric dispatch, supplier, buyer, and certification blockers with owner, priority, due date, status filters, overdue detection, and JSON export
+- SOP Playbook with reusable fabric dispatch, TC preparation, new PO hand-off, supplier follow-up, and custom checklists; evidence notes, progress tracking, archive, print, and JSON export
 - Review notes to compare expected and actual outcomes
 - Mobile-friendly layout; no external libraries
 
 ## Run
-Open `index.html` in any modern browser. Use the **Decision Journal** and **Blocker Radar** links to open `decision-journal.html` and `blocker-radar.html`.
+Open `index.html` in any modern browser. Use the **Decision Journal**, **Blocker Radar**, and **SOP Playbook** links to open `decision-journal.html`, `blocker-radar.html`, and `sop-playbook.html`.
 
 ## Storage and privacy
 Tasks, notes, and reviews are stored in the browser's local storage on the current device. They are not automatically synchronized to GitHub or other devices. Use Export JSON to create a backup. Do not enter passwords or sensitive financial information.
@@ -33,8 +34,15 @@ Tasks, notes, and reviews are stored in the browser's local storage on the curre
 4. Change status to Waiting, Escalated, or Resolved as the situation changes.
 5. Export a JSON backup periodically.
 
+## SOP Playbook workflow
+1. Select a process template (fabric dispatch, TC preparation, new PO hand-off, supplier follow-up, or custom).
+2. Add a run title, owner, target date, and non-sensitive reference context.
+3. Complete each step only after checking the real document, portal record, or operational evidence.
+4. Add an evidence/reference note to each step where useful.
+5. Save progress locally, then archive only when all steps are complete; export JSON or print a working copy as needed.
+
 ## Quality and privacy notes
-The journal validates required fields and review dates, renders user-entered text as text rather than HTML, and stores records only in local storage. Export a JSON backup before clearing browser data. No cloud sync or AI API is enabled.
+The journal validates required fields and review dates, renders user-entered text as text rather than HTML, and stores records only in local storage. Export a JSON backup before clearing browser data. No cloud sync or AI API is enabled. Checklist completion is a user-entered control and does not independently verify documents or portal data.
 
 ## Next improvements
 Optional cloud sync with explicit consent, backup import, weekly analytics, and automated tests.

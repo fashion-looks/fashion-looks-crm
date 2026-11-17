@@ -97,3 +97,13 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 - Search the selected day's queue and export a JSON backup or date-specific CSV. CSV cells are quoted and common spreadsheet formula prefixes are neutralized.
 - Open `resource-capacity-planner.html` from the dashboard. The planner is a manual planning aid: confirm people's actual availability before changing assignments; it does not monitor staff or automatically assign work.
 - Data is stored in this browser's local storage only. No cloud sync, AI API, or external integrations are enabled. Avoid passwords and confidential personal data.
+
+
+## Process Bottleneck Intelligence
+- Record workflow-stage observations using case count, total waiting days, total active-work days, and rework cases.
+- Aggregates repeated observations by workflow and stage using case-weighted average elapsed days per case; ranks the longest stages as candidate bottlenecks.
+- Separates waiting time from active work time, shows rework rate and sample size, and stores a suspected cause, owner, review date, and one improvement experiment.
+- Use the candidate bottleneck as a prompt for investigation, not as proof of root cause. Validate with the process owner and collect comparable observations before changing the workflow.
+- Edit or delete observations; export JSON backups or CSV. CSV fields are quoted and common spreadsheet formula prefixes are neutralized.
+- Open `process-bottleneck-intelligence.html` from the dashboard. Enter aggregated observations for a consistent review period; avoid mixing different units or unrelated case types.
+- Data is stored in this browser's local storage only, with a 500-observation limit. No cloud sync, AI API, external monitoring, or automatic process changes are enabled. Avoid confidential personal or commercial details.

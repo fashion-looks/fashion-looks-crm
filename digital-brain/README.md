@@ -64,3 +64,11 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 4. Use Search, category filters, Review due, and Pin to retrieve important knowledge quickly.
 5. After reviewing a note, use Reviewed · +7d to schedule the next review one week later, or edit the date yourself.
 6. Export a JSON backup periodically. Notes remain in this browser's local storage; there is no cloud sync or AI API.
+
+
+## Workflow Opportunity Mapper
+1. Add a recurring workflow and estimate runs per week, manual minutes per run, automatable share, and setup effort.
+2. Compare potential hours recovered per week and estimated setup payback; these are planning estimates, not guarantees.
+3. Review the operational-risk and data-sensitivity gate before selecting a pilot.
+4. Start with non-sensitive test data. Keep human approval for external messages, certificate submissions, payments, and other consequential actions.
+5. Export a JSON backup periodically. Records stay in this browser's local storage; no AI API, cloud sync, or workflow execution is enabled.

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827">
+<title>Fashion Looks™ · Predictive Operations Planner</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--line:#30415d;--txt:#eef4ff;--muted:#9aabc5;--mint:#72e0c1;--amber:#f2c36b;--red:#ff8585;--blue:#8eb5ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 82% 0,#203c5d,transparent 36%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1050px;margin:auto;padding:22px 15px 52px}.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:850}.brand span,h1 em{color:var(--mint)}.pill,.tag{border:1px solid var(--line);border-radius:30px;padding:5px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(29px,5vw,43px);line-height:1.1;margin:24px 0 6px}h1 em{font-style:normal}.sub,.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:20px}.card{background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}.full{grid-column:1/-1}.half{grid-column:span 6}h2{font-size:17px;margin:0 0 13px}
+form .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.field label{display:block;color:var(--muted);font-size:12px;margin:0 0 5px}input{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit}input:focus{outline:2px solid var(--mint);outline-offset:1px}
+.btn{border:1px solid var(--mint);background:transparent;color:var(--mint);padding:10px 13px;border-radius:11px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}.btn:hover{transform:translateY(-2px);background:#17372f}.btn:active{transform:scale(.97)}.primary{background:var(--mint);color:#092019}.danger{border-color:var(--red);color:var(--red)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:#20314b;border-radius:12px;padding:12px}.stat b{display:block;font-size:24px}.stat small{color:var(--muted)}
+.record{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:11px;background:#101c2e}.record-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.record-title{font-weight:750;overflow-wrap:anywhere}.status{font-size:12px;border-radius:20px;padding:4px 9px;border:1px solid var(--line)}.status.ok{color:var(--mint);border-color:#397d6b}.status.watch{color:var(--amber);border-color:#8a6b32}.status.risk{color:var(--red);border-color:#8c4545}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.metric{background:#1a2a42;border-radius:10px;padding:9px}.metric small{display:block;color:var(--muted);font-size:11px}.metric b{font-size:15px;overflow-wrap:anywhere}.receipt{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.receipt .field{flex:1;min-width:130px}.notice{padding:11px 13px;border-left:3px solid var(--blue);background:#142943;border-radius:0 10px 10px 0;color:#d9e7ff}.error{color:var(--red);min-height:22px;font-size:13px}.empty{color:var(--muted);padding:16px 2px}footer{text-align:center;color:var(--muted);font-size:12px;margin:24px 0}
+@media(max-width:720px){.half{grid-column:1/-1}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:14px}}
+@media(max-width:420px){form .fields{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body><main>
+<header class="top"><div class="brand">FASHION <span>LOOKS™</span> · OPERATIONS INTELLIGENCE</div><div class="pill">LOCAL-FIRST · NO EXTERNAL API</div></header>
+<h1>Forecast the delay. <em>Act earlier.</em></h1>
+<p class="sub">PO की बाकी quantity, हाल की औसत receipt speed और due date से अनुमान लगाएँ कि delivery समय पर पूरी हो सकती है या नहीं। यह planning estimate है, supplier की guarantee नहीं।</p>
+<section class="card full"><h2>➕ Add a PO forecast</h2>
+<form id="addForm" novalidate>
+<div class="fields">
+<div class="field"><label for="po">PO number *</label><input id="po" maxlength="50" required placeholder="उदाहरण: PO-634"></div>
+<div class="field"><label for="supplier">Supplier / Mill *</label><input id="supplier" maxlength="100" required placeholder="Supplier name"></div>
+<div class="field"><label for="ordered">Order quantity (mtr) *</label><input id="ordered" type="number" min="0.001" max="1000000000" step="0.001" required placeholder="5000"></div>
+<div class="field"><label for="received">Received quantity (mtr) *</label><input id="received" type="number" min="0" max="1000000000" step="0.001" value="0" required></div>
+<div class="field"><label for="rate">Average received per day (mtr) *</label><input id="rate" type="number" min="0" max="1000000000" step="0.001" required placeholder="Last 7-day average; 0 if unknown"></div>
+<div class="field"><label for="due">Committed delivery date *</label><input id="due" type="date" required></div>
+</div>
+<div class="notice" style="margin-top:12px">औसत receipt speed पिछले 7 दिनों की verified received quantity ÷ 7 से निकालें। यदि data उपलब्ध नहीं है तो 0 दर्ज करें; planner बिना pace data के forecast को निश्चित नहीं मानेगा।</div>
+<div class="actions"><button class="btn primary" type="submit">Add forecast</button><button class="btn" type="reset">Clear form</button></div><div class="error" id="formError" role="alert" aria-live="polite"></div>
+</form></section>
+<section class="card full"><h2>📊 Portfolio overview</h2><div class="stats">
+<div class="stat"><b id="count">0</b><small>Open POs</small></div><div class="stat"><b id="riskCount">0</b><small>At risk / overdue</small></div><div class="stat"><b id="balanceTotal">0</b><small>Balance mtr</small></div><div class="stat"><b id="completeCount">0</b><small>Completed</small></div>
+</div><div class="actions"><button class="btn" id="exportCsv" type="button">Export CSV</button><button class="btn" id="exportJson" type="button">Backup JSON</button></div><div class="error" id="storageError" role="status" aria-live="polite"></div></section>
+<section class="card full"><h2>🧭 PO forecast list</h2><p class="muted">Forecasts को रोज़ verified receipt के बाद update करें।</p><div id="records" aria-live="polite"></div></section>
+<section class="card full"><h2>How to use</h2><ol class="muted"><li>PO, supplier, ordered quantity और received quantity भरें।</li><li>पिछले 7 दिनों की actual receipt से daily average निकालें।</li><li>Committed delivery date चुनकर forecast save करें।</li><li>हर verified dispatch/receipt के बाद received quantity update करें और pace दोबारा जाँचें।</li><li>At risk या overdue PO पर supplier से revised written commitment माँगें।</li></ol></section>
+<footer>Fashion Looks™ · Predictive Operations Planner · Estimates only, not an automatic supplier alert.</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),KEY='fl-predictive-operations-v1',MAX=300;
+let rows=[];try{const parsed=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(parsed))rows=parsed.slice(0,MAX)}catch{rows=[]}
+const safeSave=()=>{try{localStorage.setItem(KEY,JSON.stringify(rows));$('storageError').textContent=''}catch{$('storageError').textContent='Browser storage is full or unavailable. Export a backup and remove old records.'}};
+const num=v=>Number.isFinite(Number(v))?Number(v):NaN;
+const fmt=v=>Number(v).toLocaleString('en-IN',{maximumFractionDigits:2});
+const parseDate=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return null;const [y,m,d]=s.split('-').map(Number);const x=new Date(y,m-1,d);return x.getFullYear()===y&&x.getMonth()===m-1&&x.getDate()===d?x:null};
+const dateKey=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const dayDiff=(a,b)=>Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/86400000);
+const forecast=r=>{const balance=Math.max(0,r.ordered-r.received),today=new Date(),due=parseDate(r.due),daysLeft=dayDiff(today,due);let status,finish=null,required=balance/Math.max(1,daysLeft);
+if(balance<=0)status='Complete';else if(daysLeft<0)status='Overdue';else if(r.rate<=0)status='No pace data';else{const days=Math.ceil(balance/r.rate);finish=new Date(today.getFullYear(),today.getMonth(),today.getDate()+days);if(dateKey(finish)>r.due)status='At risk';else if(daysLeft-days<=1)status='Watch';else status='On track'}
+return{balance,daysLeft,required,finish,status}};
+const el=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n};
+function render(){const root=$('records');root.replaceChildren();let risk=0,complete=0,total=0;rows.forEach((r,i)=>{const f=forecast(r);if(f.status==='At risk'||f.status==='Overdue')risk++;if(f.status==='Complete')complete++;if(f.status!=='Complete')total+=f.balance;
+const box=el('article','record'),head=el('div','record-head'),title=el('div','record-title',r.po+' · '+r.supplier),badge=el('span','status '+(f.status==='Complete'||f.status==='On track'?'ok':f.status==='Watch'||f.status==='No pace data'?'watch':'risk'),f.status);head.append(title,badge);box.append(head);
+const metrics=el('div','metrics');[[ 'Balance',fmt(f.balance)+' mtr'],['Days to due',f.daysLeft<0?Math.abs(f.daysLeft)+' days late':f.daysLeft+' days'],['Required pace',fmt(f.required)+' mtr/day'],['Current pace',fmt(r.rate)+' mtr/day'],['Forecast finish',f.finish?dateKey(f.finish):'Not available'],['Due date',r.due]].forEach(([a,b])=>{const m=el('div','metric');m.append(el('small','',a),el('b','',b));metrics.append(m)});box.append(metrics);
+const hint=f.status==='Complete'?'Order quantity fully received.':f.status==='Overdue'?'Due date passed: obtain an immediate revised commitment.':f.status==='No pace data'?'Enter a verified recent daily receipt average to calculate a forecast.':f.status==='At risk'?'At current pace, estimated completion is after the due date.':f.status==='Watch'?'Forecast has one day or less of buffer; monitor closely.':'Current pace indicates completion before the due date.';box.append(el('p','muted',hint));
+const form=el('form','receipt'),field=el('div','field'),label=el('label','', 'Update verified received quantity (mtr)');const input=el('input');input.type='number';input.min=String(r.received);input.max=String(r.ordered);input.step='0.001';input.value=String(r.received);input.required=true;field.append(label,input);const update=el('button','btn primary','Update receipt');update.type='submit';const del=el('button','btn danger','Delete');del.type='button';del.onclick=()=>{if(confirm('Delete forecast for '+r.po+'?')){rows.splice(i,1);safeSave();render()}};form.append(field,update,del);form.onsubmit=e=>{e.preventDefault();const v=num(input.value);if(!Number.isFinite(v)||v<r.received||v>r.ordered){$('storageError').textContent='Received quantity must be between current received and ordered quantity.';return}r.received=v;r.updatedAt=new Date().toISOString();safeSave();render()};box.append(form);root.append(box)});
+if(!rows.length)root.append(el('div','empty','अभी कोई PO forecast नहीं है। पहला PO ऊपर दर्ज करें।'));
+$('count').textContent=rows.filter(r=>r.received<r.ordered).length;$('riskCount').textContent=risk;$('balanceTotal').textContent=fmt(total);$('completeCount').textContent=complete}
+$('addForm').onsubmit=e=>{e.preventDefault();$('formError').textContent='';const po=$('po').value.trim(),supplier=$('supplier').value.trim(),ordered=num($('ordered').value),received=num($('received').value),rate=num($('rate').value),due=$('due').value;
+if(!po||!supplier||po.length>50||supplier.length>100){$('formError').textContent='PO number और supplier सही दर्ज करें।';return}
+if(rows.length>=MAX){$('formError').textContent='Maximum 300 records. Export and archive older records first.';return}
+if(!Number.isFinite(ordered)||ordered<=0||!Number.isFinite(received)||received<0||received>ordered||!Number.isFinite(rate)||rate<0||!parseDate(due)){$('formError').textContent='Quantity, receipt speed और due date जाँचें। Received quantity order quantity से अधिक नहीं हो सकती।';return}
+rows.unshift({id:Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8),po,supplier,ordered,received,rate,due,createdAt:new Date().toISOString()});safeSave();e.target.reset();$('received').value='0';render()};
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+const csvCell=v=>{let s=String(v??'');if(/^[\s]*[=+@\-\t\r]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};$('exportCsv').onclick=()=>{const header=['PO','Supplier','Ordered mtr','Received mtr','Balance mtr','Avg received per day','Due date','Forecast status','Forecast finish'];const data=rows.map(r=>{const f=forecast(r);return[r.po,r.supplier,r.ordered,r.received,f.balance,r.rate,r.due,f.status,f.finish?dateKey(f.finish):'']});download('fashion-looks-po-forecast.csv',[header,...data].map(line=>line.map(csvCell).join(',')).join('\r\n'),'text/csv;charset=utf-8')};
+$('exportJson').onclick=()=>download('fashion-looks-forecast-backup.json',JSON.stringify({version:1,exportedAt:new Date().toISOString(),records:rows},null,2),'application/json');
+render();
+})();
+</script></body></html>

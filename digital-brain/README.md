@@ -72,3 +72,11 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 3. Review the operational-risk and data-sensitivity gate before selecting a pilot.
 4. Start with non-sensitive test data. Keep human approval for external messages, certificate submissions, payments, and other consequential actions.
 5. Export a JSON backup periodically. Records stay in this browser's local storage; no AI API, cloud sync, or workflow execution is enabled.
+
+
+## Predictive Operations Planner
+- Forecast PO completion from order quantity, verified received quantity, a manually entered recent average daily receipt rate, and committed due date.
+- Labels forecasts Complete, On track, Watch, At risk, Overdue, or No pace data; updates received quantity after verification.
+- Exports CSV and JSON; CSV text fields are protected against common spreadsheet formula injection prefixes.
+- Uses local browser storage only. Forecasts are estimates based on the pace entered by the user, not guarantees or external supplier data.
+- Open `predictive-operations-planner.html` from the dashboard. Recalculate the recent daily receipt average and update received quantity after each verified receipt.

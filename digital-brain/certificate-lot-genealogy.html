@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>Fashion Looks™ · Certificate & Lot Genealogy</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142139;--panel2:#0f1b2e;--line:#30415d;--text:#eef4ff;--muted:#9aabc5;--accent:#72e0c1;--warn:#f7c66a;--bad:#ff8f8f;--good:#7de2a8}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 85% 0,#203c5d,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1180px;margin:auto;padding:20px 14px 48px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.brand{font-weight:850;letter-spacing:.04em}.brand span{color:var(--accent)}
+.pill,.tag{display:inline-flex;border:1px solid var(--line);border-radius:30px;padding:4px 10px;color:var(--muted);font-size:12px}
+h1{font-size:clamp(27px,5vw,42px);line-height:1.12;margin:20px 0 6px}
+h2{font-size:17px;margin:0 0 12px}
+p{margin:6px 0}.muted,small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:13px;margin-top:18px}
+.card{grid-column:span 6;background:linear-gradient(145deg,#17263e,#101a2c);border:1px solid var(--line);border-radius:16px;padding:16px;min-width:0}
+.full{grid-column:1/-1}.third{grid-column:span 4}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.metric{background:#20314b;border-radius:12px;padding:12px;min-width:0}
+.metric b{font-size:25px;display:block;font-variant-numeric:tabular-nums}
+.metric small{font-size:12px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+label{display:block;font-size:12px;color:var(--muted);margin:0 0 5px}
+input,select{width:100%;min-width:0;background:#0b1628;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text);font:inherit}
+input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.widefield{grid-column:1/-1}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+button,.linkbtn{border:1px solid var(--accent);background:transparent;color:var(--accent);padding:9px 12px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .16s,background .16s}
+button:hover,.linkbtn:hover{transform:translateY(-2px);background:#17372f}
+button:active{transform:scale(.97)}
+button.primary{background:var(--accent);color:#092019}
+button.danger{border-color:var(--bad);color:var(--bad)}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:11px;margin-top:10px}
+table{width:100%;border-collapse:collapse;min-width:720px;font-size:13px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);background:#101b2d;position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+.status{display:inline-block;padding:3px 8px;border-radius:30px;font-size:11px;border:1px solid var(--line)}
+.status.good{color:var(--good);border-color:#39765b}.status.warn{color:var(--warn);border-color:#856a37}.status.bad{color:var(--bad);border-color:#8b4545}
+.alert{padding:10px 12px;border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:9px;margin:7px 0;background:#111d30}
+.alert.bad{border-left-color:var(--bad)}.alert.good{border-left-color:var(--good)}
+.empty{padding:16px;color:var(--muted);text-align:center}
+.note{padding:11px;border-radius:10px;background:#122b2b;border:1px solid #28544c;color:#c9f5e7;font-size:13px}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.toolbar input{max-width:280px}
+footer{color:var(--muted);font-size:12px;text-align:center;margin:22px 0}
+@media(max-width:760px){.card,.third{grid-column:1/-1}.metrics{grid-template-columns:repeat(2,1fr)}main{padding:15px 11px}.card{padding:13px}.formgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div>
+    <div class="brand">FASHION <span>LOOKS™</span> · QUANTUM AI BRAIN</div>
+    <h1>Certificate & Material Lot Genealogy</h1>
+    <p class="muted">Connect incoming material lots, certificate references, production lots and buyer outputs.</p>
+  </div>
+  <span class="pill">LOCAL-FIRST · HUMAN REVIEW</span>
+</header>
+
+<section class="grid">
+  <article class="card full">
+    <h2>Operational snapshot</h2>
+    <div class="metrics">
+      <div class="metric"><b id="sourceCount">0</b><small>Source lots</small></div>
+      <div class="metric"><b id="outputCount">0</b><small>Output lots</small></div>
+      <div class="metric"><b id="linkCount">0</b><small>Genealogy links</small></div>
+      <div class="metric"><b id="alertCount">0</b><small>Review flags</small></div>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>＋ Register incoming source lot</h2>
+    <form id="sourceForm" class="formgrid">
+      <div><label for="supplier">Supplier / mill *</label><input id="supplier" maxlength="100" required></div>
+      <div><label for="sourceMaterial">Material / quality *</label><input id="sourceMaterial" maxlength="100" required placeholder="e.g. Organic cotton jersey"></div>
+      <div><label for="sourceLot">Supplier lot / batch *</label><input id="sourceLot" maxlength="80" required></div>
+      <div><label for="standard">Scheme / standard</label><select id="standard"><option>GOTS</option><option>GRS</option><option>OCS</option><option>RCS</option><option>RWS</option><option>OEKO-TEX</option><option>Better Cotton / BCI</option><option>Other / not specified</option></select></div>
+      <div><label for="tcNo">Incoming Transaction Certificate ref.</label><input id="tcNo" maxlength="100"></div>
+      <div><label for="tcDate">TC issue date</label><input id="tcDate" type="date"></div>
+      <div><label for="scopeNo">Scope Certificate ref.</label><input id="scopeNo" maxlength="100"></div>
+      <div><label for="scopeValidTo">Scope validity end date</label><input id="scopeValidTo" type="date"></div>
+      <div><label for="sourceQty">Received quantity *</label><input id="sourceQty" type="number" min="0.001" step="0.001" required></div>
+      <div><label for="sourceUnit">Unit *</label><select id="sourceUnit"><option value="kg">kg</option><option value="mtr">mtr</option><option value="pcs">pcs</option></select></div>
+      <div class="widefield"><button class="primary" type="submit">Save source lot</button></div>
+    </form>
+  </article>
+
+  <article class="card">
+    <h2>＋ Register production / buyer output lot</h2>
+    <form id="outputForm" class="formgrid">
+      <div><label for="buyer">Buyer / customer *</label><input id="buyer" maxlength="100" required></div>
+      <div><label for="poNo">Purchase Order no. *</label><input id="poNo" maxlength="80" required></div>
+      <div><label for="product">Product / material *</label><input id="product" maxlength="100" required></div>
+      <div><label for="outputLot">Output lot / batch *</label><input id="outputLot" maxlength="80" required></div>
+      <div><label for="outgoingTc">Outgoing TC ref. (if issued)</label><input id="outgoingTc" maxlength="100"></div>
+      <div><label for="productionDate">Production / dispatch date</label><input id="productionDate" type="date"></div>
+      <div><label for="outputQty">Output quantity *</label><input id="outputQty" type="number" min="0.001" step="0.001" required></div>
+      <div><label for="outputUnit">Unit *</label><select id="outputUnit"><option value="kg">kg</option><option value="mtr">mtr</option><option value="pcs">pcs</option></select></div>
+      <div class="widefield"><button class="primary" type="submit">Save output lot</button></div>
+    </form>
+  </article>
+
+  <article class="card full">
+    <h2>↔ Link source material to output lot</h2>
+    <p class="muted">Each link records the quantity consumed from one source lot. Multiple source lots can link to one output lot.</p>
+    <form id="linkForm" class="formgrid">
+      <div><label for="linkSource">Source lot *</label><select id="linkSource" required><option value="">Select source lot</option></select></div>
+      <div><label for="linkOutput">Output lot *</label><select id="linkOutput" required><option value="">Select output lot</option></select></div>
+      <div><label for="linkQty">Allocated input quantity *</label><input id="linkQty" type="number" min="0.001" step="0.001" required></div>
+      <div><label for="linkNote">Reference / process note</label><input id="linkNote" maxlength="160" placeholder="e.g. Batch card 24-A"></div>
+      <div class="widefield"><button class="primary" type="submit">Create genealogy link</button></div>
+    </form>
+    <div class="note" style="margin-top:12px">The engine blocks a link when material names or units differ, or when the allocation exceeds the recorded source balance. It does not infer conversion factors.</div>
+  </article>
+
+  <article class="card full">
+    <div class="toolbar" style="justify-content:space-between">
+      <div><h2 style="margin:0">Review flags</h2><p class="muted">Operational checks only—not a certification or audit decision.</p></div>
+      <button id="runChecks" type="button">Refresh checks</button>
+    </div>
+    <div id="alerts"><div class="empty">No records yet. Add source and output lots to begin.</div></div>
+  </article>
+
+  <article class="card full">
+    <div class="toolbar" style="justify-content:space-between">
+      <h2 style="margin:0">Source lot register</h2>
+      <input id="search" type="search" placeholder="Search supplier, lot, TC, material…">
+    </div>
+    <div class="tablewrap"><table><thead><tr><th>Supplier / lot</th><th>Material</th><th>TC / scheme</th><th>Scope ref. / valid to</th><th>Received</th><th>Allocated</th><th>Available</th><th>Action</th></tr></thead><tbody id="sourceRows"></tbody></table></div>
+    <div id="sourceEmpty" class="empty">No source lots recorded.</div>
+  </article>
+
+  <article class="card full">
+    <h2>Output lot register</h2>
+    <div class="tablewrap"><table><thead><tr><th>Buyer / PO</th><th>Product / output lot</th><th>Outgoing TC</th><th>Output qty</th><th>Source links</th><th>Linked input qty</th><th>Action</th></tr></thead><tbody id="outputRows"></tbody></table></div>
+    <div id="outputEmpty" class="empty">No output lots recorded.</div>
+  </article>
+
+  <article class="card full">
+    <h2>Genealogy link register</h2>
+    <div class="tablewrap"><table><thead><tr><th>Source lot</th><th>Output lot</th><th>Material</th><th>Allocated input</th><th>Note</th><th>Action</th></tr></thead><tbody id="linkRows"></tbody></table></div>
+    <div id="linkEmpty" class="empty">No genealogy links recorded.</div>
+  </article>
+
+  <article class="card full">
+    <h2>Data backup & export</h2>
+    <p class="muted">Export a local JSON backup or a flat CSV of source-to-output links. Keep backups in an approved secure location.</p>
+    <div class="actions">
+      <button id="exportJson" type="button">Export JSON backup</button>
+      <button id="exportCsv" type="button">Export genealogy CSV</button>
+      <button id="importBtn" type="button">Import JSON backup</button>
+      <input id="importFile" type="file" accept="application/json" hidden>
+      <button id="clearData" class="danger" type="button">Clear local data</button>
+    </div>
+    <p id="status" class="muted" aria-live="polite"></p>
+  </article>
+</section>
+
+<footer>Fashion Looks™ Digital Brain · Certificate & Lot Genealogy v1.0 · Browser-local storage only</footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+const KEY='fl_certificate_lot_genealogy_v1';
+const $=id=>document.getElementById(id);
+const blank=()=>({version:1,sources:[],outputs:[],links:[]});
+let data=blank();
+try{
+  const saved=JSON.parse(localStorage.getItem(KEY)||'null');
+  if(saved&&Array.isArray(saved.sources)&&Array.isArray(saved.outputs)&&Array.isArray(saved.links)) data=saved;
+}catch(e){data=blank();}
+function persist(){
+  try{localStorage.setItem(KEY,JSON.stringify(data));$('status').textContent='Saved locally ✓';}
+  catch(e){$('status').textContent='Could not save: browser storage may be full. Export a backup and reduce stored data.';}
+}
+function id(){return 'id-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9);}
+function norm(s){return String(s||'').trim().toLowerCase().replace(/\s+/g,' ');}
+function num(n){return Number.isFinite(Number(n))?Number(n):0;}
+function fmt(n){return num(n).toLocaleString(undefined,{maximumFractionDigits:3});}
+function escCsv(v){const s=String(v==null?'':v);return '"'+s.replace(/"/g,'""')+'"';}
+function sourceBy(id){return data.sources.find(x=>x.id===id);}
+function outputBy(id){return data.outputs.find(x=>x.id===id);}
+function allocated(sourceId){return data.links.filter(x=>x.sourceId===sourceId).reduce((a,x)=>a+num(x.qty),0);}
+function linkedInput(outputId){return data.links.filter(x=>x.outputId===outputId).reduce((a,x)=>a+num(x.qty),0);}
+function el(tag,txt,cls){const n=document.createElement(tag);if(txt!==undefined)n.textContent=txt;if(cls)n.className=cls;return n;}
+function cell(row,text){row.appendChild(el('td',text==null?'':String(text)));}
+function actionButton(label,cls,fn){const b=el('button',label,cls||'');b.type='button';b.addEventListener('click',fn);return b;}
+function download(name,content,type){
+  const blob=new Blob([content],{type:type});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function removeSource(sourceId){
+  const related=data.links.filter(x=>x.sourceId===sourceId).length;
+  const msg=related?'This source lot has '+related+' link(s). Delete the lot and its links?':'Delete this source lot?';
+  if(!confirm(msg))return;
+  data.sources=data.sources.filter(x=>x.id!==sourceId);
+  data.links=data.links.filter(x=>x.sourceId!==sourceId);
+  persist();render();
+}
+function removeOutput(outputId){
+  const related=data.links.filter(x=>x.outputId===outputId).length;
+  const msg=related?'This output lot has '+related+' link(s). Delete the lot and its links?':'Delete this output lot?';
+  if(!confirm(msg))return;
+  data.outputs=data.outputs.filter(x=>x.id!==outputId);
+  data.links=data.links.filter(x=>x.outputId!==outputId);
+  persist();render();
+}
+function removeLink(linkId){
+  if(!confirm('Delete this genealogy link?'))return;
+  data.links=data.links.filter(x=>x.id!==linkId);persist();render();
+}
+function buildSelects(){
+  const s=$('linkSource'),o=$('linkOutput');
+  const oldS=s.value,oldO=o.value;
+  s.replaceChildren(new Option('Select source lot',''));
+  data.sources.forEach(x=>{
+    const bal=num(x.qty)-allocated(x.id);
+    s.add(new Option(x.supplier+' · '+x.lot+' · available '+fmt(bal)+' '+x.unit,x.id));
+  });
+  o.replaceChildren(new Option('Select output lot',''));
+  data.outputs.forEach(x=>o.add(new Option(x.buyer+' · PO '+x.po+' · '+x.lot,x.id)));
+  if(data.sources.some(x=>x.id===oldS))s.value=oldS;
+  if(data.outputs.some(x=>x.id===oldO))o.value=oldO;
+}
+function buildAlerts(){
+  const list=[];
+  const seenTC=new Set();
+  data.sources.forEach(s=>{
+    if(!s.tcNo)list.push({type:'warn',text:'Source lot '+s.lot+': incoming TC reference is not recorded.'});
+    else{
+      const k=norm(s.tcNo);
+      if(seenTC.has(k))list.push({type:'bad',text:'Duplicate incoming TC reference detected: '+s.tcNo+'. Verify whether this is intentional.'});
+      seenTC.add(k);
+    }
+    if(!s.scopeNo)list.push({type:'warn',text:'Source lot '+s.lot+': Scope Certificate reference is missing.'});
+    if(s.tcDate&&s.scopeValidTo&&s.scopeValidTo<s.tcDate)list.push({type:'bad',text:'Source lot '+s.lot+': recorded scope validity ends before the TC issue date. Verify the source documents.'});
+    if(s.scopeValidTo&&!s.tcDate)list.push({type:'warn',text:'Source lot '+s.lot+': scope end date is recorded but TC issue date is missing.'});
+    const bal=num(s.qty)-allocated(s.id);
+    if(bal < -0.0001)list.push({type:'bad',text:'Source lot '+s.lot+': allocated quantity exceeds recorded received quantity.'});
+  });
+  data.outputs.forEach(o=>{
+    const count=data.links.filter(x=>x.outputId===o.id).length;
+    if(!count)list.push({type:'warn',text:'Output lot '+o.lot+' (PO '+o.po+') has no source genealogy link.'});
+    if(!o.outgoingTc)list.push({type:'warn',text:'Output lot '+o.lot+': outgoing TC reference has not been recorded.'});
+  });
+  data.links.forEach(l=>{
+    const s=sourceBy(l.sourceId),o=outputBy(l.outputId);
+    if(!s||!o)list.push({type:'bad',text:'A genealogy link points to a missing source or output record.'});
+    else if(norm(s.material)!==norm(o.product))list.push({type:'bad',text:'Link mismatch: source material and output product labels differ for '+s.lot+' → '+o.lot+'. Verify or correct the records.'});
+    else if(s.unit!==o.unit)list.push({type:'bad',text:'Link mismatch: source and output units differ for '+s.lot+' → '+o.lot+'. No automatic unit conversion is applied.'});
+  });
+  return list;
+}
+function render(){
+  $('sourceCount').textContent=data.sources.length;
+  $('outputCount').textContent=data.outputs.length;
+  $('linkCount').textContent=data.links.length;
+  const alerts=buildAlerts();
+  $('alertCount').textContent=alerts.length;
+  const alertRoot=$('alerts');alertRoot.replaceChildren();
+  if(!alerts.length)alertRoot.appendChild(el('div','No operational flags from the recorded fields. This is not a certification approval.','alert good'));
+  alerts.forEach(a=>alertRoot.appendChild(el('div',a.text,'alert '+a.type)));
+  const query=norm($('search').value);
+  const sr=$('sourceRows');sr.replaceChildren();
+  const filtered=data.sources.filter(s=>[s.supplier,s.material,s.lot,s.tcNo,s.scopeNo,s.standard].some(v=>norm(v).includes(query)));
+  filtered.forEach(s=>{
+    const tr=document.createElement('tr');
+    cell(tr,s.supplier+' / '+s.lot);cell(tr,s.material);cell(tr,(s.tcNo||'—')+' / '+s.standard);
+    cell(tr,(s.scopeNo||'—')+' / '+(s.scopeValidTo||'—'));
+    cell(tr,fmt(s.qty)+' '+s.unit);
+    cell(tr,fmt(allocated(s.id))+' '+s.unit);
+    const bal=num(s.qty)-allocated(s.id);cell(tr,fmt(bal)+' '+s.unit);
+    const td=document.createElement('td');td.appendChild(actionButton('Delete','danger',()=>removeSource(s.id)));tr.appendChild(td);sr.appendChild(tr);
+  });
+  $('sourceEmpty').style.display=filtered.length?'none':'block';
+  const or=$('outputRows');or.replaceChildren();
+  data.outputs.forEach(o=>{
+    const tr=document.createElement('tr');
+    cell(tr,o.buyer+' / '+o.po);cell(tr,o.product+' / '+o.lot);cell(tr,o.outgoingTc||'—');
+    cell(tr,fmt(o.qty)+' '+o.unit);
+    cell(tr,data.links.filter(l=>l.outputId===o.id).length);
+    cell(tr,fmt(linkedInput(o.id))+' '+o.unit+' (recorded input units)');
+    const td=document.createElement('td');td.appendChild(actionButton('Delete','danger',()=>removeOutput(o.id)));tr.appendChild(td);or.appendChild(tr);
+  });
+  $('outputEmpty').style.display=data.outputs.length?'none':'block';
+  const lr=$('linkRows');lr.replaceChildren();
+  data.links.forEach(l=>{
+    const s=sourceBy(l.sourceId),o=outputBy(l.outputId),tr=document.createElement('tr');
+    cell(tr,s?s.lot+' · '+s.supplier:'Missing source');cell(tr,o?o.lot+' · PO '+o.po:'Missing output');
+    cell(tr,s?s.material:'—');cell(tr,fmt(l.qty)+' '+(s?s.unit:''));
+    cell(tr,l.note||'—');
+    const td=document.createElement('td');td.appendChild(actionButton('Delete','danger',()=>removeLink(l.id)));tr.appendChild(td);lr.appendChild(tr);
+  });
+  $('linkEmpty').style.display=data.links.length?'none':'block';
+  buildSelects();
+}
+$('sourceForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const qty=num($('sourceQty').value);
+  if(qty<=0){alert('Enter a quantity greater than zero.');return;}
+  const rec={id:id(),supplier:$('supplier').value.trim(),material:$('sourceMaterial').value.trim(),lot:$('sourceLot').value.trim(),standard:$('standard').value,tcNo:$('tcNo').value.trim(),tcDate:$('tcDate').value,scopeNo:$('scopeNo').value.trim(),scopeValidTo:$('scopeValidTo').value,qty:qty,unit:$('sourceUnit').value,createdAt:new Date().toISOString()};
+  data.sources.push(rec);persist();e.target.reset();render();
+});
+$('outputForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const qty=num($('outputQty').value);
+  if(qty<=0){alert('Enter a quantity greater than zero.');return;}
+  const rec={id:id(),buyer:$('buyer').value.trim(),po:$('poNo').value.trim(),product:$('product').value.trim(),lot:$('outputLot').value.trim(),outgoingTc:$('outgoingTc').value.trim(),productionDate:$('productionDate').value,qty:qty,unit:$('outputUnit').value,createdAt:new Date().toISOString()};
+  data.outputs.push(rec);persist();e.target.reset();render();
+});
+$('linkForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const s=sourceBy($('linkSource').value),o=outputBy($('linkOutput').value),qty=num($('linkQty').value);
+  if(!s||!o){alert('Select both a source lot and an output lot.');return;}
+  if(qty<=0){alert('Enter an allocated quantity greater than zero.');return;}
+  if(norm(s.material)!==norm(o.product)){alert('Material and product labels must match exactly for this basic link. Verify the names or use a controlled naming convention.');return;}
+  if(s.unit!==o.unit){alert('Units do not match. Convert quantities under an approved process before recording a link; this tool does not convert units.');return;}
+  if(data.links.some(x=>x.sourceId===s.id&&x.outputId===o.id)){alert('A link already exists for this source/output pair. Delete or edit the existing link rather than duplicating it.');return;}
+  const available=num(s.qty)-allocated(s.id);
+  if(qty>available+0.000001){alert('Allocation exceeds available source quantity ('+fmt(available)+' '+s.unit+').');return;}
+  data.links.push({id:id(),sourceId:s.id,outputId:o.id,qty:qty,note:$('linkNote').value.trim(),createdAt:new Date().toISOString()});
+  persist();$('linkQty').value='';$('linkNote').value='';render();
+});
+$('search').addEventListener('input',render);
+$('runChecks').addEventListener('click',render);
+$('exportJson').addEventListener('click',()=>download('fashion-looks-lot-genealogy-backup.json',JSON.stringify({...data,exportedAt:new Date().toISOString()},null,2),'application/json'));
+$('exportCsv').addEventListener('click',()=>{
+  const rows=[['Supplier','Source lot','Material','Incoming TC','Scheme','Scope ref','Scope valid to','Buyer','PO','Output lot','Outgoing TC','Allocated input qty','Unit','Link note']];
+  data.links.forEach(l=>{
+    const s=sourceBy(l.sourceId),o=outputBy(l.outputId);
+    if(!s||!o)return;
+    rows.push([s.supplier,s.lot,s.material,s.tcNo,s.standard,s.scopeNo,s.scopeValidTo,o.buyer,o.po,o.lot,o.outgoingTc,l.qty,s.unit,l.note]);
+  });
+  const csv=rows.map(r=>r.map(escCsv).join(',')).join('\r\n');
+  download('fashion-looks-genealogy-links.csv',csv,'text/csv;charset=utf-8');
+});
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  if(f.size>5*1024*1024){alert('Backup is larger than 5 MB.');e.target.value='';return;}
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const v=JSON.parse(String(reader.result||''));
+      if(!v||!Array.isArray(v.sources)||!Array.isArray(v.outputs)||!Array.isArray(v.links))throw new Error('Invalid backup structure');
+      if(!confirm('Replace current local records with '+v.sources.length+' source lots, '+v.outputs.length+' output lots and '+v.links.length+' links?'))return;
+      data={version:1,sources:v.sources,outputs:v.outputs,links:v.links};
+      persist();render();$('status').textContent='Backup imported locally. Review all imported records and flags.';
+    }catch(err){alert('Import failed: '+err.message);}
+    finally{$('importFile').value='';}
+  };
+  reader.onerror=()=>alert('Could not read this file.');
+  reader.readAsText(f);
+});
+$('clearData').addEventListener('click',()=>{
+  if(!confirm('Permanently clear all local source lots, output lots and genealogy links from this browser? Export a backup first if needed.'))return;
+  data=blank();persist();render();
+});
+render();
+})();
+</script>
+</body>
+</html>

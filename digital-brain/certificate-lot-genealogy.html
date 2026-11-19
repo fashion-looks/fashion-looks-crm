@@ -77,7 +77,8 @@ footer{color:var(--muted);font-size:12px;text-align:center;margin:22px 0}
     <h2>＋ Register incoming source lot</h2>
     <form id="sourceForm" class="formgrid">
       <div><label for="supplier">Supplier / mill *</label><input id="supplier" maxlength="100" required></div>
-      <div><label for="sourceMaterial">Material / quality *</label><input id="sourceMaterial" maxlength="100" required placeholder="e.g. Organic cotton jersey"></div>
+      <div><label for="sourceMaterial">Incoming material / quality *</label><input id="sourceMaterial" maxlength="100" required placeholder="e.g. Organic cotton yarn"></div>
+      <div><label for="sourceTraceKey">Controlled material trace key *</label><input id="sourceTraceKey" maxlength="100" required placeholder="e.g. organic-cotton-30s"></div>
       <div><label for="sourceLot">Supplier lot / batch *</label><input id="sourceLot" maxlength="80" required></div>
       <div><label for="standard">Scheme / standard</label><select id="standard"><option>GOTS</option><option>GRS</option><option>OCS</option><option>RCS</option><option>RWS</option><option>OEKO-TEX</option><option>Better Cotton / BCI</option><option>Other / not specified</option></select></div>
       <div><label for="tcNo">Incoming Transaction Certificate ref.</label><input id="tcNo" maxlength="100"></div>
@@ -95,7 +96,8 @@ footer{color:var(--muted);font-size:12px;text-align:center;margin:22px 0}
     <form id="outputForm" class="formgrid">
       <div><label for="buyer">Buyer / customer *</label><input id="buyer" maxlength="100" required></div>
       <div><label for="poNo">Purchase Order no. *</label><input id="poNo" maxlength="80" required></div>
-      <div><label for="product">Product / material *</label><input id="product" maxlength="100" required></div>
+      <div><label for="product">Output product / material *</label><input id="product" maxlength="100" required></div>
+      <div><label for="outputTraceKey">Same controlled material trace key *</label><input id="outputTraceKey" maxlength="100" required placeholder="Use the source lot key"></div>
       <div><label for="outputLot">Output lot / batch *</label><input id="outputLot" maxlength="80" required></div>
       <div><label for="outgoingTc">Outgoing TC ref. (if issued)</label><input id="outgoingTc" maxlength="100"></div>
       <div><label for="productionDate">Production / dispatch date</label><input id="productionDate" type="date"></div>
@@ -254,7 +256,8 @@ function buildAlerts(){
   data.links.forEach(l=>{
     const s=sourceBy(l.sourceId),o=outputBy(l.outputId);
     if(!s||!o)list.push({type:'bad',text:'A genealogy link points to a missing source or output record.'});
-    else if(norm(s.material)!==norm(o.product))list.push({type:'bad',text:'Link mismatch: source material and output product labels differ for '+s.lot+' → '+o.lot+'. Verify or correct the records.'});
+    else if(!s.traceKey||!o.traceKey)list.push({type:'warn',text:'Link '+s.lot+' → '+o.lot+': controlled material trace key is missing.'});
+    else if(norm(s.traceKey)!==norm(o.traceKey))list.push({type:'bad',text:'Trace-key mismatch for '+s.lot+' → '+o.lot+'. Verify the controlled material mapping.'});
     else if(s.unit!==o.unit)list.push({type:'bad',text:'Link mismatch: source and output units differ for '+s.lot+' → '+o.lot+'. No automatic unit conversion is applied.'});
   });
   return list;
@@ -295,7 +298,7 @@ function render(){
   data.links.forEach(l=>{
     const s=sourceBy(l.sourceId),o=outputBy(l.outputId),tr=document.createElement('tr');
     cell(tr,s?s.lot+' · '+s.supplier:'Missing source');cell(tr,o?o.lot+' · PO '+o.po:'Missing output');
-    cell(tr,s?s.material:'—');cell(tr,fmt(l.qty)+' '+(s?s.unit:''));
+    cell(tr,s&&o?s.material+' → '+o.product:s?s.material:'—');cell(tr,fmt(l.qty)+' '+(s?s.unit:''));
     cell(tr,l.note||'—');
     const td=document.createElement('td');td.appendChild(actionButton('Delete','danger',()=>removeLink(l.id)));tr.appendChild(td);lr.appendChild(tr);
   });
@@ -306,14 +309,14 @@ $('sourceForm').addEventListener('submit',e=>{
   e.preventDefault();
   const qty=num($('sourceQty').value);
   if(qty<=0){alert('Enter a quantity greater than zero.');return;}
-  const rec={id:id(),supplier:$('supplier').value.trim(),material:$('sourceMaterial').value.trim(),lot:$('sourceLot').value.trim(),standard:$('standard').value,tcNo:$('tcNo').value.trim(),tcDate:$('tcDate').value,scopeNo:$('scopeNo').value.trim(),scopeValidTo:$('scopeValidTo').value,qty:qty,unit:$('sourceUnit').value,createdAt:new Date().toISOString()};
+  const rec={id:id(),supplier:$('supplier').value.trim(),material:$('sourceMaterial').value.trim(),traceKey:$('sourceTraceKey').value.trim(),lot:$('sourceLot').value.trim(),standard:$('standard').value,tcNo:$('tcNo').value.trim(),tcDate:$('tcDate').value,scopeNo:$('scopeNo').value.trim(),scopeValidTo:$('scopeValidTo').value,qty:qty,unit:$('sourceUnit').value,createdAt:new Date().toISOString()};
   data.sources.push(rec);persist();e.target.reset();render();
 });
 $('outputForm').addEventListener('submit',e=>{
   e.preventDefault();
   const qty=num($('outputQty').value);
   if(qty<=0){alert('Enter a quantity greater than zero.');return;}
-  const rec={id:id(),buyer:$('buyer').value.trim(),po:$('poNo').value.trim(),product:$('product').value.trim(),lot:$('outputLot').value.trim(),outgoingTc:$('outgoingTc').value.trim(),productionDate:$('productionDate').value,qty:qty,unit:$('outputUnit').value,createdAt:new Date().toISOString()};
+  const rec={id:id(),buyer:$('buyer').value.trim(),po:$('poNo').value.trim(),product:$('product').value.trim(),traceKey:$('outputTraceKey').value.trim(),lot:$('outputLot').value.trim(),outgoingTc:$('outgoingTc').value.trim(),productionDate:$('productionDate').value,qty:qty,unit:$('outputUnit').value,createdAt:new Date().toISOString()};
   data.outputs.push(rec);persist();e.target.reset();render();
 });
 $('linkForm').addEventListener('submit',e=>{
@@ -321,7 +324,7 @@ $('linkForm').addEventListener('submit',e=>{
   const s=sourceBy($('linkSource').value),o=outputBy($('linkOutput').value),qty=num($('linkQty').value);
   if(!s||!o){alert('Select both a source lot and an output lot.');return;}
   if(qty<=0){alert('Enter an allocated quantity greater than zero.');return;}
-  if(norm(s.material)!==norm(o.product)){alert('Material and product labels must match exactly for this basic link. Verify the names or use a controlled naming convention.');return;}
+  if(!s.traceKey||!o.traceKey||norm(s.traceKey)!==norm(o.traceKey)){alert('The controlled material trace keys must match. Use the same approved key for equivalent material across process stages.');return;}
   if(s.unit!==o.unit){alert('Units do not match. Convert quantities under an approved process before recording a link; this tool does not convert units.');return;}
   if(data.links.some(x=>x.sourceId===s.id&&x.outputId===o.id)){alert('A link already exists for this source/output pair. Delete or edit the existing link rather than duplicating it.');return;}
   const available=num(s.qty)-allocated(s.id);

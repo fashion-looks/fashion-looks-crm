@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1727">
+<title>Fashion Looks™ — Fabric Consumption & Cutting Yield Desk</title>
+<style>
+:root{color-scheme:dark;--bg:#091321;--panel:#111d2e;--panel2:#17263a;--line:#2b405a;--txt:#edf4ff;--muted:#a6b8cf;--accent:#7dd3fc;--ok:#86efac;--warn:#fcd34d;--bad:#fca5a5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0%,#1a3652,transparent 36%),var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1280px;margin:auto;padding:20px 14px 44px}header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:12px;letter-spacing:.13em;color:var(--accent);font-weight:800}h1{font-size:clamp(25px,4vw,38px);line-height:1.12;margin:7px 0}.sub,.muted{font-size:13px;color:var(--muted)}.tag{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px}
+.notice{margin:15px 0;border:1px solid #725d2c;background:#3a2c172e;color:#f9dfa0;border-radius:12px;padding:10px 12px;font-size:12px}
+.panel{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel),#0e1928);padding:15px;margin-top:13px}.panel h2{font-size:17px;margin:0 0 11px}
+.formgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.field label{display:block;font-size:11px;color:var(--muted);margin:0 0 5px}.field input{width:100%;background:#0a1524;color:var(--txt);border:1px solid #354b66;border-radius:10px;padding:10px;font:inherit;min-width:0}.field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px #7dd3fc20}
+button{border:1px solid #6784a1;background:transparent;color:var(--txt);padding:8px 11px;border-radius:10px;font-weight:700;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}button:hover{border-color:var(--accent);background:#7dd3fc12}button:active{transform:scale(.97)}button.primary{background:#16445e;border-color:#55a9d0}button.danger{color:var(--bad);border-color:#945e65}button:disabled{opacity:.4;cursor:not-allowed}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:13px 0}.metric{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:12px;min-width:0}.metric b{font-size:23px;display:block;overflow-wrap:anywhere}.metric span{font-size:11px;color:var(--muted)}
+.filters{display:grid;grid-template-columns:1fr 190px;gap:8px;margin:10px 0}.filters input,.filters select{background:#0a1524;color:var(--txt);border:1px solid #354b66;border-radius:10px;padding:9px;font:inherit}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:1050px;font-size:12px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#142238;color:#c4d5e8;position:sticky;top:0}td{color:#e2ebf7}.pill{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:10px}.good{color:var(--ok);border-color:#3f795c}.watch{color:var(--warn);border-color:#8c7136}.bad{color:var(--bad);border-color:#945e65}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail{font-size:12px;color:#d8e5f4;line-height:1.8}.detail b{color:#fff}.empty{border:1px dashed var(--line);border-radius:12px;padding:20px;text-align:center;color:var(--muted)}.small{font-size:11px;color:var(--muted)}.error{color:var(--bad)}.success{color:var(--ok)}.formula{font-size:12px;color:var(--muted);line-height:1.8}.formula code{color:#d6e9f9;background:#17263a;padding:2px 5px;border-radius:5px}
+footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
+@media(max-width:950px){.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:14px 10px 32px}.formgrid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:repeat(2,1fr)}.metric{padding:9px}.panel{padding:12px}.filters{grid-template-columns:1fr}.formgrid .field:last-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div><div class="brand">FASHION LOOKS™ · QUANTUM AI BRAIN</div><h1>Fabric Consumption & Cutting Yield Desk</h1><div class="sub">Reconcile marker-plan consumption with verified fabric issue, returns and cut output.</div></div><span class="tag">Local-first · v1.0</span></header>
+<div class="notice">Planning and reconciliation aid only. Enter quantities from checked issue slips, return notes and cutting records. A positive variance means net issue after returns exceeds marker-plan usage; a negative variance may mean unreturned stock, timing, measurement or incomplete records. It is not automatically a saving. Count any fabric still physically in cutting separately.</div>
+
+<section class="panel">
+<h2 id="formTitle">Add cutting reconciliation record</h2>
+<form id="recordForm">
+<div class="formgrid">
+<div class="field"><label for="po">PO / Job reference *</label><input id="po" maxlength="70" placeholder="PO-634" required></div>
+<div class="field"><label for="buyer">Buyer / customer</label><input id="buyer" maxlength="70" placeholder="Buyer A"></div>
+<div class="field"><label for="style">Style / garment *</label><input id="style" maxlength="70" placeholder="Basic Tee" required></div>
+<div class="field"><label for="quality">Fabric quality *</label><input id="quality" maxlength="90" placeholder="Cotton Single Jersey" required></div>
+<div class="field"><label for="lot">Fabric lot / batch reference</label><input id="lot" maxlength="70" placeholder="LOT-CTN-01"></div>
+<div class="field"><label for="orderQty">Order quantity (PCS) *</label><input id="orderQty" type="number" min="1" max="10000000" step="1" placeholder="12000" required></div>
+<div class="field"><label for="cutQty">Cut quantity (PCS) *</label><input id="cutQty" type="number" min="1" max="10000000" step="1" placeholder="6000" required></div>
+<div class="field"><label for="marker">Marker consumption (MTR / PC) *</label><input id="marker" type="number" min="0.0001" max="1000" step="0.0001" placeholder="0.145" required></div>
+<div class="field"><label for="issued">Fabric issued to cutting (MTR) *</label><input id="issued" type="number" min="0" max="100000000" step="0.01" placeholder="950" required></div>
+<div class="field"><label for="returned">Usable fabric returned (MTR) *</label><input id="returned" type="number" min="0" max="100000000" step="0.01" value="0" required></div>
+<div class="field"><label for="tolerance">Variance tolerance (%)</label><input id="tolerance" type="number" min="0" max="100" step="0.1" value="2"></div>
+<div class="field"><label for="cutDate">Cutting date</label><input id="cutDate" type="date"></div>
+</div>
+<div class="actions"><button class="primary" type="submit" id="saveBtn">＋ Save record</button><button type="reset" id="resetBtn">Clear form</button><button type="button" id="cancelEdit" hidden>Cancel edit</button></div>
+<div id="formMessage" class="small" aria-live="polite"></div>
+</form>
+</section>
+
+<div class="metrics">
+<div class="metric"><b id="mRecords">0</b><span>Reconciliation records</span></div>
+<div class="metric"><b id="mCut">0</b><span>Total cut quantity (PCS)</span></div>
+<div class="metric"><b id="mNet">0</b><span>Net issued after returns (MTR)</span></div>
+<div class="metric"><b id="mVariance">—</b><span>Weighted net-issue variance</span></div>
+<div class="metric"><b id="mReview">0</b><span>Records needing review</span></div>
+</div>
+
+<section class="panel">
+<div class="toolbar" style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+<h2 style="margin:0">Cutting reconciliation register</h2>
+<div class="actions" style="margin:0">
+<button id="demo">Load sample records</button>
+<button id="exportCsv">Export CSV</button>
+<button id="exportJson">Backup JSON</button>
+<label class="small" style="display:inline-flex;align-items:center;gap:6px">Restore JSON <input id="importJson" type="file" accept=".json,application/json" style="max-width:150px"></label>
+<button id="clearAll" class="danger">Clear all</button>
+</div></div>
+<div class="filters"><input id="search" placeholder="Search PO, buyer, style, quality or lot…" aria-label="Search records"><select id="statusFilter"><option value="All">All variance statuses</option><option>Excess consumption</option><option>Within tolerance</option><option>Below plan — verify</option></select></div>
+<div class="tablewrap" id="table"><div class="empty">Add a record or load sample data to begin.</div></div>
+<p class="small">Use Edit to correct a record after checking the source slips. This tool does not independently verify physical stock or cutting output.</p>
+</section>
+
+<div class="grid2">
+<section class="panel"><h2>Selected record analysis</h2><div id="detail" class="empty">Select a record from the register.</div></section>
+<section class="panel"><h2>How to interpret the variance</h2><div class="formula">
+<b>Net issued after returns</b> = Fabric issued − Usable fabric returned<br>
+<b>Marker-plan usage</b> = Marker consumption per piece × Cut quantity<br>
+<b>Net issued per cut piece (proxy)</b> = Net issued after returns ÷ Cut quantity<br>
+<b>Variance (MTR)</b> = Net issued − Marker-plan usage<br>
+<b>Variance %</b> = Variance ÷ Marker-plan usage × 100<br>
+<b>Cut completion %</b> = Cut quantity ÷ Order quantity × 100
+<p><span class="pill bad">Excess consumption</span> Above the entered tolerance.</p>
+<p><span class="pill good">Within tolerance</span> Between negative and positive tolerance.</p>
+<p><span class="pill watch">Below plan — verify</span> Net issue after returns is lower than plan; reconcile unreturned stock, stock timing and cut quantity before calling it a saving.</p>
+</div></section>
+</div>
+
+<section class="panel">
+<h2>Data and control notes</h2>
+<p class="small">This version is meter-based. Do not mix KG, yards or different measurement conventions in the same register. Use one record per PO/style/fabric lot/cutting batch. If a style has multiple marker versions, create separate records and retain the approved marker reference in your source documentation.</p>
+<p class="small">Only aggregate records with comparable fabric, marker and measurement conventions. The dashboard totals are useful for internal review, not a substitute for stock ledger, ERP or physical verification.</p>
+</section>
+<footer>Fashion Looks™ · Fabric issue and cutting variance control · Browser-local data · Human verification required</footer>
+</div>
+<script>
+(function(){
+"use strict";
+const $=function(id){return document.getElementById(id)};
+const KEY="fl_fabric_cutting_yield_v1";
+let records=loadRecords(),editingId=null,selectedId=null;
+function loadRecords(){try{const v=JSON.parse(localStorage.getItem(KEY)||"[]");return Array.isArray(v)?v:[]}catch(e){return[]}}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(records));return true}catch(e){setMessage("Browser storage unavailable or full. Export a JSON backup before continuing.",false);return false}}
+function esc(v){return String(v===undefined||v===null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function num(v){if(v===null||v===undefined||String(v).trim()==="")return NaN;const x=Number(v);return Number.isFinite(x)?x:NaN}
+function fmt(v,d){return Number(v||0).toLocaleString("en-IN",{maximumFractionDigits:d===undefined?2:d})}
+function setMessage(msg,ok){$("formMessage").className="small "+(ok?"success":"error");$("formMessage").textContent=msg}
+function calculate(r){
+ const net=r.issued-r.returned;
+ const planned=r.marker*r.cutQty;
+ const variance=net-planned;
+ const variancePct=planned>0?variance/planned*100:0;
+ let status="Within tolerance";
+ if(variancePct>r.tolerance)status="Excess consumption";
+ else if(variancePct< -r.tolerance)status="Below plan — verify";
+ return Object.assign({},r,{net:net,planned:planned,variance:variance,variancePct:variancePct,actualPerPiece:net/r.cutQty,cutCompletion:r.cutQty/r.orderQty*100,status:status});
+}
+function validateRecord(r){
+ const required=["po","style","quality"];
+ if(required.some(k=>!String(r[k]||"").trim()))return "PO, style and fabric quality are required.";
+ const order=num(r.orderQty),cut=num(r.cutQty),marker=num(r.marker),issued=num(r.issued),returned=num(r.returned),tol=num(r.tolerance);
+ if(!Number.isInteger(order)||order<1||order>10000000)return "Order quantity must be a positive whole number.";
+ if(!Number.isInteger(cut)||cut<1||cut>order)return "Cut quantity must be a whole number between 1 and order quantity.";
+ if(!Number.isFinite(marker)||marker<=0||marker>1000)return "Marker consumption must be greater than zero.";
+ if(!Number.isFinite(issued)||issued<0||issued>100000000)return "Issued fabric must be a valid non-negative MTR value.";
+ if(!Number.isFinite(returned)||returned<0||returned>issued)return "Usable returned fabric must be between zero and issued fabric.";
+ if(!Number.isFinite(tol)||tol<0||tol>100)return "Tolerance must be between 0 and 100%.";
+ return "";
+}
+function readForm(){
+ return {id:editingId||("CUT-"+Date.now().toString(36).toUpperCase()+"-"+Math.random().toString(36).slice(2,6).toUpperCase()),
+ po:$("po").value.trim(),buyer:$("buyer").value.trim(),style:$("style").value.trim(),quality:$("quality").value.trim(),lot:$("lot").value.trim(),
+ orderQty:num($("orderQty").value),cutQty:num($("cutQty").value),marker:num($("marker").value),issued:num($("issued").value),returned:num($("returned").value),
+ tolerance:$("tolerance").value===""?2:num($("tolerance").value),cutDate:$("cutDate").value||""};
+}
+function resetForm(){
+ editingId=null;$("recordForm").reset();$("returned").value="0";$("tolerance").value="2";$("formTitle").textContent="Add cutting reconciliation record";$("saveBtn").textContent="＋ Save record";$("cancelEdit").hidden=true;
+}
+function render(){
+ const data=records.map(calculate);
+ const cut=records.reduce((s,r)=>s+r.cutQty,0),net=records.reduce((s,r)=>s+(r.issued-r.returned),0),planned=records.reduce((s,r)=>s+r.marker*r.cutQty,0);
+ const variance=planned>0?(net-planned)/planned*100:null;
+ const review=data.filter(r=>r.status!=="Within tolerance").length;
+ $("mRecords").textContent=records.length;$("mCut").textContent=fmt(cut,0);$("mNet").textContent=fmt(net,2);$("mVariance").textContent=variance===null?"—":(variance>0?"+":"")+fmt(variance,2)+"%";$("mReview").textContent=review;
+ const query=$("search").value.toLowerCase(),filter=$("statusFilter").value;
+ const shown=data.filter(r=>(filter==="All"||r.status===filter)&&[r.po,r.buyer,r.style,r.quality,r.lot].join(" ").toLowerCase().includes(query));
+ shown.sort((a,b)=>b.variancePct-a.variancePct);
+ $("table").innerHTML=shown.length?'<table><thead><tr><th>PO / Job</th><th>Style</th><th>Fabric quality</th><th>Lot</th><th>Cut PCS</th><th>Net issued MTR</th><th>Plan MTR</th><th>Variance</th><th>Status</th><th>Actions</th></tr></thead><tbody>'+shown.map(r=>{
+ const cls=r.status==="Within tolerance"?"good":r.status==="Excess consumption"?"bad":"watch";
+ return '<tr><td>'+esc(r.po)+'</td><td>'+esc(r.style)+'</td><td>'+esc(r.quality)+'</td><td>'+esc(r.lot||"—")+'</td><td>'+fmt(r.cutQty,0)+'</td><td>'+fmt(r.net,2)+'</td><td>'+fmt(r.planned,2)+'</td><td>'+(r.variancePct>0?"+":"")+fmt(r.variancePct,2)+'%</td><td><span class="pill '+cls+'">'+esc(r.status)+'</span></td><td><button type="button" data-view="'+esc(r.id)+'">View</button> <button type="button" data-edit="'+esc(r.id)+'">Edit</button> <button type="button" class="danger" data-delete="'+esc(r.id)+'">Delete</button></td></tr>';
+ }).join("")+'</tbody></table>':'<div class="empty">No matching records.</div>';
+ if(selectedId&&!records.some(r=>r.id===selectedId))selectedId=null;
+ if(!selectedId&&data.length)selectedId=data[0].id;
+ renderDetail();
+}
+function renderDetail(){
+ const r=records.find(x=>x.id===selectedId);
+ if(!r){$("detail").innerHTML='<div class="empty">Select a record from the register.</div>';return}
+ const x=calculate(r),cls=x.status==="Within tolerance"?"good":x.status==="Excess consumption"?"bad":"watch";
+ $("detail").innerHTML='<div class="detail"><h3>'+esc(x.po)+' · '+esc(x.style)+'</h3><p>'+esc(x.quality)+' · Lot: '+esc(x.lot||"Not recorded")+' · Buyer: '+esc(x.buyer||"Not recorded")+'</p><p><b>Variance:</b> '+(x.variance>0?"+":"")+fmt(x.variance,2)+' MTR ('+(x.variancePct>0?"+":"")+fmt(x.variancePct,2)+'%)</p><p><b>Status:</b> <span class="pill '+cls+'">'+esc(x.status)+'</span> · <b>Cut completion:</b> '+fmt(x.cutCompletion,1)+'%</p><p><b>Issued:</b> '+fmt(x.issued,2)+' MTR · <b>Returned:</b> '+fmt(x.returned,2)+' MTR · <b>Net issued after returns:</b> '+fmt(x.net,2)+' MTR</p><p><b>Marker-plan usage:</b> '+fmt(x.planned,2)+' MTR · <b>Net issued per cut piece (proxy):</b> '+fmt(x.actualPerPiece,4)+' MTR/PC · <b>Marker:</b> '+fmt(x.marker,4)+' MTR/PC</p><p><b>Order quantity:</b> '+fmt(x.orderQty,0)+' PCS · <b>Cut quantity:</b> '+fmt(x.cutQty,0)+' PCS · <b>Cutting date:</b> '+esc(x.cutDate||"Not recorded")+'</p><p><b>Review note:</b> '+(x.status==="Excess consumption"?"Check marker version, issue slip, usable return, cut quantity and measurement method.":x.status==="Below plan — verify"?"Reconcile unreturned stock, issue timing, marker version and cut quantity before treating as a saving.":"Keep the source slips and approved marker reference with this record.")+'</p></div>';
+}
+function editRecord(id){
+ const r=records.find(x=>x.id===id);if(!r)return;editingId=id;selectedId=id;
+ ["po","buyer","style","quality","lot","orderQty","cutQty","marker","issued","returned","tolerance","cutDate"].forEach(k=>{$(k).value=r[k]===undefined?"":r[k]});
+ $("formTitle").textContent="Edit cutting reconciliation record";$("saveBtn").textContent="Save changes";$("cancelEdit").hidden=false;setMessage("Editing "+r.id+". Verify the source records before saving.",true);window.scrollTo({top:0,behavior:"smooth"});renderDetail();
+}
+$("recordForm").addEventListener("submit",function(e){
+ e.preventDefault();const r=readForm(),err=validateRecord(r);if(err){setMessage(err,false);return}
+ const idx=records.findIndex(x=>x.id===r.id);if(idx>=0)records[idx]=r;else records.unshift(r);
+ if(!persist())return;selectedId=r.id;resetForm();render();setMessage("Record saved locally. Check the source slips before using the variance for decisions.",true);
+});
+$("cancelEdit").addEventListener("click",function(){resetForm();setMessage("Edit cancelled.",true)});
+$("resetBtn").addEventListener("click",function(){setTimeout(function(){if(!editingId){$("returned").value="0";$("tolerance").value="2"}},0)});
+$("table").addEventListener("click",function(e){
+ const v=e.target.closest("[data-view]"),ed=e.target.closest("[data-edit]"),del=e.target.closest("[data-delete]");
+ if(v){selectedId=v.dataset.view;renderDetail()}
+ if(ed)editRecord(ed.dataset.edit);
+ if(del){const id=del.dataset.delete;if(!confirm("Delete this cutting record?"))return;records=records.filter(r=>r.id!==id);if(selectedId===id)selectedId=null;persist();render()}
+});
+["search","statusFilter"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",render));
+$("demo").addEventListener("click",function(){
+ const samples=[
+ {id:"DEMO-CUT-634",po:"PO-634",buyer:"Buyer A",style:"Basic Tee",quality:"Cotton Single Jersey",lot:"LOT-CTN-01",orderQty:12000,cutQty:6000,marker:0.145,issued:950,returned:40,tolerance:2,cutDate:"2026-11-18"},
+ {id:"DEMO-CUT-635",po:"PO-635",buyer:"Buyer B",style:"Polo Shirt",quality:"Pique Cotton",lot:"LOT-PC-02",orderQty:8000,cutQty:4000,marker:0.19,issued:810,returned:50,tolerance:2,cutDate:"2026-11-19"},
+ {id:"DEMO-CUT-636",po:"PO-636",buyer:"Buyer C",style:"Hoodie",quality:"Fleece",lot:"LOT-FL-03",orderQty:5000,cutQty:3000,marker:0.22,issued:700,returned:40,tolerance:2,cutDate:"2026-11-20"}
+ ];
+ records=samples;selectedId=null;persist();render();setMessage("Fictional sample records loaded. Replace them with verified production data.",true);
+});
+function csvCell(v,isText){let s=String(v===undefined||v===null?"":v);if(isText&&/^[\s\u0000-\u001f]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+function download(name,content,type){const blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+$("exportCsv").addEventListener("click",function(){
+ const cols=["po","buyer","style","quality","lot","orderQty","cutQty","markerMtrPerPiece","issuedMtr","returnedMtr","netIssuedAfterReturnsMtr","plannedUsageMtr","varianceMtr","variancePct","cutCompletionPct","status","cutDate"];
+ const lines=[cols.join(","),...records.map(r=>{const x=calculate(r),obj={...r,markerMtrPerPiece:r.marker,issuedMtr:r.issued,returnedMtr:r.returned,netConsumedMtr:x.net,plannedUsageMtr:x.planned,varianceMtr:x.variance,variancePct:x.variancePct,cutCompletionPct:x.cutCompletion,status:x.status};return cols.map(c=>csvCell(obj[c],["po","buyer","style","quality","lot","status","cutDate"].includes(c))).join(",")})];
+ download("fashion-looks-fabric-cutting-reconciliation.csv",lines.join("\r\n"),"text/csv;charset=utf-8");
+});
+$("exportJson").addEventListener("click",function(){download("fashion-looks-fabric-cutting-backup.json",JSON.stringify({schemaVersion:1,exportedAt:new Date().toISOString(),records:records},null,2),"application/json")});
+$("importJson").addEventListener("change",async function(e){
+ const f=e.target.files[0];if(!f)return;
+ try{
+  const obj=JSON.parse(await f.text()),incoming=Array.isArray(obj)?obj:obj.records;
+  if(!Array.isArray(incoming)||incoming.length>500)throw new Error("Backup must contain an array of up to 500 records.");
+  const clean=incoming.map((r,i)=>{
+   const copy={id:String(r.id||"IMPORT-"+(i+1)),po:String(r.po||""),buyer:String(r.buyer||""),style:String(r.style||""),quality:String(r.quality||""),lot:String(r.lot||""),orderQty:num(r.orderQty),cutQty:num(r.cutQty),marker:num(r.marker),issued:num(r.issued),returned:num(r.returned),tolerance:r.tolerance===undefined?2:num(r.tolerance),cutDate:String(r.cutDate||"")};
+   const err=validateRecord(copy);if(err)throw new Error("Record "+(i+1)+": "+err);return copy;
+  });
+  if(!confirm("Replace current records with "+clean.length+" imported records? Export a backup first if needed."))return;
+  records=clean;selectedId=null;persist();render();setMessage("JSON backup restored: "+records.length+" records.",true);
+ }catch(err){setMessage("Import failed: "+err.message,false)}
+ finally{e.target.value=""}
+});
+$("clearAll").addEventListener("click",function(){if(!confirm("Delete all saved cutting records from this browser? Export a backup first if required."))return;records=[];selectedId=null;persist();render();setMessage("All records cleared.",true)});
+render();
+})();
+</script>
+</body>
+</html>

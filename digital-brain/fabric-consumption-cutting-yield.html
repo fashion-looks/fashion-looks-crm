@@ -25,7 +25,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
 <body>
 <div class="wrap">
 <header><div><div class="brand">FASHION LOOKS™ · QUANTUM AI BRAIN</div><h1>Fabric Consumption & Cutting Yield Desk</h1><div class="sub">Reconcile marker-plan consumption with verified fabric issue, returns and cut output.</div></div><span class="tag">Local-first · v1.0</span></header>
-<div class="notice">Planning and reconciliation aid only. Enter quantities from checked issue slips, return notes and cutting records. A positive variance is excess recorded consumption against the marker plan; a negative variance may indicate stock/measurement timing or incomplete records and must be checked before treating it as a saving.</div>
+<div class="notice">Planning and reconciliation aid only. Enter quantities from checked issue slips, return notes and cutting records. A positive variance means net issue after returns exceeds marker-plan usage; a negative variance may mean unreturned stock, timing, measurement or incomplete records. It is not automatically a saving. Count any fabric still physically in cutting separately.</div>
 
 <section class="panel">
 <h2 id="formTitle">Add cutting reconciliation record</h2>
@@ -52,8 +52,8 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
 <div class="metrics">
 <div class="metric"><b id="mRecords">0</b><span>Reconciliation records</span></div>
 <div class="metric"><b id="mCut">0</b><span>Total cut quantity (PCS)</span></div>
-<div class="metric"><b id="mNet">0</b><span>Net fabric consumed (MTR)</span></div>
-<div class="metric"><b id="mVariance">—</b><span>Weighted consumption variance</span></div>
+<div class="metric"><b id="mNet">0</b><span>Net issued after returns (MTR)</span></div>
+<div class="metric"><b id="mVariance">—</b><span>Weighted net-issue variance</span></div>
 <div class="metric"><b id="mReview">0</b><span>Records needing review</span></div>
 </div>
 
@@ -75,15 +75,15 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
 <div class="grid2">
 <section class="panel"><h2>Selected record analysis</h2><div id="detail" class="empty">Select a record from the register.</div></section>
 <section class="panel"><h2>How to interpret the variance</h2><div class="formula">
-<b>Net issued</b> = Fabric issued − Usable fabric returned<br>
+<b>Net issued after returns</b> = Fabric issued − Usable fabric returned<br>
 <b>Marker-plan usage</b> = Marker consumption per piece × Cut quantity<br>
-<b>Actual consumption per piece</b> = Net issued ÷ Cut quantity<br>
+<b>Net issued per cut piece (proxy)</b> = Net issued after returns ÷ Cut quantity<br>
 <b>Variance (MTR)</b> = Net issued − Marker-plan usage<br>
 <b>Variance %</b> = Variance ÷ Marker-plan usage × 100<br>
 <b>Cut completion %</b> = Cut quantity ÷ Order quantity × 100
 <p><span class="pill bad">Excess consumption</span> Above the entered tolerance.</p>
 <p><span class="pill good">Within tolerance</span> Between negative and positive tolerance.</p>
-<p><span class="pill watch">Below plan — verify</span> Recorded use is lower than plan; reconcile returns, stock timing and cut quantity before calling it a saving.</p>
+<p><span class="pill watch">Below plan — verify</span> Net issue after returns is lower than plan; reconcile unreturned stock, stock timing and cut quantity before calling it a saving.</p>
 </div></section>
 </div>
 
@@ -92,7 +92,7 @@ footer{text-align:center;color:var(--muted);font-size:11px;margin-top:20px}
 <p class="small">This version is meter-based. Do not mix KG, yards or different measurement conventions in the same register. Use one record per PO/style/fabric lot/cutting batch. If a style has multiple marker versions, create separate records and retain the approved marker reference in your source documentation.</p>
 <p class="small">Only aggregate records with comparable fabric, marker and measurement conventions. The dashboard totals are useful for internal review, not a substitute for stock ledger, ERP or physical verification.</p>
 </section>
-<footer>Fashion Looks™ · Fabric consumption control · Browser-local data · Human verification required</footer>
+<footer>Fashion Looks™ · Fabric issue and cutting variance control · Browser-local data · Human verification required</footer>
 </div>
 <script>
 (function(){
@@ -158,7 +158,7 @@ function renderDetail(){
  const r=records.find(x=>x.id===selectedId);
  if(!r){$("detail").innerHTML='<div class="empty">Select a record from the register.</div>';return}
  const x=calculate(r),cls=x.status==="Within tolerance"?"good":x.status==="Excess consumption"?"bad":"watch";
- $("detail").innerHTML='<div class="detail"><h3>'+esc(x.po)+' · '+esc(x.style)+'</h3><p>'+esc(x.quality)+' · Lot: '+esc(x.lot||"Not recorded")+' · Buyer: '+esc(x.buyer||"Not recorded")+'</p><p><b>Variance:</b> '+(x.variance>0?"+":"")+fmt(x.variance,2)+' MTR ('+(x.variancePct>0?"+":"")+fmt(x.variancePct,2)+'%)</p><p><b>Status:</b> <span class="pill '+cls+'">'+esc(x.status)+'</span> · <b>Cut completion:</b> '+fmt(x.cutCompletion,1)+'%</p><p><b>Issued:</b> '+fmt(x.issued,2)+' MTR · <b>Returned:</b> '+fmt(x.returned,2)+' MTR · <b>Net used:</b> '+fmt(x.net,2)+' MTR</p><p><b>Marker-plan usage:</b> '+fmt(x.planned,2)+' MTR · <b>Actual use per piece:</b> '+fmt(x.actualPerPiece,4)+' MTR/PC · <b>Marker:</b> '+fmt(x.marker,4)+' MTR/PC</p><p><b>Order quantity:</b> '+fmt(x.orderQty,0)+' PCS · <b>Cut quantity:</b> '+fmt(x.cutQty,0)+' PCS · <b>Cutting date:</b> '+esc(x.cutDate||"Not recorded")+'</p><p><b>Review note:</b> '+(x.status==="Excess consumption"?"Check marker version, issue slip, usable return, cut quantity and measurement method.":x.status==="Below plan — verify"?"Reconcile unreturned stock, issue timing, marker version and cut quantity before treating as a saving.":"Keep the source slips and approved marker reference with this record.")+'</p></div>';
+ $("detail").innerHTML='<div class="detail"><h3>'+esc(x.po)+' · '+esc(x.style)+'</h3><p>'+esc(x.quality)+' · Lot: '+esc(x.lot||"Not recorded")+' · Buyer: '+esc(x.buyer||"Not recorded")+'</p><p><b>Variance:</b> '+(x.variance>0?"+":"")+fmt(x.variance,2)+' MTR ('+(x.variancePct>0?"+":"")+fmt(x.variancePct,2)+'%)</p><p><b>Status:</b> <span class="pill '+cls+'">'+esc(x.status)+'</span> · <b>Cut completion:</b> '+fmt(x.cutCompletion,1)+'%</p><p><b>Issued:</b> '+fmt(x.issued,2)+' MTR · <b>Returned:</b> '+fmt(x.returned,2)+' MTR · <b>Net issued after returns:</b> '+fmt(x.net,2)+' MTR</p><p><b>Marker-plan usage:</b> '+fmt(x.planned,2)+' MTR · <b>Net issued per cut piece (proxy):</b> '+fmt(x.actualPerPiece,4)+' MTR/PC · <b>Marker:</b> '+fmt(x.marker,4)+' MTR/PC</p><p><b>Order quantity:</b> '+fmt(x.orderQty,0)+' PCS · <b>Cut quantity:</b> '+fmt(x.cutQty,0)+' PCS · <b>Cutting date:</b> '+esc(x.cutDate||"Not recorded")+'</p><p><b>Review note:</b> '+(x.status==="Excess consumption"?"Check marker version, issue slip, usable return, cut quantity and measurement method.":x.status==="Below plan — verify"?"Reconcile unreturned stock, issue timing, marker version and cut quantity before treating as a saving.":"Keep the source slips and approved marker reference with this record.")+'</p></div>';
 }
 function editRecord(id){
  const r=records.find(x=>x.id===id);if(!r)return;editingId=id;selectedId=id;
@@ -190,7 +190,7 @@ $("demo").addEventListener("click",function(){
 function csvCell(v,isText){let s=String(v===undefined||v===null?"":v);if(isText&&/^[\s\u0000-\u001f]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
 function download(name,content,type){const blob=new Blob([content],{type:type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
 $("exportCsv").addEventListener("click",function(){
- const cols=["po","buyer","style","quality","lot","orderQty","cutQty","markerMtrPerPiece","issuedMtr","returnedMtr","netConsumedMtr","plannedUsageMtr","varianceMtr","variancePct","cutCompletionPct","status","cutDate"];
+ const cols=["po","buyer","style","quality","lot","orderQty","cutQty","markerMtrPerPiece","issuedMtr","returnedMtr","netIssuedAfterReturnsMtr","plannedUsageMtr","varianceMtr","variancePct","cutCompletionPct","status","cutDate"];
  const lines=[cols.join(","),...records.map(r=>{const x=calculate(r),obj={...r,markerMtrPerPiece:r.marker,issuedMtr:r.issued,returnedMtr:r.returned,netConsumedMtr:x.net,plannedUsageMtr:x.planned,varianceMtr:x.variance,variancePct:x.variancePct,cutCompletionPct:x.cutCompletion,status:x.status};return cols.map(c=>csvCell(obj[c],["po","buyer","style","quality","lot","status","cutDate"].includes(c))).join(",")})];
  download("fashion-looks-fabric-cutting-reconciliation.csv",lines.join("\r\n"),"text/csv;charset=utf-8");
 });

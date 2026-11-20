@@ -110,7 +110,7 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 
 ## Fabric Consumption & Cutting Yield Desk
 - Reconcile marker-plan fabric usage against fabric issued to cutting, usable returns, and recorded cut quantity.
-- Calculates net fabric consumed, planned marker usage, actual consumption per piece, MTR variance, variance percentage, and cut completion percentage.
+- Calculates net issued after usable returns, planned marker usage, actual consumption per piece, MTR variance, variance percentage, and cut completion percentage.
 - Uses a user-entered tolerance to flag excess consumption, within-tolerance records, and below-plan records that need verification.
 - Keeps one record per PO/style/fabric lot/cutting batch; this version is meter-based and must not mix MTR with KG or yards.
 - Supports record search, edit/delete, JSON backup/restore, and CSV export with text-field formula-injection protection.

@@ -107,3 +107,13 @@ Optional cloud sync with explicit consent, backup import, weekly analytics, and 
 - Edit or delete observations; export JSON backups or CSV. CSV fields are quoted and common spreadsheet formula prefixes are neutralized.
 - Open `process-bottleneck-intelligence.html` from the dashboard. Enter aggregated observations for a consistent review period; avoid mixing different units or unrelated case types.
 - Data is stored in this browser's local storage only, with a 500-observation limit. No cloud sync, AI API, external monitoring, or automatic process changes are enabled. Avoid confidential personal or commercial details.
+
+## Fabric Consumption & Cutting Yield Desk
+- Reconcile marker-plan fabric usage against fabric issued to cutting, usable returns, and recorded cut quantity.
+- Calculates net fabric consumed, planned marker usage, actual consumption per piece, MTR variance, variance percentage, and cut completion percentage.
+- Uses a user-entered tolerance to flag excess consumption, within-tolerance records, and below-plan records that need verification.
+- Keeps one record per PO/style/fabric lot/cutting batch; this version is meter-based and must not mix MTR with KG or yards.
+- Supports record search, edit/delete, JSON backup/restore, and CSV export with text-field formula-injection protection.
+- Open `fabric-consumption-cutting-yield.html` from the dashboard. Enter figures only after checking issue slips, usable return notes, approved marker references, and cutting records.
+- Negative variance is not automatically a saving; reconcile stock timing, returns, marker version, and cut quantity. The tool is an internal reconciliation aid, not an ERP or physical stock verification system.
+- Data is stored in this browser's local storage only. No cloud sync, AI API, supplier contact, or external action is enabled. Avoid sensitive customer details and export a backup before clearing browser data.
